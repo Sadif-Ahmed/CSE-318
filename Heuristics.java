@@ -1,7 +1,7 @@
-class Pair{
+class pos_Pair{
     int x;
     int y;
-    Pair(int x,int y)
+    pos_Pair(int x,int y)
     {
         this.x=x;
         this.y=y;
@@ -16,7 +16,7 @@ class Pair{
     }
 }
 public class Heuristics {
-    public Pair get_corrct_pos(int value,int board_size)
+    public pos_Pair get_corrct_pos(int value,int board_size)
     {
         int x,y;
         if(value % board_size!=0)
@@ -29,7 +29,7 @@ public class Heuristics {
             x = value/board_size;
             y= board_size; 
         }
-        return new Pair(x, y);
+        return new pos_Pair(x, y);
     }
     public int hamming_distance(Board board)
     {
@@ -39,7 +39,7 @@ public class Heuristics {
             for(int j=1;j<=board.size;j++)
             {
                 if(board.mat[i][j]==0) continue;
-                Pair temp = get_corrct_pos(board.mat[i][j], board.size);
+                pos_Pair temp = get_corrct_pos(board.mat[i][j], board.size);
                 if(i!= temp.get_x()|| j!= temp.get_y())
                 {
                     ham_dist++;
@@ -56,7 +56,7 @@ public class Heuristics {
             for(int j=1;j<=board.size;j++)
             {
                 if(board.mat[i][j]==0) continue;
-                Pair temp = get_corrct_pos(board.mat[i][j], board.size);
+                pos_Pair temp = get_corrct_pos(board.mat[i][j], board.size);
                 man_dist += (Math.abs(temp.get_x()-i)+Math.abs(temp.get_y()-j));
             }
         }
