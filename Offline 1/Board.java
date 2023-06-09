@@ -47,7 +47,7 @@ public class Board {
     public int invertion_count()
     {
         int invertion_count=0;
-        int []temp =  new int[size*size];
+        int []temp =  new int[size*size+2];
         int idx=0;
         for(int i=1;i<=size;i++)
         {
@@ -60,7 +60,8 @@ public class Board {
         {
             for(int j=i+1;j<size*size;j++)
             {
-                if(temp[j]<temp[i])
+                if(temp[i]==0 || temp[j]==0) continue;
+                if(temp[i]>temp[j])
                 {
                     invertion_count++;
                 }
@@ -102,16 +103,9 @@ public class Board {
         {
             for(int j=1;j<=size;j++)
             {
-                if(mat[i][j]==0)
-                {
-                System.out.println("* ");
-                }
-                else
-                {
-                    System.out.println(mat[i][j]+" ");
-                }
+                    System.out.print(mat[i][j]+" ");
             }
-            System.out.println("");
+            System.out.println();
         }
     }
     @Override

@@ -87,37 +87,38 @@ public class Puzzle_Solver {
         int invertion_count = startBoard.invertion_count();
         if( size % 2 ==1)
         {
-            System.out.println("The Board is odd sized.Invertion Count: "+invertion_count);
+           // System.out.println("The Board is odd sized.Invertion Count: "+invertion_count);
             if(invertion_count%2==1)
             {
-                System.out.println("Solution Does Not Exist.");
+               // System.out.println("Solution Does Not Exist.");
                 return false;
             }
             else
             {
-                System.out.println("Solution Exists.");
+                //System.out.println("Solution Exists.");
                 return true;
             }
         }
         else
         {
             int b_row = get_blank_pos(startBoard).get_x();
-            System.out.println("The board is even sized.Invertion Count and blank row position are :"+invertion_count+" , "+b_row);
+           // System.out.println("The board is even sized.Invertion Count and blank row position are :"+invertion_count+" , "+b_row);
             if((b_row+invertion_count)%2==0)
             {
-                System.out.println("Solution Exists!");
+                //System.out.println("Solution Exists!");
                 return true;
             }
             else
             {
-                System.out.println("Solution Does Not Exist.");
+                //System.out.println("Solution Does Not Exist.");
                 return false;
             }
 
         }
     }
     public Search_Node solve()
-    {
+    {   
+        
         int staring_h_n= calculate_heuristic(startBoard);
         Search_Node node = new Search_Node(startBoard, 0, staring_h_n);
         node.parent=null;
@@ -133,10 +134,12 @@ public class Puzzle_Solver {
         while(!queue.isEmpty())
         {
             expanded_count++;
+            /*
             if(expanded_count % 100000 == 0)
             {
                 System.out.println(expanded_count);
-            }            
+            } 
+             */           
             Search_Node current =  queue.remove();
             Pair p =  get_blank_pos(current.board);
             int x,y;
@@ -157,8 +160,8 @@ public class Puzzle_Solver {
                 explored_count++;
                 if(child.equals(goalBoard))
                 {
-                    System.out.println("Nodes Expanded : " + expanded_count + "\n");
-                    System.out.println("Nodes Explored : " + explored_count);
+                    //System.out.println("Nodes Expanded : " + expanded_count + "\n");
+                    //System.out.println("Nodes Explored : " + explored_count);
                     return child_node;
                 }
             }
@@ -166,6 +169,16 @@ public class Puzzle_Solver {
         }
         System.out.println("No Solution Found!");
         return null;
+    }
+    public int move_count(Search_Node goal)
+    {
+        int count=0;
+        while(goal!=null)
+        {
+            goal = goal.parent;
+            count++;
+        }
+        return count-1;
     }
     public void print_path(Search_Node goal)
     {
@@ -181,10 +194,7 @@ public class Puzzle_Solver {
             temp.board.print();
             System.out.println("|||");
             System.out.println("---");
-            System.out.println("|||");
-            System.out.println("---");
-            System.out.println("|||");
-            System.out.println("---");
+            
         }
     }
 }
