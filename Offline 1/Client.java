@@ -18,7 +18,8 @@ import java.io.*;
           System.out.println("Enter Grid Size:");
           
           
-          int k = in.nextInt();
+          String x = in.next();
+          int k=Integer.parseInt(x);
           int [][]mat  = new int[k+1][k+1];
           System.out.println("Enter Intial Board State");
           
@@ -37,7 +38,7 @@ import java.io.*;
           System.out.println("Initial Board State: ");
           for (int i = 1; i <= k; i++) {
             for (int j = 1; j <= k; j++) {
-                System.out.print(mat[i][j]);
+                System.out.print(mat[i][j]+" ");
             }
             System.out.println("");
           }
