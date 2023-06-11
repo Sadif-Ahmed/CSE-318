@@ -30,7 +30,7 @@ public class Puzzle_Solver {
     PriorityQueue<Search_Node> queue;
     int heuristic_choice;
     Heuristics heuristics;
-    final int max_list_size=100000;
+    final int max_list_size=10000000;
 
     public Puzzle_Solver(int [][] mat, int size)
     {
