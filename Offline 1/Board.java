@@ -1,5 +1,5 @@
 import java.util.Arrays;
-
+//Class for holding the puzzle boards
 public class Board {
     int mat [][];
     int size;
@@ -15,6 +15,7 @@ public class Board {
             }
         }
     }
+    //generate final puzzle board state
     public static Board get_goal(int size)
     {
         int [][]final_board = new int[size+1][size+1];

@@ -16,6 +16,7 @@ class pos_Pair{
     }
 }
 public class Heuristics {
+    
     public pos_Pair get_corrct_pos(int value,int board_size)
     {
         int x,y;

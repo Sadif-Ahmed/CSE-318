@@ -1,14 +1,12 @@
-import java.util.Arrays;
-import java.util.Scanner;
-import java.io.*;
 
+import java.util.Scanner;
 
  public class Client{
       public static void main(String[] args){
           Scanner in = null;
           
           try {
-            //File file = new File("input.txt");
+            
             in = new Scanner(System.in);
               
           } catch (Exception e) {
@@ -21,7 +19,7 @@ import java.io.*;
           String x = in.next();
           int k=Integer.parseInt(x);
           int [][]mat  = new int[k+1][k+1];
-          System.out.println("Enter Intial Board State");
+          System.out.println("Enter Intial Board State:");
           
           for (int i = 1; i <= k; i++) {
             for (int j = 1; j <= k; j++) {
@@ -42,6 +40,7 @@ import java.io.*;
             }
             System.out.println("");
           }
+          System.out.println("");
           int []moves_store = {0,0};
           Puzzle_Solver ps = new Puzzle_Solver(mat , k);
           Search_Node goal;
