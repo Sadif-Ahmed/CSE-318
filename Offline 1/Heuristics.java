@@ -23,7 +23,7 @@ public class Heuristics {
         if(value % board_size!=0)
         {
             x= 1+value/board_size;
-            y= value/board_size;
+            y= value%board_size;
         }
         else
         {

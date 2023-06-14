@@ -82,43 +82,9 @@ public class Puzzle_Solver {
         close_list.clear();
         visited.clear();
     }
-    public boolean check_solvability()
-    {
-        int invertion_count = startBoard.invertion_count();
-        if( size % 2 ==1)
-        {
-          
-            if(invertion_count%2==1)
-            {
-               
-                return false;
-            }
-            else
-            {
-               
-                return true;
-            }
-        }
-        else
-        {
-            int b_row = get_blank_pos(startBoard).get_x();
-           
-            if((b_row+invertion_count)%2==0)
-            {
-                
-                return true;
-            }
-            else
-            {
-                
-                return false;
-            }
-
-        }
-    }
-    public Search_Node solve()
+    public Search_Node solve(int h)
     {   
-        
+        set_heuristic_choice(h);
         int staring_h_n= calculate_heuristic(startBoard);
         Search_Node node = new Search_Node(startBoard, 0, staring_h_n);
         node.parent=null;

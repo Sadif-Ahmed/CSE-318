@@ -45,27 +45,24 @@ import java.util.Scanner;
           Puzzle_Solver ps = new Puzzle_Solver(mat , k);
           Search_Node goal;
           for(int i=1 ; i<=2 ; i++){
-              ps.set_heuristic_choice(i);
-              if(ps.check_solvability())
+              if(Board.check_solvability(new Board(mat, k)))
               {
-              goal = ps.solve();
+              goal = ps.solve(i);
               moves_store[i-1]=ps.move_count(goal);
               }
           }
-        if(ps.check_solvability())
+        if(Board.check_solvability(new Board(mat, k)))
         {
         if(moves_store[0]<=moves_store[1])
         {
             System.out.println("Minimum Number of moves = "+moves_store[0]);
-            ps.set_heuristic_choice(1);
-            goal = ps.solve();
+            goal = ps.solve(1);
             ps.print_path(goal);
         }
         else
         {
             System.out.println("Minimum Number of moves = "+moves_store[1]);
-            ps.set_heuristic_choice(2);
-            goal = ps.solve();
+            goal = ps.solve(2);
             ps.print_path(goal);
 
         }

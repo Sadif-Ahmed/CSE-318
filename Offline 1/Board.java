@@ -1,4 +1,21 @@
 import java.util.Arrays;
+class board_Pair{
+    int x;
+    int y;
+    board_Pair(int x,int y)
+    {
+        this.x=x;
+        this.y=y;
+    }
+    int get_x()
+    {
+        return x;
+    }
+    int get_y()
+    {
+        return y;
+    }
+}
 //Class for holding the puzzle boards
 public class Board {
     int mat [][];
@@ -69,6 +86,54 @@ public class Board {
             }
         }
         return invertion_count;
+    }
+    board_Pair get_blank_pos(Board board)
+    {
+        for(int i=1;i<=board.size;i++)
+        {
+            for(int j=1;j<=board.size;j++)
+            {
+                if(board.mat[i][j]==0)
+                {
+                    return new board_Pair(i, j);
+                }
+            }
+        }
+        return null;
+    }
+    public static boolean check_solvability(Board board)
+    {
+        int invertion_count = board.invertion_count();
+        if( board.size % 2 ==1)
+        {
+          
+            if(invertion_count%2==1)
+            {
+               
+                return false;
+            }
+            else
+            {
+               
+                return true;
+            }
+        }
+        else
+        {
+            int b_row = board.get_blank_pos(board).get_x();
+           
+            if((b_row+invertion_count)%2==0)
+            {
+                
+                return true;
+            }
+            else
+            {
+                
+                return false;
+            }
+
+        }
     }
     @Override
     public boolean equals(Object obj)
