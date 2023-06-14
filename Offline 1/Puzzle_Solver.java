@@ -21,14 +21,13 @@ class Pair{
 public class Puzzle_Solver {
     Board startBoard;
     Board goalBoard;
-    int expanded_count;
-    int explored_count;
+    //int expanded_count;
+   // int explored_count;
     int size;
     Hashtable<Board, Integer> open_list;
     Hashtable<Board, Integer> close_list;
     HashSet<Board> visited;
     PriorityQueue<Search_Node> queue;
-    int heuristic_choice;
     Heuristics heuristics;
     final int max_list_size=10000000;
 
@@ -57,24 +56,6 @@ public class Puzzle_Solver {
         }
         return null;
     }
-    public void set_heuristic_choice(int h) {
-        heuristic_choice=h;
-    }
-    public int calculate_heuristic(Board board)
-    {
-        if(heuristic_choice==1)
-        {
-            return heuristics.hamming_distance(board);
-        }
-        else if(heuristic_choice==2)
-        {
-            return heuristics.manhattan_distance(board);
-        }
-        else 
-        {
-            return 0;
-        }
-    }
     public void clear_list()
     {
         queue.clear();
@@ -84,22 +65,30 @@ public class Puzzle_Solver {
     }
     public Search_Node solve(int h)
     {   
-        set_heuristic_choice(h);
-        int staring_h_n= calculate_heuristic(startBoard);
+        
+        int staring_h_n;
+        if(h==1)
+        {
+            staring_h_n = heuristics.hamming_distance(startBoard); 
+        }
+        else
+        {
+            staring_h_n = heuristics.manhattan_distance(startBoard);
+        }
         Search_Node node = new Search_Node(startBoard, 0, staring_h_n);
         node.parent=null;
         clear_list();
         queue.add(node);
         visited.add(startBoard);
-        expanded_count=0;
-        explored_count=0;
+       // expanded_count=0;
+       // explored_count=0;
         
         int []change_x={1,-1,0,0};
         int []change_y={0,0,1,-1};
 
         while(!queue.isEmpty())
         {
-            expanded_count++;     
+           // expanded_count++;     
             Search_Node current =  queue.remove();
             Pair p =  get_blank_pos(current.board);
             int x,y;
@@ -113,11 +102,19 @@ public class Puzzle_Solver {
                 Board child = current.board.swap_cell(p.get_x(), p.get_y(), x, y);
 
                 if(visited.contains(child)) continue;
-                int child_h_n= calculate_heuristic(child);
+                int child_h_n;
+                if(h==1)
+                {
+                   child_h_n = heuristics.hamming_distance(child); 
+                }
+                else
+                {
+                    child_h_n = heuristics.manhattan_distance(child);
+                }
                 Search_Node child_node = new Search_Node(child, current.g_n+1, child_h_n);
                 child_node.parent=current;
                 queue.add(child_node);
-                explored_count++;
+                //explored_count++;
                 if(child.equals(goalBoard))
                 {
                     return child_node;
