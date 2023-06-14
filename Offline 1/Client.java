@@ -41,6 +41,8 @@ import java.util.Scanner;
             System.out.println("");
           }
           System.out.println("");
+          if(k<=3)
+          {
           int []moves_store = {0,0};
           Puzzle_Solver ps = new Puzzle_Solver(mat , k);
           Search_Node goal;
@@ -57,12 +59,14 @@ import java.util.Scanner;
         {
             System.out.println("Minimum Number of moves = "+moves_store[0]);
             goal = ps.solve(1);
+            System.out.println("");
             ps.print_path(goal);
         }
         else
         {
             System.out.println("Minimum Number of moves = "+moves_store[1]);
             goal = ps.solve(2);
+            System.out.println("");
             ps.print_path(goal);
 
         }
@@ -72,6 +76,22 @@ import java.util.Scanner;
             System.out.println("Unsolvable Puzzle");
         }
           
-      
+    }
+    else
+    {
+        if(Board.check_solvability(new Board(mat, k)))
+        {
+      Puzzle_Solver puzzle = new Puzzle_Solver(mat, k);
+      Search_Node t = puzzle.solve(2);
+      System.out.println("Minimum Number of moves = " + puzzle.move_count(t) );
+      System.out.println("");
+      puzzle.print_path(t);
+      }
+      else
+      {
+        System.out.println("Unsolvable Puzzle");
+      }
+    }
     }  
+   
  }
