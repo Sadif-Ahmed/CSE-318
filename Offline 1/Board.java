@@ -1,21 +1,5 @@
 import java.util.Arrays;
-class board_Pair{
-    int x;
-    int y;
-    board_Pair(int x,int y)
-    {
-        this.x=x;
-        this.y=y;
-    }
-    int get_x()
-    {
-        return x;
-    }
-    int get_y()
-    {
-        return y;
-    }
-}
+
 //Class for holding the puzzle boards
 public class Board {
     int mat [][];
@@ -87,7 +71,7 @@ public class Board {
         }
         return invertion_count;
     }
-    board_Pair get_blank_pos(Board board)
+    public static Cell get_blank_pos(Board board)
     {
         for(int i=1;i<=board.size;i++)
         {
@@ -95,7 +79,7 @@ public class Board {
             {
                 if(board.mat[i][j]==0)
                 {
-                    return new board_Pair(i, j);
+                    return new Cell(i, j);
                 }
             }
         }
@@ -120,7 +104,7 @@ public class Board {
         }
         else
         {
-            int b_row = board.get_blank_pos(board).get_x();
+            int b_row = get_blank_pos(board).get_x();
            
             if((b_row+invertion_count)%2==0)
             {
