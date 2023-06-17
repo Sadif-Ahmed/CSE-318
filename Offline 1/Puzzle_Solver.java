@@ -159,37 +159,21 @@ public class Puzzle_Solver {
             }
             System.out.println("");
           }
-          System.out.println("");
+        System.out.println("");
           if(k<=3)
           {
-          int []moves_store = {0,0};
           Puzzle_Solver ps = new Puzzle_Solver(mat , k);
           Search_Node goal;
-          for(int i=1 ; i<=2 ; i++){
+         
               if(Board.check_solvability(new Board(mat, k)))
               {
-              goal = ps.solve(i);
-              moves_store[i-1]=ps.move_count(goal);
+              goal = ps.solve(1);
+              System.out.println("Minimum Number of moves using hamming = " + ps.move_count(goal) );
+              goal = ps.solve(2);
+              System.out.println("Minimum Number of moves using manhattan = " + ps.move_count(goal) );
+              System.out.println("");
+              ps.print_path(goal);
               }
-          }
-        if(Board.check_solvability(new Board(mat, k)))
-        {
-        if(moves_store[0]<=moves_store[1])
-        {
-            System.out.println("Minimum Number of moves = "+moves_store[0]);
-            goal = ps.solve(1);
-            System.out.println("");
-            ps.print_path(goal);
-        }
-        else
-        {
-            System.out.println("Minimum Number of moves = "+moves_store[1]);
-            goal = ps.solve(2);
-            System.out.println("");
-            ps.print_path(goal);
-
-        }
-        }
         else
         {
             System.out.println("Unsolvable Puzzle");
@@ -202,7 +186,7 @@ public class Puzzle_Solver {
         {
       Puzzle_Solver puzzle = new Puzzle_Solver(mat, k);
       Search_Node t = puzzle.solve(2);
-      System.out.println("Minimum Number of moves = " + puzzle.move_count(t) );
+      System.out.println("Minimum Number of moves using manhattan = " + puzzle.move_count(t) );
       System.out.println("");
       puzzle.print_path(t);
       }
@@ -213,3 +197,19 @@ public class Puzzle_Solver {
     }
     }  
 }
+
+
+// if(Board.check_solvability(new Board(mat, k)))
+//         {
+//       Puzzle_Solver puzzle = new Puzzle_Solver(mat, k);
+//       Search_Node t = puzzle.solve(2);
+//       System.out.println("Minimum Number of moves using manhattan = " + puzzle.move_count(t) );
+//       t = puzzle.solve(1);
+//       System.out.println("Minimum Number of moves using hamming = " + puzzle.move_count(t) );
+//       }
+//       else
+//       {
+//         System.out.println("Unsolvable Puzzle");
+//       }
+//     }
+// }
