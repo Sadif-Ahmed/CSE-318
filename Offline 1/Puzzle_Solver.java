@@ -4,8 +4,8 @@ import java.util.*;
 public class Puzzle_Solver {
     Board startBoard;
     Board goalBoard;
-    //int expanded_count;
-   // int explored_count;
+    int expanded_count;
+    int explored_count;
     int size;
     Hashtable<Board, Integer> open_list;
     Hashtable<Board, Integer> close_list;
@@ -50,15 +50,15 @@ public class Puzzle_Solver {
         clear_list();
         queue.add(node);
         visited.add(startBoard);
-       // expanded_count=0;
-       // explored_count=0;
+        expanded_count=0;
+        explored_count=0;
         
         int []change_x={1,-1,0,0};
         int []change_y={0,0,1,-1};
 
         while(!queue.isEmpty())
         {
-           // expanded_count++;     
+            expanded_count++;     
             Search_Node current =  queue.remove();
             Cell p =  Board.get_blank_pos(current.board);
             int x,y;
@@ -84,9 +84,19 @@ public class Puzzle_Solver {
                 Search_Node child_node = new Search_Node(child, current.g_n+1, child_h_n);
                 child_node.parent=current;
                 queue.add(child_node);
-                //explored_count++;
+                explored_count++;
                 if(child.equals(goalBoard))
                 {
+                    if(h==1)
+                    {
+                        System.out.println("Hamming:");
+                    }
+                    else
+                    {
+                        System.out.println("Manhattan:");
+                    }
+                    System.out.println("Expanded Count: "+expanded_count);
+                    System.out.println("Explored Count:"+explored_count);
                     return child_node;
                 }
             }
@@ -160,7 +170,7 @@ public class Puzzle_Solver {
             System.out.println("");
           }
         System.out.println("");
-          if(k<=3)
+          if(k<=5)
           {
           Puzzle_Solver ps = new Puzzle_Solver(mat , k);
           Search_Node goal;
