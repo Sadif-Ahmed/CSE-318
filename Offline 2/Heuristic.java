@@ -33,15 +33,11 @@ public class Heuristic {
         int additional_move_earned = bd.bonusmoves(bd.get_current_player_id());
 
         if(h_id==1){        
-            //heuristic-1: The evaluation function is
-            //(stones_in_my_storage – stones_in_opponents_storage)
             return stones_in_my_storage - stones_in_opponents_storage;
         }
         else if(h_id==2){
             int W1 = new Random().nextInt( 10 ) + 1;
             int W2 = new Random().nextInt( 5 ) + 1;
-            //W1 * (stones_in_my_storage – stones_in_opponents_storage) + W2 * (stones_on_my_side –
-            //stones_on_opponents_side)
             return W1 * (stones_in_my_storage - stones_in_opponents_storage) + W2 * (stones_in_my_side - stones_in_opponents_side);
     
         }
@@ -49,11 +45,6 @@ public class Heuristic {
             int W1 = new Random().nextInt( 10 ) + 1;
             int W2 = new Random().nextInt( 6 ) + 1;
             int W3 = new Random().nextInt( 5 ) + 1;
-            /*
-            Heuristic-3: The evaluation function is
-            W1 * (stones_in_my_storage – stones_in_opponents_storage) + W2 * (stones_on_my_side –
-            stones_on_opponents_side) + W3 * (additional_move_earned)
-            */
             return W1 * (stones_in_my_storage - stones_in_opponents_storage) + W2 * (stones_in_my_side - stones_in_opponents_side) + W3 * additional_move_earned;
         }
         else if(h_id==4)
