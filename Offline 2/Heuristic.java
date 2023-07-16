@@ -6,31 +6,17 @@ public class Heuristic {
     public Heuristic(int h_id){
         this.h_id = h_id;
     }
-
-	public int select_move( Game_Board bd , int depth ){
-		int bin = 0;
-		try {
-			bin = Minimax.mini_max( bd , depth ) + 1; 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return bin;
-	}
-	
-	
-	
-	
-	
 	public int get_h_value(Game_Board bd){
-        int maxPlayer = bd.max_player;//board.getMaxPlayer();
-        int minPlayer = (bd.max_player+1)%2;
+        int max_player = bd.max_player;//board.getMaxPlayer();
+        int min_player = (bd.max_player+1)%2;
 
-        int stones_in_my_storage = bd.get_storage_stones( maxPlayer );
-        int stones_in_opponents_storage = bd.get_storage_stones( minPlayer );
-        int stones_in_my_side = bd.get_total_stones( maxPlayer );
-        int stones_in_opponents_side = bd.get_total_stones( minPlayer );
-
+        int stones_in_my_storage = bd.get_storage_stones( max_player );
+        int stones_in_opponents_storage = bd.get_storage_stones( min_player );
+        int stones_in_my_side = bd.get_total_stones( max_player );
+        int stones_in_opponents_side = bd.get_total_stones( min_player );
+        int max_steal_amount_diff = bd.get_max_steal_amount(max_player) - bd.get_max_steal_amount(min_player);
         int additional_move_earned = bd.bonusmoves(bd.get_current_player_id());
+        int stone_captured= bd.get_max_steal_amount(max_player) - bd.get_max_steal_amount(min_player);
 
         if(h_id==1){        
             return stones_in_my_storage - stones_in_opponents_storage;
@@ -54,7 +40,7 @@ public class Heuristic {
             int W3 = new Random().nextInt( 5 ) + 1;
             int W4 = new Random().nextInt( 7 ) + 1;
 
-            int stone_captured= bd.get_max_steal_amount(maxPlayer) - bd.get_max_steal_amount(minPlayer);
+            
             return W1*(stones_in_my_storage-stones_in_opponents_storage) 
             + W2*(stones_in_my_side-stones_in_opponents_side) 
             + W3*additional_move_earned 
@@ -64,8 +50,6 @@ public class Heuristic {
 
             int W1 = new Random().nextInt( 10 ) + 1;
             int W2 = new Random().nextInt( 6 ) + 1;
-            
-            int max_steal_amount_diff = bd.get_max_steal_amount(maxPlayer) - bd.get_max_steal_amount(minPlayer);
 
             return W1 * (4*stones_in_my_storage - 2*stones_in_opponents_storage) 
             + W2*max_steal_amount_diff;
@@ -75,14 +59,13 @@ public class Heuristic {
             int W3 = new Random().nextInt( 6 ) + 1;
             int W4 = new Random().nextInt( 8 ) + 1;
 
-            int max_steal_amount_diff = bd.get_max_steal_amount(maxPlayer) - bd.get_max_steal_amount(minPlayer);
-
+            
             return W1 * (4*stones_in_my_storage - 2*stones_in_opponents_storage) 
                      + W3*additional_move_earned
                      + W4*max_steal_amount_diff;
         }
         else if(h_id == 7){
-            int max_steal_amount_diff = bd.get_max_steal_amount(maxPlayer) - bd.get_max_steal_amount(minPlayer);
+            
             int W1 = new Random().nextInt( 10 ) + 1;
             int W2 = new Random().nextInt( 5 ) + 1;
             int W3 = new Random().nextInt( 5 ) + 1;
