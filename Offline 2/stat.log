@@ -11,353 +11,16 @@ Draw : 0
 
 Heuristic 1 vs 3
 First Move : 1
-Heuristic 1 won : 9
-Heuristic 3 won : 0
+Heuristic 1 won : 7
+Heuristic 3 won : 2
 Draw : 1
 
 
 
 Heuristic 1 vs 4
 First Move : 1
-Heuristic 1 won : 8
+Heuristic 1 won : 9
 Heuristic 4 won : 1
-Draw : 1
-
-
-
-Heuristic 1 vs 5
-First Move : 1
-Heuristic 1 won : 9
-Heuristic 5 won : 1
-Draw : 0
-
-
-
-Heuristic 1 vs 6
-First Move : 1
-Heuristic 1 won : 8
-Heuristic 6 won : 2
-Draw : 0
-
-
-
-Heuristic 1 vs 7
-First Move : 1
-Heuristic 1 won : 3
-Heuristic 7 won : 5
-Draw : 2
-
-
-
-Heuristic 2 vs 1
-First Move : 2
-Heuristic 2 won : 4
-Heuristic 1 won : 6
-Draw : 0
-
-
-
-Heuristic 2 vs 3
-First Move : 2
-Heuristic 2 won : 7
-Heuristic 3 won : 3
-Draw : 0
-
-
-
-Heuristic 2 vs 4
-First Move : 2
-Heuristic 2 won : 3
-Heuristic 4 won : 6
-Draw : 1
-
-
-
-Heuristic 2 vs 5
-First Move : 2
-Heuristic 2 won : 4
-Heuristic 5 won : 3
-Draw : 3
-
-
-
-Heuristic 2 vs 6
-First Move : 2
-Heuristic 2 won : 5
-Heuristic 6 won : 4
-Draw : 1
-
-
-
-Heuristic 2 vs 7
-First Move : 2
-Heuristic 2 won : 6
-Heuristic 7 won : 3
-Draw : 1
-
-
-
-Heuristic 3 vs 1
-First Move : 3
-Heuristic 3 won : 4
-Heuristic 1 won : 5
-Draw : 1
-
-
-
-Heuristic 3 vs 2
-First Move : 3
-Heuristic 3 won : 6
-Heuristic 2 won : 4
-Draw : 0
-
-
-
-Heuristic 3 vs 4
-First Move : 3
-Heuristic 3 won : 6
-Heuristic 4 won : 4
-Draw : 0
-
-
-
-Heuristic 3 vs 5
-First Move : 3
-Heuristic 3 won : 6
-Heuristic 5 won : 4
-Draw : 0
-
-
-
-Heuristic 3 vs 6
-First Move : 3
-Heuristic 3 won : 5
-Heuristic 6 won : 4
-Draw : 1
-
-
-
-Heuristic 3 vs 7
-First Move : 3
-Heuristic 3 won : 5
-Heuristic 7 won : 4
-Draw : 1
-
-
-
-Heuristic 4 vs 1
-First Move : 4
-Heuristic 4 won : 1
-Heuristic 1 won : 9
-Draw : 0
-
-
-
-Heuristic 4 vs 2
-First Move : 4
-Heuristic 4 won : 4
-Heuristic 2 won : 6
-Draw : 0
-
-
-
-Heuristic 4 vs 3
-First Move : 4
-Heuristic 4 won : 6
-Heuristic 3 won : 4
-Draw : 0
-
-
-
-Heuristic 4 vs 5
-First Move : 4
-Heuristic 4 won : 6
-Heuristic 5 won : 4
-Draw : 0
-
-
-
-Heuristic 4 vs 6
-First Move : 4
-Heuristic 4 won : 8
-Heuristic 6 won : 2
-Draw : 0
-
-
-
-Heuristic 4 vs 7
-First Move : 4
-Heuristic 4 won : 2
-Heuristic 7 won : 8
-Draw : 0
-
-
-
-Heuristic 5 vs 1
-First Move : 5
-Heuristic 5 won : 6
-Heuristic 1 won : 4
-Draw : 0
-
-
-
-Heuristic 5 vs 2
-First Move : 5
-Heuristic 5 won : 3
-Heuristic 2 won : 5
-Draw : 2
-
-
-
-Heuristic 5 vs 3
-First Move : 5
-Heuristic 5 won : 7
-Heuristic 3 won : 3
-Draw : 0
-
-
-
-Heuristic 5 vs 4
-First Move : 5
-Heuristic 5 won : 8
-Heuristic 4 won : 2
-Draw : 0
-
-
-
-Heuristic 5 vs 6
-First Move : 5
-Heuristic 5 won : 8
-Heuristic 6 won : 2
-Draw : 0
-
-
-
-Heuristic 5 vs 7
-First Move : 5
-Heuristic 5 won : 5
-Heuristic 7 won : 5
-Draw : 0
-
-
-
-Heuristic 6 vs 1
-First Move : 6
-Heuristic 6 won : 6
-Heuristic 1 won : 3
-Draw : 1
-
-
-
-Heuristic 6 vs 2
-First Move : 6
-Heuristic 6 won : 4
-Heuristic 2 won : 4
-Draw : 2
-
-
-
-Heuristic 6 vs 3
-First Move : 6
-Heuristic 6 won : 4
-Heuristic 3 won : 5
-Draw : 1
-
-
-
-Heuristic 6 vs 4
-First Move : 6
-Heuristic 6 won : 5
-Heuristic 4 won : 4
-Draw : 1
-
-
-
-Heuristic 6 vs 5
-First Move : 6
-Heuristic 6 won : 3
-Heuristic 5 won : 7
-Draw : 0
-
-
-
-Heuristic 6 vs 7
-First Move : 6
-Heuristic 6 won : 4
-Heuristic 7 won : 6
-Draw : 0
-
-
-
-Heuristic 7 vs 1
-First Move : 7
-Heuristic 7 won : 5
-Heuristic 1 won : 5
-Draw : 0
-
-
-
-Heuristic 7 vs 2
-First Move : 7
-Heuristic 7 won : 7
-Heuristic 2 won : 3
-Draw : 0
-
-
-
-Heuristic 7 vs 3
-First Move : 7
-Heuristic 7 won : 4
-Heuristic 3 won : 6
-Draw : 0
-
-
-
-Heuristic 7 vs 4
-First Move : 7
-Heuristic 7 won : 3
-Heuristic 4 won : 5
-Draw : 2
-
-
-
-Heuristic 7 vs 5
-First Move : 7
-Heuristic 7 won : 6
-Heuristic 5 won : 4
-Draw : 0
-
-
-
-Heuristic 7 vs 6
-First Move : 7
-Heuristic 7 won : 7
-Heuristic 6 won : 3
-Draw : 0
-
-Depth 6
-
-
-Heuristic 1 vs 2
-First Move : 1
-Heuristic 1 won : 9
-Heuristic 2 won : 1
-Draw : 0
-
-
-
-Heuristic 1 vs 3
-First Move : 1
-Heuristic 1 won : 9
-Heuristic 3 won : 1
-Draw : 0
-
-
-
-Heuristic 1 vs 4
-First Move : 1
-Heuristic 1 won : 6
-Heuristic 4 won : 4
 Draw : 0
 
 
@@ -365,8 +28,8 @@ Draw : 0
 Heuristic 1 vs 5
 First Move : 1
 Heuristic 1 won : 6
-Heuristic 5 won : 2
-Draw : 2
+Heuristic 5 won : 4
+Draw : 0
 
 
 
@@ -380,64 +43,64 @@ Draw : 1
 
 Heuristic 1 vs 7
 First Move : 1
-Heuristic 1 won : 4
-Heuristic 7 won : 5
+Heuristic 1 won : 6
+Heuristic 7 won : 3
 Draw : 1
 
 
 
 Heuristic 2 vs 1
 First Move : 2
-Heuristic 2 won : 1
-Heuristic 1 won : 8
-Draw : 1
+Heuristic 2 won : 3
+Heuristic 1 won : 7
+Draw : 0
 
 
 
 Heuristic 2 vs 3
 First Move : 2
-Heuristic 2 won : 8
-Heuristic 3 won : 2
+Heuristic 2 won : 9
+Heuristic 3 won : 1
 Draw : 0
 
 
 
 Heuristic 2 vs 4
 First Move : 2
-Heuristic 2 won : 8
-Heuristic 4 won : 2
+Heuristic 2 won : 3
+Heuristic 4 won : 7
 Draw : 0
 
 
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 7
-Heuristic 5 won : 3
+Heuristic 2 won : 6
+Heuristic 5 won : 4
 Draw : 0
 
 
 
 Heuristic 2 vs 6
 First Move : 2
-Heuristic 2 won : 7
-Heuristic 6 won : 3
+Heuristic 2 won : 5
+Heuristic 6 won : 5
 Draw : 0
 
 
 
 Heuristic 2 vs 7
 First Move : 2
-Heuristic 2 won : 5
-Heuristic 7 won : 4
-Draw : 1
+Heuristic 2 won : 3
+Heuristic 7 won : 7
+Draw : 0
 
 
 
 Heuristic 3 vs 1
 First Move : 3
-Heuristic 3 won : 2
-Heuristic 1 won : 8
+Heuristic 3 won : 4
+Heuristic 1 won : 6
 Draw : 0
 
 
@@ -460,81 +123,81 @@ Draw : 0
 
 Heuristic 3 vs 5
 First Move : 3
-Heuristic 3 won : 4
+Heuristic 3 won : 5
 Heuristic 5 won : 5
-Draw : 1
+Draw : 0
 
 
 
 Heuristic 3 vs 6
 First Move : 3
 Heuristic 3 won : 6
-Heuristic 6 won : 4
-Draw : 0
+Heuristic 6 won : 3
+Draw : 1
 
 
 
 Heuristic 3 vs 7
 First Move : 3
-Heuristic 3 won : 4
-Heuristic 7 won : 5
-Draw : 1
+Heuristic 3 won : 6
+Heuristic 7 won : 4
+Draw : 0
 
 
 
 Heuristic 4 vs 1
 First Move : 4
-Heuristic 4 won : 4
-Heuristic 1 won : 5
-Draw : 1
+Heuristic 4 won : 3
+Heuristic 1 won : 7
+Draw : 0
 
 
 
 Heuristic 4 vs 2
 First Move : 4
-Heuristic 4 won : 8
-Heuristic 2 won : 2
+Heuristic 4 won : 4
+Heuristic 2 won : 6
 Draw : 0
 
 
 
 Heuristic 4 vs 3
 First Move : 4
-Heuristic 4 won : 5
-Heuristic 3 won : 3
-Draw : 2
+Heuristic 4 won : 3
+Heuristic 3 won : 7
+Draw : 0
 
 
 
 Heuristic 4 vs 5
 First Move : 4
-Heuristic 4 won : 5
-Heuristic 5 won : 5
+Heuristic 4 won : 4
+Heuristic 5 won : 6
 Draw : 0
 
 
 
 Heuristic 4 vs 6
+First Move : 4
+Heuristic 4 won : 4
+Heuristic 6 won : 6
+Draw : 0
+
+
+
+Heuristic 4 vs 7
 First Move : 4
 Heuristic 4 won : 7
-Heuristic 6 won : 1
-Draw : 2
-
-
-
-Heuristic 4 vs 7
-First Move : 4
-Heuristic 4 won : 4
-Heuristic 7 won : 5
-Draw : 1
+Heuristic 7 won : 3
+Draw : 0
 
 
 
 Heuristic 5 vs 1
 First Move : 5
-Heuristic 5 won : 6
+Heuristic 5 won : 5
 Heuristic 1 won : 4
-Draw : 0
+Draw : 1
 
 
 
@@ -549,409 +212,72 @@ Draw : 0
 Heuristic 5 vs 3
 First Move : 5
 Heuristic 5 won : 7
-Heuristic 3 won : 2
-Draw : 1
+Heuristic 3 won : 3
+Draw : 0
 
 
 
 Heuristic 5 vs 4
 First Move : 5
-Heuristic 5 won : 5
-Heuristic 4 won : 5
-Draw : 0
+Heuristic 5 won : 7
+Heuristic 4 won : 2
+Draw : 1
 
 
 
 Heuristic 5 vs 6
 First Move : 5
-Heuristic 5 won : 4
-Heuristic 6 won : 6
-Draw : 0
+Heuristic 5 won : 8
+Heuristic 6 won : 1
+Draw : 1
 
 
 
 Heuristic 5 vs 7
 First Move : 5
-Heuristic 5 won : 8
-Heuristic 7 won : 1
-Draw : 1
-
-
-
-Heuristic 6 vs 1
-First Move : 6
-Heuristic 6 won : 3
-Heuristic 1 won : 6
-Draw : 1
-
-
-
-Heuristic 6 vs 2
-First Move : 6
-Heuristic 6 won : 7
-Heuristic 2 won : 3
-Draw : 0
-
-
-
-Heuristic 6 vs 3
-First Move : 6
-Heuristic 6 won : 5
-Heuristic 3 won : 5
-Draw : 0
-
-
-
-Heuristic 6 vs 4
-First Move : 6
-Heuristic 6 won : 9
-Heuristic 4 won : 1
-Draw : 0
-
-
-
-Heuristic 6 vs 5
-First Move : 6
-Heuristic 6 won : 6
-Heuristic 5 won : 3
-Draw : 1
-
-
-
-Heuristic 6 vs 7
-First Move : 6
-Heuristic 6 won : 5
+Heuristic 5 won : 5
 Heuristic 7 won : 4
 Draw : 1
 
 
 
-Heuristic 7 vs 1
-First Move : 7
-Heuristic 7 won : 2
-Heuristic 1 won : 7
-Draw : 1
-
-
-
-Heuristic 7 vs 2
-First Move : 7
-Heuristic 7 won : 6
-Heuristic 2 won : 3
-Draw : 1
-
-
-
-Heuristic 7 vs 3
-First Move : 7
-Heuristic 7 won : 8
-Heuristic 3 won : 2
-Draw : 0
-
-
-
-Heuristic 7 vs 4
-First Move : 7
-Heuristic 7 won : 5
-Heuristic 4 won : 5
-Draw : 0
-
-
-
-Heuristic 7 vs 5
-First Move : 7
-Heuristic 7 won : 7
-Heuristic 5 won : 3
-Draw : 0
-
-
-
-Heuristic 7 vs 6
-First Move : 7
-Heuristic 7 won : 6
-Heuristic 6 won : 3
-Draw : 1
-
-Depth 7
-
-
-Heuristic 1 vs 2
-First Move : 1
-Heuristic 1 won : 6
-Heuristic 2 won : 4
-Draw : 0
-
-
-
-Heuristic 1 vs 3
-First Move : 1
-Heuristic 1 won : 7
-Heuristic 3 won : 1
-Draw : 2
-
-
-
-Heuristic 1 vs 4
-First Move : 1
-Heuristic 1 won : 9
-Heuristic 4 won : 0
-Draw : 1
-
-
-
-Heuristic 1 vs 5
-First Move : 1
-Heuristic 1 won : 7
-Heuristic 5 won : 3
-Draw : 0
-
-
-
-Heuristic 1 vs 6
-First Move : 1
-Heuristic 1 won : 6
-Heuristic 6 won : 3
-Draw : 1
-
-
-
-Heuristic 1 vs 7
-First Move : 1
-Heuristic 1 won : 7
-Heuristic 7 won : 1
-Draw : 2
-
-
-
-Heuristic 2 vs 1
-First Move : 2
-Heuristic 2 won : 2
-Heuristic 1 won : 7
-Draw : 1
-
-
-
-Heuristic 2 vs 3
-First Move : 2
-Heuristic 2 won : 6
-Heuristic 3 won : 3
-Draw : 1
-
-
-
-Heuristic 2 vs 4
-First Move : 2
-Heuristic 2 won : 2
-Heuristic 4 won : 8
-Draw : 0
-
-
-
-Heuristic 2 vs 5
-First Move : 2
-Heuristic 2 won : 5
-Heuristic 5 won : 5
-Draw : 0
-
-
-
-Heuristic 2 vs 6
-First Move : 2
-Heuristic 2 won : 3
-Heuristic 6 won : 7
-Draw : 0
-
-
-
-Heuristic 2 vs 7
-First Move : 2
-Heuristic 2 won : 4
-Heuristic 7 won : 6
-Draw : 0
-
-
-
-Heuristic 3 vs 1
-First Move : 3
-Heuristic 3 won : 6
-Heuristic 1 won : 4
-Draw : 0
-
-
-
-Heuristic 3 vs 2
-First Move : 3
-Heuristic 3 won : 3
-Heuristic 2 won : 6
-Draw : 1
-
-
-
-Heuristic 3 vs 4
-First Move : 3
-Heuristic 3 won : 3
-Heuristic 4 won : 6
-Draw : 1
-
-
-
-Heuristic 3 vs 5
-First Move : 3
-Heuristic 3 won : 3
-Heuristic 5 won : 5
-Draw : 2
-
-
-
-Heuristic 3 vs 6
-First Move : 3
-Heuristic 3 won : 4
-Heuristic 6 won : 5
-Draw : 1
-
-
-
-Heuristic 3 vs 7
-First Move : 3
-Heuristic 3 won : 6
-Heuristic 7 won : 3
-Draw : 1
-
-
-
-Heuristic 4 vs 1
-First Move : 4
-Heuristic 4 won : 4
-Heuristic 1 won : 6
-Draw : 0
-
-
-
-Heuristic 4 vs 2
-First Move : 4
-Heuristic 4 won : 4
-Heuristic 2 won : 6
-Draw : 0
-
-
-
-Heuristic 4 vs 3
-First Move : 4
-Heuristic 4 won : 5
-Heuristic 3 won : 5
-Draw : 0
-
-
-
-Heuristic 4 vs 5
-First Move : 4
-Heuristic 4 won : 2
-Heuristic 5 won : 6
-Draw : 2
-
-
-
-Heuristic 4 vs 6
-First Move : 4
-Heuristic 4 won : 6
-Heuristic 6 won : 3
-Draw : 1
-
-
-
-Heuristic 4 vs 7
-First Move : 4
-Heuristic 4 won : 5
-Heuristic 7 won : 2
-Draw : 3
-
-
-
-Heuristic 5 vs 1
-First Move : 5
-Heuristic 5 won : 10
-Heuristic 1 won : 0
-Draw : 0
-
-
-
-Heuristic 5 vs 2
-First Move : 5
-Heuristic 5 won : 6
-Heuristic 2 won : 4
-Draw : 0
-
-
-
-Heuristic 5 vs 3
-First Move : 5
-Heuristic 5 won : 6
-Heuristic 3 won : 3
-Draw : 1
-
-
-
-Heuristic 5 vs 4
-First Move : 5
-Heuristic 5 won : 6
-Heuristic 4 won : 4
-Draw : 0
-
-
-
-Heuristic 5 vs 6
-First Move : 5
-Heuristic 5 won : 8
-Heuristic 6 won : 1
-Draw : 1
-
-
-
-Heuristic 5 vs 7
-First Move : 5
-Heuristic 5 won : 7
-Heuristic 7 won : 2
-Draw : 1
-
-
-
 Heuristic 6 vs 1
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 1 won : 2
-Draw : 1
+Heuristic 6 won : 4
+Heuristic 1 won : 6
+Draw : 0
 
 
 
 Heuristic 6 vs 2
 First Move : 6
-Heuristic 6 won : 5
-Heuristic 2 won : 5
-Draw : 0
+Heuristic 6 won : 7
+Heuristic 2 won : 2
+Draw : 1
 
 
 
 Heuristic 6 vs 3
 First Move : 6
-Heuristic 6 won : 6
-Heuristic 3 won : 4
+Heuristic 6 won : 8
+Heuristic 3 won : 2
 Draw : 0
 
 
 
 Heuristic 6 vs 4
 First Move : 6
-Heuristic 6 won : 6
-Heuristic 4 won : 2
-Draw : 2
+Heuristic 6 won : 5
+Heuristic 4 won : 4
+Draw : 1
 
 
 
 Heuristic 6 vs 5
 First Move : 6
 Heuristic 6 won : 7
-Heuristic 5 won : 1
-Draw : 2
+Heuristic 5 won : 3
+Draw : 0
 
 
 
@@ -965,51 +291,51 @@ Draw : 0
 
 Heuristic 7 vs 1
 First Move : 7
-Heuristic 7 won : 5
-Heuristic 1 won : 5
+Heuristic 7 won : 6
+Heuristic 1 won : 4
 Draw : 0
 
 
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 3
-Heuristic 2 won : 7
-Draw : 0
+Heuristic 7 won : 9
+Heuristic 2 won : 0
+Draw : 1
 
 
 
 Heuristic 7 vs 3
 First Move : 7
-Heuristic 7 won : 5
-Heuristic 3 won : 4
+Heuristic 7 won : 4
+Heuristic 3 won : 5
 Draw : 1
 
 
 
 Heuristic 7 vs 4
 First Move : 7
-Heuristic 7 won : 4
-Heuristic 4 won : 6
+Heuristic 7 won : 5
+Heuristic 4 won : 5
 Draw : 0
 
 
 
 Heuristic 7 vs 5
 First Move : 7
-Heuristic 7 won : 4
-Heuristic 5 won : 4
-Draw : 2
+Heuristic 7 won : 7
+Heuristic 5 won : 2
+Draw : 1
 
 
 
 Heuristic 7 vs 6
 First Move : 7
-Heuristic 7 won : 5
-Heuristic 6 won : 3
-Draw : 2
+Heuristic 7 won : 6
+Heuristic 6 won : 4
+Draw : 0
 
-Depth 8
+Depth 6
 
 
 Heuristic 1 vs 2
@@ -1022,16 +348,690 @@ Draw : 0
 
 Heuristic 1 vs 3
 First Move : 1
-Heuristic 1 won : 9
-Heuristic 3 won : 1
+Heuristic 1 won : 10
+Heuristic 3 won : 0
 Draw : 0
 
 
 
 Heuristic 1 vs 4
 First Move : 1
+Heuristic 1 won : 10
+Heuristic 4 won : 0
+Draw : 0
+
+
+
+Heuristic 1 vs 5
+First Move : 1
+Heuristic 1 won : 7
+Heuristic 5 won : 2
+Draw : 1
+
+
+
+Heuristic 1 vs 6
+First Move : 1
+Heuristic 1 won : 6
+Heuristic 6 won : 1
+Draw : 3
+
+
+
+Heuristic 1 vs 7
+First Move : 1
+Heuristic 1 won : 4
+Heuristic 7 won : 5
+Draw : 1
+
+
+
+Heuristic 2 vs 1
+First Move : 2
+Heuristic 2 won : 2
 Heuristic 1 won : 8
+Draw : 0
+
+
+
+Heuristic 2 vs 3
+First Move : 2
+Heuristic 2 won : 6
+Heuristic 3 won : 4
+Draw : 0
+
+
+
+Heuristic 2 vs 4
+First Move : 2
+Heuristic 2 won : 7
 Heuristic 4 won : 2
+Draw : 1
+
+
+
+Heuristic 2 vs 5
+First Move : 2
+Heuristic 2 won : 6
+Heuristic 5 won : 4
+Draw : 0
+
+
+
+Heuristic 2 vs 6
+First Move : 2
+Heuristic 2 won : 5
+Heuristic 6 won : 5
+Draw : 0
+
+
+
+Heuristic 2 vs 7
+First Move : 2
+Heuristic 2 won : 4
+Heuristic 7 won : 5
+Draw : 1
+
+
+
+Heuristic 3 vs 1
+First Move : 3
+Heuristic 3 won : 6
+Heuristic 1 won : 4
+Draw : 0
+
+
+
+Heuristic 3 vs 2
+First Move : 3
+Heuristic 3 won : 4
+Heuristic 2 won : 5
+Draw : 1
+
+
+
+Heuristic 3 vs 4
+First Move : 3
+Heuristic 3 won : 6
+Heuristic 4 won : 2
+Draw : 2
+
+
+
+Heuristic 3 vs 5
+First Move : 3
+Heuristic 3 won : 3
+Heuristic 5 won : 7
+Draw : 0
+
+
+
+Heuristic 3 vs 6
+First Move : 3
+Heuristic 3 won : 3
+Heuristic 6 won : 7
+Draw : 0
+
+
+
+Heuristic 3 vs 7
+First Move : 3
+Heuristic 3 won : 4
+Heuristic 7 won : 5
+Draw : 1
+
+
+
+Heuristic 4 vs 1
+First Move : 4
+Heuristic 4 won : 4
+Heuristic 1 won : 4
+Draw : 2
+
+
+
+Heuristic 4 vs 2
+First Move : 4
+Heuristic 4 won : 6
+Heuristic 2 won : 4
+Draw : 0
+
+
+
+Heuristic 4 vs 3
+First Move : 4
+Heuristic 4 won : 5
+Heuristic 3 won : 4
+Draw : 1
+
+
+
+Heuristic 4 vs 5
+First Move : 4
+Heuristic 4 won : 8
+Heuristic 5 won : 2
+Draw : 0
+
+
+
+Heuristic 4 vs 6
+First Move : 4
+Heuristic 4 won : 6
+Heuristic 6 won : 3
+Draw : 1
+
+
+
+Heuristic 4 vs 7
+First Move : 4
+Heuristic 4 won : 5
+Heuristic 7 won : 5
+Draw : 0
+
+
+
+Heuristic 5 vs 1
+First Move : 5
+Heuristic 5 won : 7
+Heuristic 1 won : 2
+Draw : 1
+
+
+
+Heuristic 5 vs 2
+First Move : 5
+Heuristic 5 won : 7
+Heuristic 2 won : 2
+Draw : 1
+
+
+
+Heuristic 5 vs 3
+First Move : 5
+Heuristic 5 won : 8
+Heuristic 3 won : 2
+Draw : 0
+
+
+
+Heuristic 5 vs 4
+First Move : 5
+Heuristic 5 won : 7
+Heuristic 4 won : 2
+Draw : 1
+
+
+
+Heuristic 5 vs 6
+First Move : 5
+Heuristic 5 won : 6
+Heuristic 6 won : 4
+Draw : 0
+
+
+
+Heuristic 5 vs 7
+First Move : 5
+Heuristic 5 won : 7
+Heuristic 7 won : 2
+Draw : 1
+
+
+
+Heuristic 6 vs 1
+First Move : 6
+Heuristic 6 won : 5
+Heuristic 1 won : 5
+Draw : 0
+
+
+
+Heuristic 6 vs 2
+First Move : 6
+Heuristic 6 won : 6
+Heuristic 2 won : 3
+Draw : 1
+
+
+
+Heuristic 6 vs 3
+First Move : 6
+Heuristic 6 won : 6
+Heuristic 3 won : 4
+Draw : 0
+
+
+
+Heuristic 6 vs 4
+First Move : 6
+Heuristic 6 won : 5
+Heuristic 4 won : 5
+Draw : 0
+
+
+
+Heuristic 6 vs 5
+First Move : 6
+Heuristic 6 won : 2
+Heuristic 5 won : 7
+Draw : 1
+
+
+
+Heuristic 6 vs 7
+First Move : 6
+Heuristic 6 won : 10
+Heuristic 7 won : 0
+Draw : 0
+
+
+
+Heuristic 7 vs 1
+First Move : 7
+Heuristic 7 won : 6
+Heuristic 1 won : 4
+Draw : 0
+
+
+
+Heuristic 7 vs 2
+First Move : 7
+Heuristic 7 won : 6
+Heuristic 2 won : 4
+Draw : 0
+
+
+
+Heuristic 7 vs 3
+First Move : 7
+Heuristic 7 won : 6
+Heuristic 3 won : 4
+Draw : 0
+
+
+
+Heuristic 7 vs 4
+First Move : 7
+Heuristic 7 won : 3
+Heuristic 4 won : 7
+Draw : 0
+
+
+
+Heuristic 7 vs 5
+First Move : 7
+Heuristic 7 won : 6
+Heuristic 5 won : 4
+Draw : 0
+
+
+
+Heuristic 7 vs 6
+First Move : 7
+Heuristic 7 won : 4
+Heuristic 6 won : 6
+Draw : 0
+
+Depth 7
+
+
+Heuristic 1 vs 2
+First Move : 1
+Heuristic 1 won : 9
+Heuristic 2 won : 0
+Draw : 1
+
+
+
+Heuristic 1 vs 3
+First Move : 1
+Heuristic 1 won : 7
+Heuristic 3 won : 1
+Draw : 2
+
+
+
+Heuristic 1 vs 4
+First Move : 1
+Heuristic 1 won : 7
+Heuristic 4 won : 0
+Draw : 3
+
+
+
+Heuristic 1 vs 5
+First Move : 1
+Heuristic 1 won : 8
+Heuristic 5 won : 2
+Draw : 0
+
+
+
+Heuristic 1 vs 6
+First Move : 1
+Heuristic 1 won : 8
+Heuristic 6 won : 2
+Draw : 0
+
+
+
+Heuristic 1 vs 7
+First Move : 1
+Heuristic 1 won : 3
+Heuristic 7 won : 7
+Draw : 0
+
+
+
+Heuristic 2 vs 1
+First Move : 2
+Heuristic 2 won : 3
+Heuristic 1 won : 7
+Draw : 0
+
+
+
+Heuristic 2 vs 3
+First Move : 2
+Heuristic 2 won : 5
+Heuristic 3 won : 3
+Draw : 2
+
+
+
+Heuristic 2 vs 4
+First Move : 2
+Heuristic 2 won : 3
+Heuristic 4 won : 6
+Draw : 1
+
+
+
+Heuristic 2 vs 5
+First Move : 2
+Heuristic 2 won : 2
+Heuristic 5 won : 7
+Draw : 1
+
+
+
+Heuristic 2 vs 6
+First Move : 2
+Heuristic 2 won : 3
+Heuristic 6 won : 5
+Draw : 2
+
+
+
+Heuristic 2 vs 7
+First Move : 2
+Heuristic 2 won : 5
+Heuristic 7 won : 4
+Draw : 1
+
+
+
+Heuristic 3 vs 1
+First Move : 3
+Heuristic 3 won : 4
+Heuristic 1 won : 5
+Draw : 1
+
+
+
+Heuristic 3 vs 2
+First Move : 3
+Heuristic 3 won : 3
+Heuristic 2 won : 6
+Draw : 1
+
+
+
+Heuristic 3 vs 4
+First Move : 3
+Heuristic 3 won : 3
+Heuristic 4 won : 6
+Draw : 1
+
+
+
+Heuristic 3 vs 5
+First Move : 3
+Heuristic 3 won : 3
+Heuristic 5 won : 6
+Draw : 1
+
+
+
+Heuristic 3 vs 6
+First Move : 3
+Heuristic 3 won : 4
+Heuristic 6 won : 6
+Draw : 0
+
+
+
+Heuristic 3 vs 7
+First Move : 3
+Heuristic 3 won : 6
+Heuristic 7 won : 4
+Draw : 0
+
+
+
+Heuristic 4 vs 1
+First Move : 4
+Heuristic 4 won : 4
+Heuristic 1 won : 5
+Draw : 1
+
+
+
+Heuristic 4 vs 2
+First Move : 4
+Heuristic 4 won : 2
+Heuristic 2 won : 6
+Draw : 2
+
+
+
+Heuristic 4 vs 3
+First Move : 4
+Heuristic 4 won : 0
+Heuristic 3 won : 8
+Draw : 2
+
+
+
+Heuristic 4 vs 5
+First Move : 4
+Heuristic 4 won : 5
+Heuristic 5 won : 5
+Draw : 0
+
+
+
+Heuristic 4 vs 6
+First Move : 4
+Heuristic 4 won : 5
+Heuristic 6 won : 4
+Draw : 1
+
+
+
+Heuristic 4 vs 7
+First Move : 4
+Heuristic 4 won : 5
+Heuristic 7 won : 2
+Draw : 3
+
+
+
+Heuristic 5 vs 1
+First Move : 5
+Heuristic 5 won : 7
+Heuristic 1 won : 2
+Draw : 1
+
+
+
+Heuristic 5 vs 2
+First Move : 5
+Heuristic 5 won : 5
+Heuristic 2 won : 4
+Draw : 1
+
+
+
+Heuristic 5 vs 3
+First Move : 5
+Heuristic 5 won : 8
+Heuristic 3 won : 2
+Draw : 0
+
+
+
+Heuristic 5 vs 4
+First Move : 5
+Heuristic 5 won : 4
+Heuristic 4 won : 6
+Draw : 0
+
+
+
+Heuristic 5 vs 6
+First Move : 5
+Heuristic 5 won : 8
+Heuristic 6 won : 1
+Draw : 1
+
+
+
+Heuristic 5 vs 7
+First Move : 5
+Heuristic 5 won : 5
+Heuristic 7 won : 5
+Draw : 0
+
+
+
+Heuristic 6 vs 1
+First Move : 6
+Heuristic 6 won : 9
+Heuristic 1 won : 1
+Draw : 0
+
+
+
+Heuristic 6 vs 2
+First Move : 6
+Heuristic 6 won : 5
+Heuristic 2 won : 3
+Draw : 2
+
+
+
+Heuristic 6 vs 3
+First Move : 6
+Heuristic 6 won : 8
+Heuristic 3 won : 2
+Draw : 0
+
+
+
+Heuristic 6 vs 4
+First Move : 6
+Heuristic 6 won : 4
+Heuristic 4 won : 5
+Draw : 1
+
+
+
+Heuristic 6 vs 5
+First Move : 6
+Heuristic 6 won : 7
+Heuristic 5 won : 2
+Draw : 1
+
+
+
+Heuristic 6 vs 7
+First Move : 6
+Heuristic 6 won : 9
+Heuristic 7 won : 1
+Draw : 0
+
+
+
+Heuristic 7 vs 1
+First Move : 7
+Heuristic 7 won : 6
+Heuristic 1 won : 3
+Draw : 1
+
+
+
+Heuristic 7 vs 2
+First Move : 7
+Heuristic 7 won : 4
+Heuristic 2 won : 6
+Draw : 0
+
+
+
+Heuristic 7 vs 3
+First Move : 7
+Heuristic 7 won : 5
+Heuristic 3 won : 5
+Draw : 0
+
+
+
+Heuristic 7 vs 4
+First Move : 7
+Heuristic 7 won : 5
+Heuristic 4 won : 5
+Draw : 0
+
+
+
+Heuristic 7 vs 5
+First Move : 7
+Heuristic 7 won : 6
+Heuristic 5 won : 4
+Draw : 0
+
+
+
+Heuristic 7 vs 6
+First Move : 7
+Heuristic 7 won : 1
+Heuristic 6 won : 9
+Draw : 0
+
+Depth 8
+
+
+Heuristic 1 vs 2
+First Move : 1
+Heuristic 1 won : 8
+Heuristic 2 won : 1
+Draw : 1
+
+
+
+Heuristic 1 vs 3
+First Move : 1
+Heuristic 1 won : 8
+Heuristic 3 won : 2
+Draw : 0
+
+
+
+Heuristic 1 vs 4
+First Move : 1
+Heuristic 1 won : 7
+Heuristic 4 won : 3
 Draw : 0
 
 
@@ -1054,8 +1054,8 @@ Draw : 0
 
 Heuristic 1 vs 7
 First Move : 1
-Heuristic 1 won : 10
-Heuristic 7 won : 0
+Heuristic 1 won : 9
+Heuristic 7 won : 1
 Draw : 0
 
 
@@ -1063,72 +1063,72 @@ Draw : 0
 Heuristic 2 vs 1
 First Move : 2
 Heuristic 2 won : 7
-Heuristic 1 won : 2
-Draw : 1
+Heuristic 1 won : 3
+Draw : 0
 
 
 
 Heuristic 2 vs 3
 First Move : 2
-Heuristic 2 won : 7
-Heuristic 3 won : 2
-Draw : 1
+Heuristic 2 won : 9
+Heuristic 3 won : 1
+Draw : 0
 
 
 
 Heuristic 2 vs 4
 First Move : 2
 Heuristic 2 won : 6
-Heuristic 4 won : 2
-Draw : 2
+Heuristic 4 won : 4
+Draw : 0
 
 
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 10
-Heuristic 5 won : 0
+Heuristic 2 won : 9
+Heuristic 5 won : 1
 Draw : 0
 
 
 
 Heuristic 2 vs 6
 First Move : 2
-Heuristic 2 won : 8
+Heuristic 2 won : 9
 Heuristic 6 won : 1
-Draw : 1
+Draw : 0
 
 
 
 Heuristic 2 vs 7
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 7 won : 0
-Draw : 1
+Heuristic 2 won : 6
+Heuristic 7 won : 4
+Draw : 0
 
 
 
 Heuristic 3 vs 1
 First Move : 3
-Heuristic 3 won : 3
-Heuristic 1 won : 7
-Draw : 0
+Heuristic 3 won : 4
+Heuristic 1 won : 5
+Draw : 1
 
 
 
 Heuristic 3 vs 2
 First Move : 3
 Heuristic 3 won : 5
-Heuristic 2 won : 3
-Draw : 2
+Heuristic 2 won : 5
+Draw : 0
 
 
 
 Heuristic 3 vs 4
 First Move : 3
-Heuristic 3 won : 7
+Heuristic 3 won : 8
 Heuristic 4 won : 1
-Draw : 2
+Draw : 1
 
 
 
@@ -1143,39 +1143,39 @@ Draw : 0
 Heuristic 3 vs 6
 First Move : 3
 Heuristic 3 won : 8
-Heuristic 6 won : 1
-Draw : 1
+Heuristic 6 won : 2
+Draw : 0
 
 
 
 Heuristic 3 vs 7
 First Move : 3
-Heuristic 3 won : 6
-Heuristic 7 won : 4
+Heuristic 3 won : 9
+Heuristic 7 won : 1
 Draw : 0
 
 
 
 Heuristic 4 vs 1
 First Move : 4
-Heuristic 4 won : 9
-Heuristic 1 won : 0
+Heuristic 4 won : 5
+Heuristic 1 won : 4
 Draw : 1
 
 
 
 Heuristic 4 vs 2
 First Move : 4
-Heuristic 4 won : 7
-Heuristic 2 won : 3
-Draw : 0
+Heuristic 4 won : 8
+Heuristic 2 won : 1
+Draw : 1
 
 
 
 Heuristic 4 vs 3
 First Move : 4
-Heuristic 4 won : 9
-Heuristic 3 won : 1
+Heuristic 4 won : 8
+Heuristic 3 won : 2
 Draw : 0
 
 
@@ -1190,57 +1190,57 @@ Draw : 2
 
 Heuristic 4 vs 6
 First Move : 4
-Heuristic 4 won : 8
-Heuristic 6 won : 0
-Draw : 2
+Heuristic 4 won : 5
+Heuristic 6 won : 2
+Draw : 3
 
 
 
 Heuristic 4 vs 7
 First Move : 4
 Heuristic 4 won : 9
-Heuristic 7 won : 0
-Draw : 1
+Heuristic 7 won : 1
+Draw : 0
 
 
 
 Heuristic 5 vs 1
 First Move : 5
-Heuristic 5 won : 5
-Heuristic 1 won : 5
+Heuristic 5 won : 6
+Heuristic 1 won : 4
 Draw : 0
 
 
 
 Heuristic 5 vs 2
 First Move : 5
-Heuristic 5 won : 5
-Heuristic 2 won : 4
+Heuristic 5 won : 6
+Heuristic 2 won : 3
 Draw : 1
 
 
 
 Heuristic 5 vs 3
 First Move : 5
-Heuristic 5 won : 7
-Heuristic 3 won : 3
+Heuristic 5 won : 8
+Heuristic 3 won : 2
 Draw : 0
 
 
 
 Heuristic 5 vs 4
 First Move : 5
-Heuristic 5 won : 4
-Heuristic 4 won : 5
+Heuristic 5 won : 6
+Heuristic 4 won : 3
 Draw : 1
 
 
 
 Heuristic 5 vs 6
 First Move : 5
-Heuristic 5 won : 7
-Heuristic 6 won : 2
-Draw : 1
+Heuristic 5 won : 10
+Heuristic 6 won : 0
+Draw : 0
 
 
 
@@ -1254,8 +1254,8 @@ Draw : 0
 
 Heuristic 6 vs 1
 First Move : 6
-Heuristic 6 won : 6
-Heuristic 1 won : 3
+Heuristic 6 won : 5
+Heuristic 1 won : 4
 Draw : 1
 
 
@@ -1263,40 +1263,40 @@ Draw : 1
 Heuristic 6 vs 2
 First Move : 6
 Heuristic 6 won : 6
-Heuristic 2 won : 2
-Draw : 2
+Heuristic 2 won : 4
+Draw : 0
 
 
 
 Heuristic 6 vs 3
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 3 won : 3
+Heuristic 6 won : 9
+Heuristic 3 won : 1
 Draw : 0
 
 
 
 Heuristic 6 vs 4
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 4 won : 2
-Draw : 1
+Heuristic 6 won : 10
+Heuristic 4 won : 0
+Draw : 0
 
 
 
 Heuristic 6 vs 5
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 5 won : 2
+Heuristic 6 won : 6
+Heuristic 5 won : 3
 Draw : 1
 
 
 
 Heuristic 6 vs 7
 First Move : 6
-Heuristic 6 won : 8
-Heuristic 7 won : 0
-Draw : 2
+Heuristic 6 won : 7
+Heuristic 7 won : 3
+Draw : 0
 
 
 
@@ -1310,40 +1310,40 @@ Draw : 0
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 5
-Heuristic 2 won : 4
-Draw : 1
+Heuristic 7 won : 7
+Heuristic 2 won : 0
+Draw : 3
 
 
 
 Heuristic 7 vs 3
 First Move : 7
 Heuristic 7 won : 8
-Heuristic 3 won : 2
-Draw : 0
+Heuristic 3 won : 1
+Draw : 1
 
 
 
 Heuristic 7 vs 4
 First Move : 7
-Heuristic 7 won : 6
-Heuristic 4 won : 4
+Heuristic 7 won : 7
+Heuristic 4 won : 3
 Draw : 0
 
 
 
 Heuristic 7 vs 5
 First Move : 7
-Heuristic 7 won : 6
-Heuristic 5 won : 3
-Draw : 1
+Heuristic 7 won : 8
+Heuristic 5 won : 2
+Draw : 0
 
 
 
 Heuristic 7 vs 6
 First Move : 7
-Heuristic 7 won : 3
-Heuristic 6 won : 6
+Heuristic 7 won : 6
+Heuristic 6 won : 3
 Draw : 1
 
 Depth 9
@@ -1351,49 +1351,49 @@ Depth 9
 
 Heuristic 1 vs 2
 First Move : 1
-Heuristic 1 won : 6
+Heuristic 1 won : 5
 Heuristic 2 won : 3
-Draw : 1
+Draw : 2
 
 
 
 Heuristic 1 vs 3
 First Move : 1
 Heuristic 1 won : 6
-Heuristic 3 won : 4
-Draw : 0
+Heuristic 3 won : 3
+Draw : 1
 
 
 
 Heuristic 1 vs 4
 First Move : 1
-Heuristic 1 won : 6
+Heuristic 1 won : 4
 Heuristic 4 won : 3
-Draw : 1
+Draw : 3
 
 
 
 Heuristic 1 vs 5
 First Move : 1
-Heuristic 1 won : 6
-Heuristic 5 won : 3
-Draw : 1
+Heuristic 1 won : 8
+Heuristic 5 won : 2
+Draw : 0
 
 
 
 Heuristic 1 vs 6
 First Move : 1
-Heuristic 1 won : 9
-Heuristic 6 won : 1
-Draw : 0
+Heuristic 1 won : 7
+Heuristic 6 won : 2
+Draw : 1
 
 
 
 Heuristic 1 vs 7
 First Move : 1
 Heuristic 1 won : 4
-Heuristic 7 won : 5
-Draw : 1
+Heuristic 7 won : 3
+Draw : 3
 
 
 
@@ -1407,41 +1407,41 @@ Draw : 0
 
 Heuristic 2 vs 3
 First Move : 2
-Heuristic 2 won : 7
-Heuristic 3 won : 2
+Heuristic 2 won : 9
+Heuristic 3 won : 0
 Draw : 1
 
 
 
 Heuristic 2 vs 4
 First Move : 2
-Heuristic 2 won : 7
-Heuristic 4 won : 2
-Draw : 1
+Heuristic 2 won : 9
+Heuristic 4 won : 1
+Draw : 0
 
 
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 5 won : 0
+Heuristic 2 won : 8
+Heuristic 5 won : 1
 Draw : 1
 
 
 
 Heuristic 2 vs 6
 First Move : 2
-Heuristic 2 won : 8
-Heuristic 6 won : 1
-Draw : 1
+Heuristic 2 won : 7
+Heuristic 6 won : 0
+Draw : 3
 
 
 
 Heuristic 2 vs 7
 First Move : 2
 Heuristic 2 won : 7
-Heuristic 7 won : 1
-Draw : 2
+Heuristic 7 won : 2
+Draw : 1
 
 
 
@@ -1455,56 +1455,56 @@ Draw : 0
 
 Heuristic 3 vs 2
 First Move : 3
-Heuristic 3 won : 7
+Heuristic 3 won : 9
 Heuristic 2 won : 1
-Draw : 2
+Draw : 0
 
 
 
 Heuristic 3 vs 4
 First Move : 3
-Heuristic 3 won : 7
-Heuristic 4 won : 2
+Heuristic 3 won : 6
+Heuristic 4 won : 3
 Draw : 1
 
 
 
 Heuristic 3 vs 5
 First Move : 3
-Heuristic 3 won : 5
-Heuristic 5 won : 2
-Draw : 3
+Heuristic 3 won : 9
+Heuristic 5 won : 0
+Draw : 1
 
 
 
 Heuristic 3 vs 6
 First Move : 3
-Heuristic 3 won : 9
+Heuristic 3 won : 7
 Heuristic 6 won : 0
-Draw : 1
+Draw : 3
 
 
 
 Heuristic 3 vs 7
 First Move : 3
-Heuristic 3 won : 8
-Heuristic 7 won : 1
-Draw : 1
+Heuristic 3 won : 7
+Heuristic 7 won : 3
+Draw : 0
 
 
 
 Heuristic 4 vs 1
 First Move : 4
-Heuristic 4 won : 4
-Heuristic 1 won : 6
+Heuristic 4 won : 1
+Heuristic 1 won : 9
 Draw : 0
 
 
 
 Heuristic 4 vs 2
 First Move : 4
-Heuristic 4 won : 4
-Heuristic 2 won : 6
+Heuristic 4 won : 9
+Heuristic 2 won : 1
 Draw : 0
 
 
@@ -1512,127 +1512,127 @@ Draw : 0
 Heuristic 4 vs 3
 First Move : 4
 Heuristic 4 won : 6
-Heuristic 3 won : 4
-Draw : 0
+Heuristic 3 won : 3
+Draw : 1
 
 
 
 Heuristic 4 vs 5
 First Move : 4
-Heuristic 4 won : 8
-Heuristic 5 won : 1
-Draw : 1
+Heuristic 4 won : 10
+Heuristic 5 won : 0
+Draw : 0
 
 
 
 Heuristic 4 vs 6
 First Move : 4
-Heuristic 4 won : 7
-Heuristic 6 won : 2
-Draw : 1
+Heuristic 4 won : 8
+Heuristic 6 won : 0
+Draw : 2
 
 
 
 Heuristic 4 vs 7
 First Move : 4
 Heuristic 4 won : 6
-Heuristic 7 won : 2
-Draw : 2
+Heuristic 7 won : 3
+Draw : 1
 
 
 
 Heuristic 5 vs 1
 First Move : 5
-Heuristic 5 won : 4
-Heuristic 1 won : 6
+Heuristic 5 won : 6
+Heuristic 1 won : 4
 Draw : 0
 
 
 
 Heuristic 5 vs 2
 First Move : 5
-Heuristic 5 won : 6
-Heuristic 2 won : 3
+Heuristic 5 won : 7
+Heuristic 2 won : 2
 Draw : 1
 
 
 
 Heuristic 5 vs 3
 First Move : 5
-Heuristic 5 won : 6
-Heuristic 3 won : 4
-Draw : 0
+Heuristic 5 won : 3
+Heuristic 3 won : 6
+Draw : 1
 
 
 
 Heuristic 5 vs 4
 First Move : 5
-Heuristic 5 won : 5
-Heuristic 4 won : 4
-Draw : 1
+Heuristic 5 won : 7
+Heuristic 4 won : 3
+Draw : 0
 
 
 
 Heuristic 5 vs 6
 First Move : 5
-Heuristic 5 won : 8
+Heuristic 5 won : 9
 Heuristic 6 won : 1
-Draw : 1
+Draw : 0
 
 
 
 Heuristic 5 vs 7
 First Move : 5
-Heuristic 5 won : 4
-Heuristic 7 won : 3
-Draw : 3
+Heuristic 5 won : 6
+Heuristic 7 won : 2
+Draw : 2
 
 
 
 Heuristic 6 vs 1
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 1 won : 2
+Heuristic 6 won : 4
+Heuristic 1 won : 5
 Draw : 1
 
 
 
 Heuristic 6 vs 2
 First Move : 6
-Heuristic 6 won : 6
-Heuristic 2 won : 3
+Heuristic 6 won : 7
+Heuristic 2 won : 2
 Draw : 1
 
 
 
 Heuristic 6 vs 3
 First Move : 6
-Heuristic 6 won : 5
-Heuristic 3 won : 4
+Heuristic 6 won : 3
+Heuristic 3 won : 6
 Draw : 1
 
 
 
 Heuristic 6 vs 4
 First Move : 6
-Heuristic 6 won : 6
-Heuristic 4 won : 4
+Heuristic 6 won : 5
+Heuristic 4 won : 5
 Draw : 0
 
 
 
 Heuristic 6 vs 5
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 5 won : 2
-Draw : 1
+Heuristic 6 won : 9
+Heuristic 5 won : 1
+Draw : 0
 
 
 
 Heuristic 6 vs 7
 First Move : 6
-Heuristic 6 won : 6
-Heuristic 7 won : 4
+Heuristic 6 won : 8
+Heuristic 7 won : 2
 Draw : 0
 
 
@@ -1647,33 +1647,33 @@ Draw : 0
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 7
-Heuristic 2 won : 3
-Draw : 0
+Heuristic 7 won : 4
+Heuristic 2 won : 4
+Draw : 2
 
 
 
 Heuristic 7 vs 3
 First Move : 7
-Heuristic 7 won : 6
-Heuristic 3 won : 4
+Heuristic 7 won : 7
+Heuristic 3 won : 3
 Draw : 0
 
 
 
 Heuristic 7 vs 4
 First Move : 7
-Heuristic 7 won : 3
-Heuristic 4 won : 6
+Heuristic 7 won : 4
+Heuristic 4 won : 5
 Draw : 1
 
 
 
 Heuristic 7 vs 5
 First Move : 7
-Heuristic 7 won : 5
+Heuristic 7 won : 4
 Heuristic 5 won : 5
-Draw : 0
+Draw : 1
 
 
 
@@ -1712,8 +1712,8 @@ Draw : 0
 
 Heuristic 1 vs 5
 First Move : 1
-Heuristic 1 won : 10
-Heuristic 5 won : 0
+Heuristic 1 won : 9
+Heuristic 5 won : 1
 Draw : 0
 
 
@@ -1721,8 +1721,8 @@ Draw : 0
 Heuristic 1 vs 6
 First Move : 1
 Heuristic 1 won : 9
-Heuristic 6 won : 1
-Draw : 0
+Heuristic 6 won : 0
+Draw : 1
 
 
 
@@ -1736,16 +1736,16 @@ Draw : 0
 
 Heuristic 2 vs 1
 First Move : 2
-Heuristic 2 won : 7
-Heuristic 1 won : 2
-Draw : 1
+Heuristic 2 won : 9
+Heuristic 1 won : 1
+Draw : 0
 
 
 
 Heuristic 2 vs 3
 First Move : 2
-Heuristic 2 won : 8
-Heuristic 3 won : 2
+Heuristic 2 won : 9
+Heuristic 3 won : 1
 Draw : 0
 
 
@@ -1760,24 +1760,24 @@ Draw : 0
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 5 won : 1
+Heuristic 2 won : 8
+Heuristic 5 won : 2
 Draw : 0
 
 
 
 Heuristic 2 vs 6
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 6 won : 0
-Draw : 1
+Heuristic 2 won : 8
+Heuristic 6 won : 2
+Draw : 0
 
 
 
 Heuristic 2 vs 7
 First Move : 2
-Heuristic 2 won : 6
-Heuristic 7 won : 2
+Heuristic 2 won : 8
+Heuristic 7 won : 0
 Draw : 2
 
 
@@ -1785,23 +1785,23 @@ Draw : 2
 Heuristic 3 vs 1
 First Move : 3
 Heuristic 3 won : 7
-Heuristic 1 won : 3
-Draw : 0
+Heuristic 1 won : 2
+Draw : 1
 
 
 
 Heuristic 3 vs 2
 First Move : 3
-Heuristic 3 won : 10
+Heuristic 3 won : 9
 Heuristic 2 won : 0
-Draw : 0
+Draw : 1
 
 
 
 Heuristic 3 vs 4
 First Move : 3
-Heuristic 3 won : 10
-Heuristic 4 won : 0
+Heuristic 3 won : 9
+Heuristic 4 won : 1
 Draw : 0
 
 
@@ -1816,16 +1816,16 @@ Draw : 1
 
 Heuristic 3 vs 6
 First Move : 3
-Heuristic 3 won : 8
-Heuristic 6 won : 1
+Heuristic 3 won : 9
+Heuristic 6 won : 0
 Draw : 1
 
 
 
 Heuristic 3 vs 7
 First Move : 3
-Heuristic 3 won : 10
-Heuristic 7 won : 0
+Heuristic 3 won : 9
+Heuristic 7 won : 1
 Draw : 0
 
 
@@ -1833,8 +1833,8 @@ Draw : 0
 Heuristic 4 vs 1
 First Move : 4
 Heuristic 4 won : 5
-Heuristic 1 won : 4
-Draw : 1
+Heuristic 1 won : 3
+Draw : 2
 
 
 
@@ -1848,32 +1848,32 @@ Draw : 0
 
 Heuristic 4 vs 3
 First Move : 4
-Heuristic 4 won : 9
+Heuristic 4 won : 8
 Heuristic 3 won : 1
-Draw : 0
+Draw : 1
 
 
 
 Heuristic 4 vs 5
 First Move : 4
 Heuristic 4 won : 8
-Heuristic 5 won : 2
-Draw : 0
+Heuristic 5 won : 1
+Draw : 1
 
 
 
 Heuristic 4 vs 6
 First Move : 4
-Heuristic 4 won : 10
-Heuristic 6 won : 0
-Draw : 0
+Heuristic 4 won : 5
+Heuristic 6 won : 1
+Draw : 4
 
 
 
 Heuristic 4 vs 7
 First Move : 4
-Heuristic 4 won : 9
-Heuristic 7 won : 1
+Heuristic 4 won : 10
+Heuristic 7 won : 0
 Draw : 0
 
 
@@ -1881,16 +1881,16 @@ Draw : 0
 Heuristic 5 vs 1
 First Move : 5
 Heuristic 5 won : 8
-Heuristic 1 won : 2
-Draw : 0
+Heuristic 1 won : 1
+Draw : 1
 
 
 
 Heuristic 5 vs 2
 First Move : 5
-Heuristic 5 won : 8
+Heuristic 5 won : 10
 Heuristic 2 won : 0
-Draw : 2
+Draw : 0
 
 
 
@@ -1904,9 +1904,9 @@ Draw : 0
 
 Heuristic 5 vs 4
 First Move : 5
-Heuristic 5 won : 6
-Heuristic 4 won : 2
-Draw : 2
+Heuristic 5 won : 8
+Heuristic 4 won : 1
+Draw : 1
 
 
 
@@ -1920,24 +1920,24 @@ Draw : 0
 
 Heuristic 5 vs 7
 First Move : 5
-Heuristic 5 won : 8
-Heuristic 7 won : 2
+Heuristic 5 won : 9
+Heuristic 7 won : 1
 Draw : 0
 
 
 
 Heuristic 6 vs 1
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 1 won : 2
-Draw : 1
+Heuristic 6 won : 9
+Heuristic 1 won : 1
+Draw : 0
 
 
 
 Heuristic 6 vs 2
 First Move : 6
-Heuristic 6 won : 7
-Heuristic 2 won : 3
+Heuristic 6 won : 6
+Heuristic 2 won : 4
 Draw : 0
 
 
@@ -1952,17 +1952,17 @@ Draw : 0
 
 Heuristic 6 vs 4
 First Move : 6
-Heuristic 6 won : 9
-Heuristic 4 won : 0
-Draw : 1
+Heuristic 6 won : 8
+Heuristic 4 won : 2
+Draw : 0
 
 
 
 Heuristic 6 vs 5
 First Move : 6
 Heuristic 6 won : 9
-Heuristic 5 won : 0
-Draw : 1
+Heuristic 5 won : 1
+Draw : 0
 
 
 
@@ -1976,48 +1976,48 @@ Draw : 0
 
 Heuristic 7 vs 1
 First Move : 7
-Heuristic 7 won : 10
-Heuristic 1 won : 0
-Draw : 0
+Heuristic 7 won : 4
+Heuristic 1 won : 3
+Draw : 3
 
 
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 9
-Heuristic 2 won : 1
-Draw : 0
+Heuristic 7 won : 8
+Heuristic 2 won : 0
+Draw : 2
 
 
 
 Heuristic 7 vs 3
 First Move : 7
-Heuristic 7 won : 6
+Heuristic 7 won : 8
 Heuristic 3 won : 2
-Draw : 2
+Draw : 0
 
 
 
 Heuristic 7 vs 4
 First Move : 7
-Heuristic 7 won : 9
-Heuristic 4 won : 1
-Draw : 0
+Heuristic 7 won : 6
+Heuristic 4 won : 2
+Draw : 2
 
 
 
 Heuristic 7 vs 5
 First Move : 7
-Heuristic 7 won : 7
-Heuristic 5 won : 2
-Draw : 1
+Heuristic 7 won : 9
+Heuristic 5 won : 1
+Draw : 0
 
 
 
 Heuristic 7 vs 6
 First Move : 7
-Heuristic 7 won : 7
-Heuristic 6 won : 2
+Heuristic 7 won : 5
+Heuristic 6 won : 4
 Draw : 1
 
 Depth 11
@@ -2041,8 +2041,8 @@ Draw : 0
 
 Heuristic 1 vs 4
 First Move : 1
-Heuristic 1 won : 10
-Heuristic 4 won : 0
+Heuristic 1 won : 8
+Heuristic 4 won : 2
 Draw : 0
 
 
@@ -2081,24 +2081,24 @@ Draw : 0
 
 Heuristic 2 vs 3
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 3 won : 1
+Heuristic 2 won : 10
+Heuristic 3 won : 0
 Draw : 0
 
 
 
 Heuristic 2 vs 4
 First Move : 2
-Heuristic 2 won : 10
-Heuristic 4 won : 0
-Draw : 0
+Heuristic 2 won : 7
+Heuristic 4 won : 1
+Draw : 2
 
 
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 5 won : 1
+Heuristic 2 won : 10
+Heuristic 5 won : 0
 Draw : 0
 
 
@@ -2121,16 +2121,16 @@ Draw : 0
 
 Heuristic 3 vs 1
 First Move : 3
-Heuristic 3 won : 9
+Heuristic 3 won : 8
 Heuristic 1 won : 1
-Draw : 0
+Draw : 1
 
 
 
 Heuristic 3 vs 2
 First Move : 3
-Heuristic 3 won : 10
-Heuristic 2 won : 0
+Heuristic 3 won : 9
+Heuristic 2 won : 1
 Draw : 0
 
 
@@ -2145,8 +2145,8 @@ Draw : 0
 
 Heuristic 3 vs 5
 First Move : 3
-Heuristic 3 won : 10
-Heuristic 5 won : 0
+Heuristic 3 won : 9
+Heuristic 5 won : 1
 Draw : 0
 
 
@@ -2161,8 +2161,8 @@ Draw : 0
 
 Heuristic 3 vs 7
 First Move : 3
-Heuristic 3 won : 9
-Heuristic 7 won : 1
+Heuristic 3 won : 10
+Heuristic 7 won : 0
 Draw : 0
 
 
@@ -2177,9 +2177,9 @@ Draw : 1
 
 Heuristic 4 vs 2
 First Move : 4
-Heuristic 4 won : 9
+Heuristic 4 won : 10
 Heuristic 2 won : 0
-Draw : 1
+Draw : 0
 
 
 
@@ -2193,16 +2193,16 @@ Draw : 0
 
 Heuristic 4 vs 5
 First Move : 4
-Heuristic 4 won : 7
-Heuristic 5 won : 3
-Draw : 0
+Heuristic 4 won : 8
+Heuristic 5 won : 1
+Draw : 1
 
 
 
 Heuristic 4 vs 6
 First Move : 4
-Heuristic 4 won : 10
-Heuristic 6 won : 0
+Heuristic 4 won : 9
+Heuristic 6 won : 1
 Draw : 0
 
 
@@ -2217,24 +2217,24 @@ Draw : 0
 
 Heuristic 5 vs 1
 First Move : 5
-Heuristic 5 won : 10
+Heuristic 5 won : 8
 Heuristic 1 won : 0
-Draw : 0
+Draw : 2
 
 
 
 Heuristic 5 vs 2
 First Move : 5
-Heuristic 5 won : 9
+Heuristic 5 won : 8
 Heuristic 2 won : 1
-Draw : 0
+Draw : 1
 
 
 
 Heuristic 5 vs 3
 First Move : 5
-Heuristic 5 won : 8
-Heuristic 3 won : 1
+Heuristic 5 won : 9
+Heuristic 3 won : 0
 Draw : 1
 
 
@@ -2242,15 +2242,15 @@ Draw : 1
 Heuristic 5 vs 4
 First Move : 5
 Heuristic 5 won : 8
-Heuristic 4 won : 0
-Draw : 2
+Heuristic 4 won : 1
+Draw : 1
 
 
 
 Heuristic 5 vs 6
 First Move : 5
-Heuristic 5 won : 10
-Heuristic 6 won : 0
+Heuristic 5 won : 9
+Heuristic 6 won : 1
 Draw : 0
 
 
@@ -2265,8 +2265,8 @@ Draw : 0
 
 Heuristic 6 vs 1
 First Move : 6
-Heuristic 6 won : 10
-Heuristic 1 won : 0
+Heuristic 6 won : 8
+Heuristic 1 won : 2
 Draw : 0
 
 
@@ -2297,8 +2297,8 @@ Draw : 1
 
 Heuristic 6 vs 5
 First Move : 6
-Heuristic 6 won : 10
-Heuristic 5 won : 0
+Heuristic 6 won : 8
+Heuristic 5 won : 2
 Draw : 0
 
 
@@ -2313,90 +2313,90 @@ Draw : 0
 
 Heuristic 7 vs 1
 First Move : 7
-Heuristic 7 won : 4
-Heuristic 1 won : 3
-Draw : 3
+Heuristic 7 won : 5
+Heuristic 1 won : 4
+Draw : 1
 
 
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 10
-Heuristic 2 won : 0
+Heuristic 7 won : 8
+Heuristic 2 won : 2
 Draw : 0
 
 
 
 Heuristic 7 vs 3
 First Move : 7
-Heuristic 7 won : 8
-Heuristic 3 won : 1
-Draw : 1
+Heuristic 7 won : 10
+Heuristic 3 won : 0
+Draw : 0
 
 
 
 Heuristic 7 vs 4
 First Move : 7
-Heuristic 7 won : 9
-Heuristic 4 won : 0
-Draw : 1
+Heuristic 7 won : 8
+Heuristic 4 won : 2
+Draw : 0
 
 
 
 Heuristic 7 vs 5
 First Move : 7
-Heuristic 7 won : 6
-Heuristic 5 won : 3
+Heuristic 7 won : 8
+Heuristic 5 won : 1
 Draw : 1
 
 
 
 Heuristic 7 vs 6
 First Move : 7
-Heuristic 7 won : 7
+Heuristic 7 won : 8
 Heuristic 6 won : 2
-Draw : 1
+Draw : 0
 
 Depth 12
 
 
 Heuristic 1 vs 2
 First Move : 1
-Heuristic 1 won : 9
-Heuristic 2 won : 1
+Heuristic 1 won : 10
+Heuristic 2 won : 0
 Draw : 0
 
 
 
 Heuristic 1 vs 3
 First Move : 1
-Heuristic 1 won : 6
-Heuristic 3 won : 3
-Draw : 1
+Heuristic 1 won : 10
+Heuristic 3 won : 0
+Draw : 0
 
 
 
 Heuristic 1 vs 4
 First Move : 1
-Heuristic 1 won : 10
-Heuristic 4 won : 0
+Heuristic 1 won : 9
+Heuristic 4 won : 1
 Draw : 0
 
 
 
 Heuristic 1 vs 5
 First Move : 1
-Heuristic 1 won : 10
-Heuristic 5 won : 0
-Draw : 0
+Heuristic 1 won : 6
+Heuristic 5 won : 2
+Draw : 2
 
 
 
 Heuristic 1 vs 6
 First Move : 1
-Heuristic 1 won : 9
-Heuristic 6 won : 0
-Draw : 1
+Heuristic 1 won : 8
+Heuristic 6 won : 2
+Draw : 0
 
 
 
@@ -2410,8 +2410,8 @@ Draw : 1
 
 Heuristic 2 vs 1
 First Move : 2
-Heuristic 2 won : 10
-Heuristic 1 won : 0
+Heuristic 2 won : 6
+Heuristic 1 won : 4
 Draw : 0
 
 
@@ -2426,32 +2426,32 @@ Draw : 0
 
 Heuristic 2 vs 4
 First Move : 2
-Heuristic 2 won : 10
-Heuristic 4 won : 0
-Draw : 0
+Heuristic 2 won : 8
+Heuristic 4 won : 1
+Draw : 1
 
 
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 8
+Heuristic 2 won : 10
 Heuristic 5 won : 0
-Draw : 2
+Draw : 0
 
 
 
 Heuristic 2 vs 6
 First Move : 2
-Heuristic 2 won : 8
+Heuristic 2 won : 9
 Heuristic 6 won : 0
-Draw : 2
+Draw : 1
 
 
 
 Heuristic 2 vs 7
 First Move : 2
-Heuristic 2 won : 9
-Heuristic 7 won : 1
+Heuristic 2 won : 7
+Heuristic 7 won : 3
 Draw : 0
 
 
@@ -2474,24 +2474,24 @@ Draw : 0
 
 Heuristic 3 vs 4
 First Move : 3
-Heuristic 3 won : 9
-Heuristic 4 won : 0
-Draw : 1
+Heuristic 3 won : 7
+Heuristic 4 won : 3
+Draw : 0
 
 
 
 Heuristic 3 vs 5
 First Move : 3
 Heuristic 3 won : 9
-Heuristic 5 won : 0
-Draw : 1
+Heuristic 5 won : 1
+Draw : 0
 
 
 
 Heuristic 3 vs 6
 First Move : 3
-Heuristic 3 won : 8
-Heuristic 6 won : 2
+Heuristic 3 won : 9
+Heuristic 6 won : 1
 Draw : 0
 
 
@@ -2506,8 +2506,8 @@ Draw : 0
 
 Heuristic 4 vs 1
 First Move : 4
-Heuristic 4 won : 8
-Heuristic 1 won : 2
+Heuristic 4 won : 9
+Heuristic 1 won : 1
 Draw : 0
 
 
@@ -2522,9 +2522,9 @@ Draw : 0
 
 Heuristic 4 vs 3
 First Move : 4
-Heuristic 4 won : 9
+Heuristic 4 won : 8
 Heuristic 3 won : 1
-Draw : 0
+Draw : 1
 
 
 
@@ -2538,17 +2538,17 @@ Draw : 1
 
 Heuristic 4 vs 6
 First Move : 4
-Heuristic 4 won : 10
-Heuristic 6 won : 0
-Draw : 0
+Heuristic 4 won : 6
+Heuristic 6 won : 2
+Draw : 2
 
 
 
 Heuristic 4 vs 7
 First Move : 4
-Heuristic 4 won : 8
+Heuristic 4 won : 9
 Heuristic 7 won : 1
-Draw : 1
+Draw : 0
 
 
 
@@ -2562,32 +2562,32 @@ Draw : 0
 
 Heuristic 5 vs 2
 First Move : 5
-Heuristic 5 won : 10
-Heuristic 2 won : 0
+Heuristic 5 won : 9
+Heuristic 2 won : 1
 Draw : 0
 
 
 
 Heuristic 5 vs 3
 First Move : 5
-Heuristic 5 won : 9
-Heuristic 3 won : 1
+Heuristic 5 won : 10
+Heuristic 3 won : 0
 Draw : 0
 
 
 
 Heuristic 5 vs 4
 First Move : 5
-Heuristic 5 won : 10
-Heuristic 4 won : 0
+Heuristic 5 won : 9
+Heuristic 4 won : 1
 Draw : 0
 
 
 
 Heuristic 5 vs 6
 First Move : 5
-Heuristic 5 won : 10
-Heuristic 6 won : 0
+Heuristic 5 won : 9
+Heuristic 6 won : 1
 Draw : 0
 
 
@@ -2610,33 +2610,33 @@ Draw : 0
 
 Heuristic 6 vs 2
 First Move : 6
-Heuristic 6 won : 9
+Heuristic 6 won : 10
 Heuristic 2 won : 0
-Draw : 1
+Draw : 0
 
 
 
 Heuristic 6 vs 3
 First Move : 6
-Heuristic 6 won : 8
-Heuristic 3 won : 2
+Heuristic 6 won : 10
+Heuristic 3 won : 0
 Draw : 0
 
 
 
 Heuristic 6 vs 4
 First Move : 6
-Heuristic 6 won : 8
+Heuristic 6 won : 10
 Heuristic 4 won : 0
-Draw : 2
+Draw : 0
 
 
 
 Heuristic 6 vs 5
 First Move : 6
-Heuristic 6 won : 9
+Heuristic 6 won : 10
 Heuristic 5 won : 0
-Draw : 1
+Draw : 0
 
 
 
@@ -2658,24 +2658,24 @@ Draw : 0
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 10
-Heuristic 2 won : 0
-Draw : 0
+Heuristic 7 won : 8
+Heuristic 2 won : 1
+Draw : 1
 
 
 
 Heuristic 7 vs 3
 First Move : 7
 Heuristic 7 won : 9
-Heuristic 3 won : 1
-Draw : 0
+Heuristic 3 won : 0
+Draw : 1
 
 
 
 Heuristic 7 vs 4
 First Move : 7
-Heuristic 7 won : 10
-Heuristic 4 won : 0
+Heuristic 7 won : 8
+Heuristic 4 won : 2
 Draw : 0
 
 
@@ -2755,96 +2755,96 @@ Draw : 0
 
 Heuristic 2 vs 3
 First Move : 2
-Heuristic 2 won : 10
-Heuristic 3 won : 0
+Heuristic 2 won : 9
+Heuristic 3 won : 1
 Draw : 0
 
 
 
 Heuristic 2 vs 4
 First Move : 2
-Heuristic 2 won : 9
+Heuristic 2 won : 8
 Heuristic 4 won : 0
-Draw : 1
+Draw : 2
 
 
 
 Heuristic 2 vs 5
 First Move : 2
-Heuristic 2 won : 10
-Heuristic 5 won : 0
-Draw : 0
+Heuristic 2 won : 7
+Heuristic 5 won : 1
+Draw : 2
 
 
 
 Heuristic 2 vs 6
 First Move : 2
 Heuristic 2 won : 9
-Heuristic 6 won : 1
-Draw : 0
+Heuristic 6 won : 0
+Draw : 1
 
 
 
 Heuristic 2 vs 7
 First Move : 2
 Heuristic 2 won : 9
-Heuristic 7 won : 1
-Draw : 0
+Heuristic 7 won : 0
+Draw : 1
 
 
 
 Heuristic 3 vs 1
 First Move : 3
-Heuristic 3 won : 4
-Heuristic 1 won : 5
-Draw : 1
+Heuristic 3 won : 9
+Heuristic 1 won : 1
+Draw : 0
 
 
 
 Heuristic 3 vs 2
 First Move : 3
-Heuristic 3 won : 9
-Heuristic 2 won : 1
+Heuristic 3 won : 10
+Heuristic 2 won : 0
 Draw : 0
 
 
 
 Heuristic 3 vs 4
 First Move : 3
-Heuristic 3 won : 10
-Heuristic 4 won : 0
+Heuristic 3 won : 8
+Heuristic 4 won : 2
 Draw : 0
 
 
 
 Heuristic 3 vs 5
 First Move : 3
-Heuristic 3 won : 10
+Heuristic 3 won : 9
 Heuristic 5 won : 0
-Draw : 0
+Draw : 1
 
 
 
 Heuristic 3 vs 6
 First Move : 3
-Heuristic 3 won : 7
-Heuristic 6 won : 2
-Draw : 1
+Heuristic 3 won : 9
+Heuristic 6 won : 1
+Draw : 0
 
 
 
 Heuristic 3 vs 7
 First Move : 3
 Heuristic 3 won : 9
-Heuristic 7 won : 1
-Draw : 0
+Heuristic 7 won : 0
+Draw : 1
 
 
 
 Heuristic 4 vs 1
 First Move : 4
-Heuristic 4 won : 8
-Heuristic 1 won : 2
+Heuristic 4 won : 7
+Heuristic 1 won : 3
 Draw : 0
 
 
@@ -2852,40 +2852,40 @@ Draw : 0
 Heuristic 4 vs 2
 First Move : 4
 Heuristic 4 won : 9
-Heuristic 2 won : 1
-Draw : 0
+Heuristic 2 won : 0
+Draw : 1
 
 
 
 Heuristic 4 vs 3
 First Move : 4
-Heuristic 4 won : 10
-Heuristic 3 won : 0
+Heuristic 4 won : 9
+Heuristic 3 won : 1
 Draw : 0
 
 
 
 Heuristic 4 vs 5
 First Move : 4
-Heuristic 4 won : 7
-Heuristic 5 won : 1
-Draw : 2
+Heuristic 4 won : 10
+Heuristic 5 won : 0
+Draw : 0
 
 
 
 Heuristic 4 vs 6
 First Move : 4
-Heuristic 4 won : 8
-Heuristic 6 won : 1
+Heuristic 4 won : 9
+Heuristic 6 won : 0
 Draw : 1
 
 
 
 Heuristic 4 vs 7
 First Move : 4
-Heuristic 4 won : 9
+Heuristic 4 won : 10
 Heuristic 7 won : 0
-Draw : 1
+Draw : 0
 
 
 
@@ -2907,8 +2907,8 @@ Draw : 0
 
 Heuristic 5 vs 3
 First Move : 5
-Heuristic 5 won : 8
-Heuristic 3 won : 2
+Heuristic 5 won : 9
+Heuristic 3 won : 1
 Draw : 0
 
 
@@ -2931,9 +2931,9 @@ Draw : 0
 
 Heuristic 5 vs 7
 First Move : 5
-Heuristic 5 won : 10
+Heuristic 5 won : 9
 Heuristic 7 won : 0
-Draw : 0
+Draw : 1
 
 
 
@@ -2947,25 +2947,25 @@ Draw : 0
 
 Heuristic 6 vs 2
 First Move : 6
-Heuristic 6 won : 8
-Heuristic 2 won : 1
-Draw : 1
+Heuristic 6 won : 10
+Heuristic 2 won : 0
+Draw : 0
 
 
 
 Heuristic 6 vs 3
 First Move : 6
-Heuristic 6 won : 8
-Heuristic 3 won : 2
+Heuristic 6 won : 10
+Heuristic 3 won : 0
 Draw : 0
 
 
 
 Heuristic 6 vs 4
 First Move : 6
-Heuristic 6 won : 9
+Heuristic 6 won : 10
 Heuristic 4 won : 0
-Draw : 1
+Draw : 0
 
 
 
@@ -2995,39 +2995,39 @@ Draw : 0
 
 Heuristic 7 vs 2
 First Move : 7
-Heuristic 7 won : 8
+Heuristic 7 won : 9
 Heuristic 2 won : 1
-Draw : 1
+Draw : 0
 
 
 
 Heuristic 7 vs 3
 First Move : 7
-Heuristic 7 won : 8
-Heuristic 3 won : 0
-Draw : 2
+Heuristic 7 won : 9
+Heuristic 3 won : 1
+Draw : 0
 
 
 
 Heuristic 7 vs 4
 First Move : 7
 Heuristic 7 won : 9
-Heuristic 4 won : 0
-Draw : 1
+Heuristic 4 won : 1
+Draw : 0
 
 
 
 Heuristic 7 vs 5
 First Move : 7
-Heuristic 7 won : 8
-Heuristic 5 won : 2
+Heuristic 7 won : 9
+Heuristic 5 won : 1
 Draw : 0
 
 
 
 Heuristic 7 vs 6
 First Move : 7
-Heuristic 7 won : 10
-Heuristic 6 won : 0
+Heuristic 7 won : 8
+Heuristic 6 won : 2
 Draw : 0
 
