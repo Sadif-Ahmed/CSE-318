@@ -9,8 +9,8 @@ public class Game_Board implements Cloneable,Tree_Node {
     int curr_player;
     int max_player;
 	//Heuristics
-    Heuristic choice0;
-    Heuristic choice1;
+    int choice0;
+    int choice1;
 	//Stone Counts
     int moved_stones=0;
     int total_stones;
@@ -29,7 +29,7 @@ public class Game_Board implements Cloneable,Tree_Node {
 	private final String BLUE = "\u001B[34m";
 	private final String PURPLE = "\u001B[35m";
 
-    public Game_Board(Heuristic h0,Heuristic h1,int depth)
+    public Game_Board(int h0,int h1,int depth)
     {
         total_stones= bins * stones_per_bin * 2 ;
         mat = new int[2][bins+1];
@@ -44,6 +44,21 @@ public class Game_Board implements Cloneable,Tree_Node {
         this.choice1=h1;
         this.depth=depth;
     }
+	public void reset_board(int h0,int h1,int depth)
+	{
+		total_stones= bins * stones_per_bin * 2 ;
+        mat = new int[2][bins+1];
+        for (int i = 0; i <= 1; i++) {
+			for (int j = 1; j <= bins; j++) { 
+				mat[i][j] = stones_per_bin;
+			}
+		}
+        curr_player = 0;
+        max_player = 0;
+        this.choice0=h0;
+        this.choice1=h1;
+        this.depth=depth;
+	}
 
     public int get_total_stones(int player_id)
     {
@@ -208,7 +223,7 @@ public class Game_Board implements Cloneable,Tree_Node {
 	{
 		int bin = 0;
 		try {
-			bin = Minimax.mini_max( board , depth ) + 1; 
+			bin = Algo_Heuristics.mini_max( board , depth ) + 1; 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -283,11 +298,11 @@ public class Game_Board implements Cloneable,Tree_Node {
 	public double heuristic_value(){
         if(max_player==0)
         {
-            return choice0.get_h_value(this);
+            return Algo_Heuristics.get_h_value(this,choice0);
         }
         else
         {
-            return choice1.get_h_value(this);
+            return Algo_Heuristics.get_h_value(this,choice1);
         }
 		
 	}

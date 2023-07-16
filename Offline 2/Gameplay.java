@@ -3,14 +3,13 @@ import java.util.Random;
 import java.util.Scanner;
 public class Gameplay {
 
-    private static boolean human_vs_ai=false;
 	public static final int MAX_DEPTH = 15;
 	private static int number_of_heuristics = 7;
 	private static final int GAMES_PER_HEURISTIC = 10;
 	
 	private static final Scanner input = new Scanner(System.in);
 
-    private static int ai_vs_ai_play(Heuristic h0 , Heuristic h1 , int MAX_DEPTH ) {
+    private static int ai_vs_ai_play(int h0 , int h1 , int MAX_DEPTH ) {
 		Game_Board board = new Game_Board( h0 , h1 , MAX_DEPTH );
 		
         board.print_board();
@@ -29,26 +28,19 @@ public class Gameplay {
 		System.out.println( "Final board configuration:\n" );
 
 		board.print_board();
-		if (board.get_player_bin_stones( 0 , 0 ) == board.get_player_bin_stones( 1 , 0 )) {
-			System.out.println( "It's a tie!");
-			return -1;
-		} else if (board.get_player_bin_stones( 0 , 0 ) > board.get_player_bin_stones( 1 , 0 )) {
-			System.out.println( "Player0 wins!" );
-			return 0;
-		} else {
-			System.out.println( "Player1 wins!" );
-			return 1;
-		}
+		return result_calculation(board);
+		
 	}
-	private static void  human_vs_human_play()
+	private static int  human_vs_human_play()
 	{
-		Game_Board board = new Game_Board(null, null, MAX_DEPTH);
+		Game_Board board = new Game_Board( 0, 0, MAX_DEPTH);
 		int bin;
 
 		board.print_board();
 
 		while(!board.game_over())
 		{
+				System.out.println("Player"+board.curr_player+"move:");
 			    System.out.println("Select bin[1/2/3/4/5/6](right to left)\n");
 				bin = input.nextInt();
 				board.move(bin);
@@ -58,24 +50,13 @@ public class Gameplay {
 		System.out.println("Final Board Configuration : ");
 		board.print_board();
 
-		if(board.get_player_bin_stones(0,0)==board.get_player_bin_stones(1,0))
-		{
-			System.out.println("Tie");
-		}
-		else if(board.get_player_bin_stones(0,0)>board.get_player_bin_stones(1,0))
-		{
-			System.out.println("Player0 wins");
-		}
-		else
-		{
-			System.out.println("Player1 wins");
-		}
+		return result_calculation(board);
 		
 
 	}
-    private static int human_vs_ai_play(Heuristic h0 , int MAX_DEPTH ) {
+    private static int human_vs_ai_play(int h0 , int MAX_DEPTH ) {
 		
-		Game_Board board = new Game_Board(h0 , null , MAX_DEPTH );
+		Game_Board board = new Game_Board(h0 , 0 , MAX_DEPTH );
 		
         board.print_board();
 		int round = 0;
@@ -120,18 +101,56 @@ public class Gameplay {
 		System.out.println( "Final board configuration:\n" );
 
 		board.print_board();
-		if (board.get_player_bin_stones( 0 , 0 ) == board.get_player_bin_stones( 1 , 0 )) {
-			System.out.println( "It's a tie!" );
+		int result = result_calculation(board);
+		if(result==0)
+		{
+			System.out.println( "AI wins!" );
+		} 
+		return result;
+	}
+	private static int result_calculation(Game_Board board)
+	{
+		if (board.get_storage_stones(0) == board.get_storage_stones(1)) {
+			System.out.println( "It's a tie!");
 			return -1;
-		} else if (board.get_player_bin_stones( 0 , 0 ) > board.get_player_bin_stones( 1 , 0 )) {
-			if(human_vs_ai)System.out.println( "AI wins!" );
-			else System.out.println( "Player0 wins!" );
+		} else if (board.get_storage_stones(0) > board.get_storage_stones(1)) {
+			System.out.println( "Player0 wins!" );
 			return 0;
 		} else {
 			System.out.println( "Player1 wins!" );
 			return 1;
 		}
 	}
+	public static void genearte_csv(Cell[][] data,int depth)
+	{
+		
+		
+				PrintWriter out=null;
+			try {
+				out = new PrintWriter("depth "+depth+".csv");
+			} catch (Exception e) {
+				//TODO: handle exception
+			}
+			StringBuilder sb = new StringBuilder();
+			sb.append(" ,h1,h2,h3,h4,h5,h6,h7\n");
+			//sb.append(" ,h1,h2\n");
+			for(int i=1 ; i<=number_of_heuristics ; i++){
+				sb.append("h"+i+",");
+				for(int j=1 ; j<=number_of_heuristics ; j++){
+					if(i==j)sb.append("-");
+					else{
+						sb.append("win%1st "+data[i][j].first_move
+								+" win%2nd "+data[i][j].second_move);
+					} 
+					if(j==number_of_heuristics)sb.append(",\n");
+					else sb.append(",");
+				}
+				sb.append("\n");
+			}
+			out.write(sb.toString());
+			out.close();
+			}
+	
 
     public static void generate_report()throws IOException {
 		PrintWriter logFile = new PrintWriter(new FileWriter("stat.log") );
@@ -150,7 +169,7 @@ public class Gameplay {
 					int p0win = 0, p1win = 0, tie = 0;
 					//i first move,j 2nd move
 					for (int game = 0; game <GAMES_PER_HEURISTIC ; ++game) {
-						int result = ai_vs_ai_play(new Heuristic(i) , new Heuristic(j) , d );
+						int result = ai_vs_ai_play(i , j , d );
 						if (result == 0) p0win++;
 						if (result == 1) p1win++;
 						if (result == -1) tie++;
@@ -164,31 +183,7 @@ public class Gameplay {
 					data[j][i].second_move = ((double)p1win/GAMES_PER_HEURISTIC)*100.0;   										
 				}
 			}
-			PrintWriter out=null;
-			try {
-				out = new PrintWriter("depth_"+d+".csv");
-			} catch (Exception e) {
-				//TODO: handle exception
-			}
-			StringBuilder sb = new StringBuilder();
-			sb.append(" ,h1,h2,h3,h4,h5,h6,h7\n");
-			//sb.append(" ,h1,h2\n");
-			for(int p=1 ; p<=number_of_heuristics ; p++){
-				sb.append("h"+p+",");
-				for(int q=1 ; q<=number_of_heuristics ; q++){
-					if(p==q)sb.append("-");
-					else{
-						sb.append("win%1st "+data[p][q].first_move
-								+" win%2nd "+data[p][q].second_move);
-					} 
-					if(q==number_of_heuristics)sb.append(",\n");
-					else sb.append(",");
-				}
-				sb.append("\n");
-			}
-			//System.out.println(sb.toString());
-			out.write(sb.toString());
-			out.close();
+			genearte_csv(data, d);
 			
 		}
 	
@@ -196,15 +191,13 @@ public class Gameplay {
     public static void main(String[] args ) throws IOException {
 		
 		int choice0,choice1;
-        Heuristic h0,h1;
 		System.out.println("1.AI vs AI\n2.Human vs AI\n3.Human vs Human\n4.Report Generation");
 		int choice = input.nextInt();
 		if (choice==2){
 			//human vs AI
-			human_vs_ai = true;
 			System.out.println("Choose heuristic[1/2/3/4/5/6/7] for AI(player 0)");
 			choice0 = input.nextInt();
-			human_vs_ai_play(new Heuristic(choice0), 10);
+			human_vs_ai_play(choice0, 10);
 		} 
 		else if(choice==3)
 		{
@@ -221,7 +214,7 @@ public class Gameplay {
             choice1 = input.nextInt();
 			System.out.println("Choose depth");
             int depth = input.nextInt();
-            ai_vs_ai_play(new Heuristic(choice0) , new Heuristic(choice1) , depth);
+            ai_vs_ai_play(choice0 , choice1 , depth);
 		}
 	}
 
