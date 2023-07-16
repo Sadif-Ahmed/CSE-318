@@ -1,21 +1,24 @@
-import java.io.Console;
+
 import java.util.*;
 
 public class Game_Board implements Cloneable,Tree_Node {
 
+	//Board Storage
     int [][] mat;
-
+	//Players
     int curr_player;
     int max_player;
+	//Heuristics
     Heuristic choice0;
     Heuristic choice1;
+	//Stone Counts
     int moved_stones=0;
-    int depth;
     int total_stones;
     int stole_amount0=0;
     int stole_amount1=0;
+	//Depth
+    int depth;
 
-    final boolean DEBUG = false;
 	final int STORAGE = 0;//mat[i][0] points to the storage
     final int bins = 6;//// Bin 0 is the mancala; other bins are numbered 1 through max number.
     final int stones_per_bin = 4;
@@ -177,16 +180,6 @@ public class Game_Board implements Cloneable,Tree_Node {
 		}
 		return mx;
 	}
-    public int get_weighted_stones_sum(int player_idx){
-		int sum = 0 , wt;
-		//giving larger weights to bins close to the storage		
-		for(int i=1 ; i<=bins ; i++){	
-			wt=i;
-			sum += wt*mat[player_idx][i];
-		}
-		return sum;
-		
-	}
     public void set_current_palyer(int curr_player)
     {
         this.curr_player=curr_player;
@@ -267,9 +260,11 @@ public class Game_Board implements Cloneable,Tree_Node {
 	protected Object clone() throws CloneNotSupportedException {
 		Game_Board clone = (Game_Board) super.clone();
 		clone.mat = new int[this.mat.length][this.mat[0].length];
-		for (int r = 0; r < this.mat.length; r++){
-			if (this.mat[r].length >= 0){
-				System.arraycopy( this.mat[r] , 0 , clone.mat[r] , 0 , this.mat[r].length );
+		for(int i=0;i<2;i++)
+		{
+			for(int j=0;j<=6;j++)
+			{
+				clone.mat[i][j]=this.mat[i][j];
 			}
 		}
 		return clone;
@@ -374,16 +369,12 @@ public class Game_Board implements Cloneable,Tree_Node {
 			return Integer.toString( n );
 		}
 	}
-	public String toString(){
-		
-		return edgeLine()+
-			   player0Line()+
-			   middleLine()+
-			   player1Line()+
-			   edgeLine();
+	public void print_board()
+	{
+		       String temp = edgeLine()+player0Line()+middleLine()+player1Line()+edgeLine(); 
+			   System.out.println(temp);
 	}
 
-	
     
 
 
