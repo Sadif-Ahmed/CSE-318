@@ -194,17 +194,26 @@ public class Game_Board implements Cloneable,Tree_Node {
 			this.set_max_player( curr_player );
             if(curr_player==0)
             {
-                bin = choice0.select_move( this , depth );
+                bin = move_selection(this, depth);
             }
 			else
             {
-                bin = choice1.select_move(this,depth);
+                bin = move_selection(this,depth);
             }
 		}
 		move( bin );
 		return bin;
 	}
-
+	int move_selection(Game_Board board,int depth)
+	{
+		int bin = 0;
+		try {
+			bin = Minimax.mini_max( board , depth ) + 1; 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bin;
+	}
     void move(int bin){		
 		int stones = mat[curr_player][bin];
 		if (stones == 0) {

@@ -48,7 +48,7 @@ public class Minimax {
 			Opt_Node maxNode = new Opt_Node( null , -INF );
 			for (Tree_Node s : state.get_successor_list()){
 				if (s == null) continue;
-				Opt_Node tmp_node = new Opt_Node(s , alphabeta(s , alpha , beta , s.maximizing_check() , maxdepth - 1 ).h_value );
+				Opt_Node tmp_node = new Opt_Node(s , alpha_beta(s , alpha , beta , s.maximizing_check() , maxdepth - 1 ).h_value );
 				maxNode = Opt_Node.find_max(maxNode , tmp_node);
 				ls.add(maxNode);
 				alpha = Math.max( alpha , maxNode.h_value );
@@ -69,7 +69,7 @@ public class Minimax {
 			ArrayList<Opt_Node>ls = new ArrayList<Opt_Node>();
 			for (Tree_Node s : state.get_successor_list()) {
 				if (s == null) continue;
-				Opt_Node tmp_node = new Opt_Node( s , alphabeta( s , alpha , beta , s.maximizing_check() , maxdepth - 1 ).h_value);
+				Opt_Node tmp_node = new Opt_Node( s , alpha_beta( s , alpha , beta , s.maximizing_check() , maxdepth - 1 ).h_value);
 				minNode = Opt_Node.find_min(minNode , tmp_node);
 				ls.add(minNode);
 				beta = Math.min( beta , minNode.h_value);
