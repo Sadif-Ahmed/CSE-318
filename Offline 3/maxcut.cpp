@@ -47,8 +47,8 @@ public:
     vector<bool>visit_status_rev_dir;
     //MST Elements
     vector<int> sources;
-    vector<pair<vertice,double>> List_of_Edges;//Storing the edges
-    vector<pair<vertice,double>> Kruskal_MST_Edges;//Storing the mst
+    vector<edge> List_of_Edges;//Storing the edges
+    vector<edge> Kruskal_MST_Edges;//Storing the mst
     double cost_k;
     double cost_p;
     vector<double>key;//Vector of Weights
@@ -168,6 +168,7 @@ public:
         key.resize(num_of_vertices,inf);
         parent.resize(num_of_vertices,-1);
         mst_status.resize(num_of_vertices,false);
+        all_veritces.clear();
     }
     vector<pair<vertice,double>> get_mst()
     {
@@ -1492,9 +1493,9 @@ cut semi_greedy_maxcut()
 
     final_x.insert(selected_edge.first.first);
     final_y.insert(selected_edge.first.second);
-    final_weight+=selected_edge.second;
-
     
+
+    //cout<<"Initial Addition:"<<"<"<<selected_edge.first.first<<","<<selected_edge.first.second<<">   "<<selected_edge.second<<endl;
 
     while(true)
     {
@@ -1506,7 +1507,11 @@ cut semi_greedy_maxcut()
         }
         set<int> remaining_vertices;
         set_difference(all_veritces.begin(),all_veritces.end(),union_xy.begin(),union_xy.end(),inserter(remaining_vertices,remaining_vertices.end()));
-
+       //cout<<"Remaining Vertices: ";
+        // for(auto i: remaining_vertices)
+        // {
+        //     cout<<i<<endl;
+        // }
         vector<double> sigma_x;
         vector<double> sigma_y;
         vector<int> sigma_vertices;
@@ -1515,7 +1520,7 @@ cut semi_greedy_maxcut()
         {
             double temp_x=0;
             double temp_y=0;
-            for(auto j : final_x)
+            for(auto j : final_y)
             {
                  if(Adj_Matt[i][j]!=INT_MAX )
             {
@@ -1523,7 +1528,7 @@ cut semi_greedy_maxcut()
             } 
 
             }
-            for(auto j : final_y)
+            for(auto j : final_x)
             {
                  if(Adj_Matt[i][j]!=INT_MAX )
             {
@@ -1531,6 +1536,10 @@ cut semi_greedy_maxcut()
             } 
             
             }
+            //cout<<"Vertice :"<<i<<endl;
+            //cout<<"Sigma_x :"<<temp_x<<endl;
+            //cout<<"Sigma_y :"<<temp_y<<endl;
+            
             sigma_x.push_back(temp_x);
             sigma_y.push_back(temp_y);
             sigma_vertices.push_back(i);    
@@ -1555,6 +1564,7 @@ cut semi_greedy_maxcut()
             }
         }
         int selected_vertice = RCL_vertices[rand()%RCL_vertices.size()];
+        //cout<<"Selected Vertice: "<<selected_vertice<<endl;
         int selected_indx;
         for(int i=0;i<sigma_vertices.size();i++)
         {
@@ -1564,20 +1574,33 @@ cut semi_greedy_maxcut()
                 break;
             }
         }
+        //cout<<"Selected Vertice Index:"<<selected_indx<<"  found vertice at index: "<<sigma_vertices[selected_indx]<<endl;
+        //cout<<"Sigma_x: "<<sigma_x[selected_indx]<<endl;
+        //cout<<"Sigma_y: "<<sigma_y[selected_indx]<<endl;
         if(sigma_x[selected_indx]>=sigma_y[selected_indx])
         {
-            final_x.insert(selected_indx);
-            final_weight+=sigma_x[selected_indx];
+            final_x.insert(selected_vertice);
+            
         }
         else
         {
-            final_y.insert(selected_indx);
-            final_weight += sigma_y[selected_indx];
+            final_y.insert(selected_vertice);
+            
         }
 
     }
     final.first.first=final_x;
     final.first.second=final_y;
+    for(auto i : final.first.first)
+    {
+        for(auto j: final.first.second)
+        {
+            if(Adj_Matt[i][j]!=INT_MAX && Adj_Matt[i][j]!=0)
+            {
+                final_weight+=Adj_Matt[i][j];
+            }
+        }
+    }
     final.second = final_weight;
     return final;
 
@@ -1599,14 +1622,14 @@ cut local_search_maxcut(cut input)
                 }
                 double sigma_s=0;
                 double sigma_s_prime=0;
-                for(auto j : final.first.first)
+                for(auto j : final.first.second)
                 {
                     if(Adj_Matt[i][j]!=INT_MAX && Adj_Matt[i][j]!=0)
                     {
                         sigma_s+=Adj_Matt[i][j];
                     }
                 }
-                for(auto j : final.first.second)
+                for(auto j : final.first.first)
                 {
                     if(Adj_Matt[i][j]!=INT_MAX && Adj_Matt[i][j]!=0)
                     {
@@ -1642,16 +1665,18 @@ cut local_search_maxcut(cut input)
 }
 cut grasp_maxcut()
 {
-    double max_weight = -INT_MAX;
+    double max_weight = -inf;
     cut final_cut;
     double prev_weight,after_weight;
     while(true)
     {
         cut temp_cut =  semi_greedy_maxcut();
         prev_weight=temp_cut.second;
+        //cout<<"Prev_Weight"<<prev_weight<<endl;
         temp_cut = local_search_maxcut(temp_cut);
         after_weight=temp_cut.second;
-        if(temp_cut.second>max_weight)
+        //cout<<"After_Weight"<<after_weight<<endl;
+        if(temp_cut.second>=max_weight)
         {
             final_cut=temp_cut;
             max_weight=temp_cut.second;
@@ -1669,15 +1694,31 @@ cut grasp_maxcut()
 
 int main()
 {
-    
-        int num_v,num_edge;
-        cin>>num_v>>num_edge;
-        Graph X(num_v,num_edge);
-       for(int i=0;i<num_edge;i++)
-       {   int u,v;
-           cin>>u>>v;
-           X.Add_Edge_Directed(u,v);
+    fstream myfile("input.txt", std::ios_base::in);
+    int num_v,num_edge;
+    myfile>>num_v>>num_edge;
+    Graph X(num_v,num_edge);
+    for(int i=0;i<num_edge;i++)
+    {   
+        int u,v;
+        double w;
+        myfile>>u>>v>>w;
+        X.Add_Edge_Undirected(u,v,w);
        }
        X.print_AdjM();
+       cut temp = X.semi_greedy_maxcut();
+       temp = X.local_search_maxcut(temp);
+       temp = X.grasp_maxcut();
+       cout<<"S  :"<<endl;
+       for(auto i : temp.first.first)
+       {
+        cout<<i<<endl;
+       }
+       cout<<"S_prime  :"<<endl;
+       for(auto i : temp.first.second)
+       {
+        cout<<i<<endl;
+       }
+       cout<<"Max_Weight  : "<<temp.second<<endl;
     return 0;
 }
