@@ -1,8 +1,3 @@
 S  :
-3
-4
 S_prime  :
-1
-2
-5
-Max_Weight  : 21
+Max_Weight  : 0

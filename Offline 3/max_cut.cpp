@@ -466,6 +466,7 @@ cut greedy_maxcut()
     return final;
 
 }
+
 cut randomised_cut()
 {
     cut final;
@@ -591,6 +592,87 @@ cut randomised_cutv2()
     
     
 }
+cut randomised_cutv3()
+{
+    cut final;
+    double final_weight=0;
+    set<long int> final_x;
+    set<long int> final_y;
+    sort_by_edges();
+    edge selected_edge = List_of_Edges[num_of_edges-1];
+    final_x.insert(selected_edge.first.first);
+    final_y.insert(selected_edge.first.second);
+           
+      
+        
+        for(long int i=0;i<List_of_Edges.size()-1;i++)
+        {
+            set<long int> union_xy;
+            set_union(final_x.begin(),final_x.end(),final_y.begin(),final_y.end(),inserter(union_xy,union_xy.end()));
+            if(rand()%2==0)
+            {
+                if(union_xy.count(List_of_Edges[i].first.first)==0)
+                {
+                    final_x.insert(List_of_Edges[i].first.first);
+                }
+                if(union_xy.count(List_of_Edges[i].first.second)==0)
+                {
+                    final_y.insert(List_of_Edges[i].first.second);
+                }    
+            }
+            else
+            {
+                if(union_xy.count(List_of_Edges[i].first.first)==0)
+                {
+                    final_y.insert(List_of_Edges[i].first.first);
+                }
+                if(union_xy.count(List_of_Edges[i].first.second)==0)
+                {
+                    final_x.insert(List_of_Edges[i].first.second);
+                }
+                
+            }
+        }
+
+        set<long int> union_xy;
+        set_union(final_x.begin(),final_x.end(),final_y.begin(),final_y.end(),inserter(union_xy,union_xy.end()));
+
+        if(all_veritces!=union_xy)
+        {
+        set<long int> remaining_vertices;
+        set_difference(all_veritces.begin(),all_veritces.end(),union_xy.begin(),union_xy.end(),inserter(remaining_vertices,remaining_vertices.end()));
+        for(auto i:remaining_vertices)
+        {
+             if(rand()%2==0)
+            {
+                final_x.insert(i);
+                
+            }
+            else
+            {
+                final_y.insert(i);
+                
+            }
+        }
+        }
+
+    final.first.first=final_x;
+    final.first.second=final_y;
+    for(auto i : final.first.first)
+    {
+        for(auto j: final.first.second)
+        {
+            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0)
+            {
+                final_weight+=Adj_Matt[i][j];
+            }
+        }
+    }
+    final.second = final_weight;
+    return final;
+
+
+}
 cut local_search_maxcut(cut input)
 {
     cut final=input;
@@ -675,6 +757,10 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
         {
             temp_cut = randomised_cutv2();
         }
+        else if(greedy_choice==5)
+        {
+            temp_cut = randomised_cutv3();
+        }
 
         
         prev_weight=temp_cut.second;
@@ -717,6 +803,10 @@ cut grasp_maxcut(int greedy_choice)
         else if(greedy_choice==4)
         {
             temp_cut = randomised_cutv2();
+        }
+         else if(greedy_choice==5)
+        {
+            temp_cut = randomised_cutv3();
         }
         
         prev_weight=temp_cut.second;
@@ -778,11 +868,12 @@ int main()
         cut temp;
         //temp = X.semi_greedy_maxcut();
         //temp = X.local_search_maxcut(temp);
-        //temp = X.grasp_maxcut(20,1);
+        //temp = X.grasp_maxcut(50,1);
         //temp = X.greedy_maxcut();
         //temp = X.randomised_cut();
         //temp = X.randomised_cutv2();
-       outfile<<"S  :"<<endl;
+        //temp = X.randomised_cutv3();
+         outfile<<"S  :"<<endl;
        for(auto i : temp.first.first)
        {
         outfile<<i+1<<endl;
