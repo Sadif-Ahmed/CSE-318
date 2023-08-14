@@ -454,7 +454,7 @@ cut grasp_maxcut()
     while(true)
     {
         iteration_count++;
-        cout<<iteration_count<<endl;
+        cout<<"iteration: "<<iteration_count<<endl;
         cut temp_cut =  semi_greedy_maxcut();
         prev_weight=temp_cut.second;
         //cout<<"Prev_Weight"<<prev_weight<<endl;
@@ -488,13 +488,12 @@ cut grasp_maxcut()
 };
 int main()
 {
-    int num;
-    cout<<"Enter the number of testfiles:";
-    cin>>num;
-    string filepath = "set1/g"+to_string(num);+".rud";
-    fstream myfile("set1/g1.rud", std::ios_base::in);
+    int num=1;
+    string filepath = "set1/g"+to_string(num)+".rud";
+    fstream myfile(filepath, std::ios_base::in);
     int num_v,num_edge;
     myfile>>num_v>>num_edge;
+    //cin>>num_v>>num_edge;
     //cout<<num_v<<"    "<<num_edge<<endl;
     Graph X(num_v,num_edge);
     for(long int i=0;i<num_edge;i++)
@@ -502,7 +501,9 @@ int main()
         long int u,v;
         double w;
         myfile>>u>>v>>w;
+        //cin>>u>>v>>w;
         //cout<<u<<"   "<<v<<"   "<<w<<endl;
+        //X.Add_Edge_Undirected(u,v,w);
         X.Add_Edge_Undirected(u-1,v-1,w);
        }
        //X.print_AdjM();
