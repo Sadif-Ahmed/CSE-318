@@ -1694,7 +1694,7 @@ cut grasp_maxcut()
 
 int main()
 {
-    fstream myfile("input.txt", std::ios_base::in);
+    fstream myfile("set1/g1.rud", std::ios_base::in);
     int num_v,num_edge;
     myfile>>num_v>>num_edge;
     Graph X(num_v,num_edge);
