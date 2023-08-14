@@ -10,24 +10,24 @@
 #include <fstream>
 #include <sstream>
 using namespace std;
-typedef pair<int,double> dest_weight;
-typedef pair<int,int> vertice;
+typedef pair<long int,double> dest_weight;
+typedef pair<long int,long int> vertice;
 typedef pair<vertice,double> edge;
-typedef pair<pair<set<int>,set<int>>,double> cut;
+typedef pair<pair<set<long int>,set<long int>>,double> cut;
 #define inf 9999999.9999999
 class Graph
 {
     public:
-    int num_of_vertices;
-    int num_of_edges;
+    long int num_of_vertices;
+    long int num_of_edges;
     vector<dest_weight> *dir_graph;
     vector<dest_weight> *rev_dir_graph;
     vector<edge> List_of_Edges;//Storing the edges
     double **Adj_Matt;
     //maxcut
-    set<int> all_veritces;
+    set<long int> all_veritces;
 
-    Graph(int num_v,int num_e)
+    Graph(long int num_v,long int num_e)
     {
         num_of_vertices=num_v;
         num_of_edges=num_e;
@@ -35,13 +35,13 @@ class Graph
         rev_dir_graph= new vector<dest_weight>[num_of_vertices];
         List_of_Edges.clear();
         Adj_Matt=new double*[num_of_vertices];
-        for(int i=0; i<num_of_vertices; i++)
+        for(long int i=0; i<num_of_vertices; i++)
         {
             Adj_Matt[i]=new double[num_of_vertices];
         }
-        for(int i=0; i<num_of_vertices; i++)
+        for(long int i=0; i<num_of_vertices; i++)
         {
-            for(int j=0; j<num_of_vertices; j++)
+            for(long int j=0; j<num_of_vertices; j++)
             {
                 if(i==j)
                 {
@@ -53,7 +53,7 @@ class Graph
                 }
             }
         }
-        for(int i=0;i<num_of_vertices;i++)
+        for(long int i=0;i<num_of_vertices;i++)
         {
             all_veritces.insert(i);
         }
@@ -63,7 +63,7 @@ class Graph
     {
         return List_of_Edges;
     }
-    void Add_Edge_Directed(int startv,int endv,double weight=0)
+    void Add_Edge_Directed(long int startv,long int endv,double weight)
     {
         dir_graph[startv].push_back(make_pair(endv,weight));
         rev_dir_graph[endv].push_back(make_pair(startv,weight));
@@ -71,7 +71,7 @@ class Graph
         Adj_Matt[startv][endv]=weight;
         
     }
-    void Add_Edge_Undirected(int startv,int endv,double weight=0)
+    void Add_Edge_Undirected(long int startv,long int endv,double weight)
     {
         dir_graph[startv].push_back(make_pair(endv,weight));
         dir_graph[endv].push_back(make_pair(startv,weight));
@@ -81,24 +81,24 @@ class Graph
         Adj_Matt[endv][startv]=weight;
         
     }
-    void Remove_Edge_Directed(int startv,int endv,double weight=0)
+    void Remove_Edge_Directed(long int startv,long int endv,double weight)
     {
 
-        for(int i=0; i<List_of_Edges.size(); i++)
+        for(long int i=0; i<List_of_Edges.size(); i++)
         {
             if(List_of_Edges[i].first.first==startv&&List_of_Edges[i].first.second==endv&&List_of_Edges[i].second==weight)
             {
                 List_of_Edges.erase(List_of_Edges.begin()+i);
             }
         }
-        for(int j=0; j<dir_graph[startv].size(); j++)
+        for(long int j=0; j<dir_graph[startv].size(); j++)
         {
             if(dir_graph[startv][j].first==endv&&dir_graph[startv][j].second==weight)
             {
                 dir_graph[startv].erase(dir_graph[startv].begin()+j);
             }
         }
-        for(int j=0; j<rev_dir_graph[endv].size(); j++)
+        for(long int j=0; j<rev_dir_graph[endv].size(); j++)
         {
             if(rev_dir_graph[endv][j].first==startv&&rev_dir_graph[endv][j].second==weight)
             {
@@ -109,10 +109,10 @@ class Graph
         
 
     }
-    void Remove_Edge_UnDirected(int startv,int endv,int weight=0)
+    void Remove_Edge_UnDirected(long int startv,long int endv,double weight)
     {
 
-        for(int i=0; i<List_of_Edges.size(); i++)
+        for(long int i=0; i<List_of_Edges.size(); i++)
         {
             if(List_of_Edges[i].first.first==startv&&List_of_Edges[i].first.second==endv&&List_of_Edges[i].second==weight)
             {
@@ -123,14 +123,14 @@ class Graph
                 List_of_Edges.erase(List_of_Edges.begin()+i);
             }
         }
-        for(int j=0; j<dir_graph[startv].size(); j++)
+        for(long int j=0; j<dir_graph[startv].size(); j++)
         {
             if(dir_graph[startv][j].first==endv&&dir_graph[startv][j].second==weight)
             {
                 dir_graph[startv].erase(dir_graph[startv].begin()+j);
             }
         }
-        for(int j=0; j<dir_graph[endv].size(); j++)
+        for(long int j=0; j<dir_graph[endv].size(); j++)
         {
             if(dir_graph[endv][j].first==startv&&dir_graph[endv][j].second==weight)
             {
@@ -145,9 +145,9 @@ class Graph
     void print_AdjM()
     {
         cout<<"Adjacency Matrix"<<endl;
-        for(int i=0; i<num_of_vertices; i++)
+        for(long int i=0; i<num_of_vertices; i++)
         {
-            for(int j=0; j<num_of_vertices; j++)
+            for(long int j=0; j<num_of_vertices; j++)
             {
                 if(Adj_Matt[i][j]==inf )
                 {
@@ -163,9 +163,9 @@ class Graph
     }
     void sort_by_edges()//Order of E(square)
     {
-        for(int i=0; i<num_of_edges; i++)
+        for(long int i=0; i<num_of_edges; i++)
         {
-            for(int j=i+1; j<num_of_edges; j++)
+            for(long int j=i+1; j<num_of_edges; j++)
             {
                 if(List_of_Edges[i].second>=List_of_Edges[j].second)
                 {
@@ -179,9 +179,9 @@ class Graph
     }
     void sort_by_edges_r()//Order of E(square)
     {
-        for(int i=0; i<num_of_edges; i++)
+        for(long int i=0; i<num_of_edges; i++)
         {
-            for(int j=i+1; j<num_of_edges; j++)
+            for(long int j=i+1; j<num_of_edges; j++)
             {
                 if(List_of_Edges[i].second<=List_of_Edges[j].second)
                 {
@@ -198,18 +198,18 @@ class Graph
 {
 
     cout<<"Edges"<<"   "<<"Weight"<<endl;
-    for(int i=0; i<test.size(); i++)
+    for(long int i=0; i<test.size(); i++)
     {
         cout<<test[i].first.first<<" -- "<<test[i].first.second<<"  "<<test[i].second<<endl;
     }
 }
 edge heaviest_edge()
 {
-    int u,v;
+    long int u,v;
     double max=0;
-    for(int i=0;i<num_of_vertices;i++)
+    for(long int i=0;i<num_of_vertices;i++)
     {
-        for (int j=0;j<num_of_vertices;j++)
+        for (long int j=0;j<num_of_vertices;j++)
         {
             if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]>max)
             {
@@ -223,11 +223,11 @@ edge heaviest_edge()
 }
 edge lightest_edge()
 {
-    int u,v;
+    long int u,v;
     double max=inf ;
-    for(int i=0;i<num_of_vertices;i++)
+    for(long int i=0;i<num_of_vertices;i++)
     {
-        for (int j=0;j<num_of_vertices;j++)
+        for (long int j=0;j<num_of_vertices;j++)
         {
             if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]<max)
             {
@@ -252,24 +252,25 @@ cut semi_greedy_maxcut()
 
     double min_weight = heaviest_edge().second;
     double max_weight = lightest_edge().second;
-
+    //cout<<"min_weight= "<<min_weight<<endl;
+    //cout<<"max_weight= "<<max_weight<<endl;
     double weight_factor =  min_weight + alpha*(max_weight-min_weight);
-
+    //cout<<"weight_factor= "<<weight_factor;
     vector<edge> RCL_edge ;
 
-     for(int i=0;i<num_of_vertices;i++)
+     for(long int i=0;i<num_of_vertices;i++)
     {
-        for (int j=0;j<num_of_vertices;j++)
+        for (long int j=0;j<num_of_vertices;j++)
         {
-            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]>weight_factor)
+            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]>=weight_factor)
             {
               RCL_edge.push_back(make_pair(make_pair(i,j),Adj_Matt[i][j]));
             }
         }
     }
     edge selected_edge = RCL_edge[rand()%RCL_edge.size()];
-    set<int> final_x;
-    set<int> final_y;
+    set<long int> final_x;
+    set<long int> final_y;
     
 
     final_x.insert(selected_edge.first.first);
@@ -280,22 +281,22 @@ cut semi_greedy_maxcut()
 
     while(true)
     {
-        set<int> union_xy;
+        set<long int> union_xy;
         set_union(final_x.begin(),final_x.end(),final_y.begin(),final_y.end(),inserter(union_xy,union_xy.end()));
         if(all_veritces == union_xy)
         {
             break;
         }
-        set<int> remaining_vertices;
+        set<long int> remaining_vertices;
         set_difference(all_veritces.begin(),all_veritces.end(),union_xy.begin(),union_xy.end(),inserter(remaining_vertices,remaining_vertices.end()));
-       //cout<<"Remaining Vertices: ";
+        //cout<<"Remaining Vertices: ";
         // for(auto i: remaining_vertices)
         // {
         //     cout<<i<<endl;
         // }
         vector<double> sigma_x;
         vector<double> sigma_y;
-        vector<int> sigma_vertices;
+        vector<long int> sigma_vertices;
 
         for(auto i: remaining_vertices)
         {
@@ -336,18 +337,18 @@ cut semi_greedy_maxcut()
         alpha =  unif(re);
         weight_factor = min_weight + alpha*(max_weight-min_weight);
 
-        vector<int> RCL_vertices;
-        for(int i=0;i<remaining_vertices.size();i++)
+        vector<long int> RCL_vertices;
+        for(long int i=0;i<remaining_vertices.size();i++)
         {
-            if(max(sigma_x[i],sigma_y[i])>weight_factor)
+            if(max(sigma_x[i],sigma_y[i])>=weight_factor)
             {
                 RCL_vertices.push_back(sigma_vertices[i]);
             }
         }
-        int selected_vertice = RCL_vertices[rand()%RCL_vertices.size()];
+        long int selected_vertice = RCL_vertices[rand()%RCL_vertices.size()];
         //cout<<"Selected Vertice: "<<selected_vertice<<endl;
-        int selected_indx;
-        for(int i=0;i<sigma_vertices.size();i++)
+        long int selected_indx;
+        for(long int i=0;i<sigma_vertices.size();i++)
         {
             if(selected_vertice==sigma_vertices[i])
             {
@@ -449,8 +450,11 @@ cut grasp_maxcut()
     double max_weight = -inf;
     cut final_cut;
     double prev_weight,after_weight;
+    long int iteration_count=0; 
     while(true)
     {
+        iteration_count++;
+        cout<<iteration_count<<endl;
         cut temp_cut =  semi_greedy_maxcut();
         prev_weight=temp_cut.second;
         //cout<<"Prev_Weight"<<prev_weight<<endl;
@@ -472,7 +476,7 @@ cut grasp_maxcut()
 
 ~Graph()
     {
-        for(int i=0; i<num_of_vertices; i++)
+        for(long int i=0; i<num_of_vertices; i++)
         {
             
             delete[] Adj_Matt[i];
@@ -484,33 +488,41 @@ cut grasp_maxcut()
 };
 int main()
 {
-    fstream myfile("neo.txt", std::ios_base::in);
+    int num;
+    cout<<"Enter the number of testfiles:";
+    cin>>num;
+    string filepath = "set1/g"+to_string(num);+".rud";
+    fstream myfile("set1/g1.rud", std::ios_base::in);
     int num_v,num_edge;
     myfile>>num_v>>num_edge;
-    cout<<num_v<<"    "<<num_edge<<endl;
+    //cout<<num_v<<"    "<<num_edge<<endl;
     Graph X(num_v,num_edge);
-    for(int i=0;i<num_edge;i++)
+    for(long int i=0;i<num_edge;i++)
     {   
-        int u,v;
+        long int u,v;
         double w;
         myfile>>u>>v>>w;
-        cout<<u<<"   "<<v<<"   "<<w<<endl;
-        X.Add_Edge_Undirected(u,v,w);
+        //cout<<u<<"   "<<v<<"   "<<w<<endl;
+        X.Add_Edge_Undirected(u-1,v-1,w);
        }
-        X.print_AdjM();
-    //    cut temp = X.semi_greedy_maxcut();
-    //    temp = X.local_search_maxcut(temp);
-    //    temp = X.grasp_maxcut();
-    //    cout<<"S  :"<<endl;
-    //    for(auto i : temp.first.first)
-    //    {
-    //     cout<<i<<endl;
-    //    }
-    //    cout<<"S_prime  :"<<endl;
-    //    for(auto i : temp.first.second)
-    //    {
-    //     cout<<i<<endl;
-    //    }
-    //    cout<<"Max_Weight  : "<<temp.second<<endl;
+       //X.print_AdjM();
+       //edge e = X.heaviest_edge();
+    //    edge e = X.lightest_edge();
+    //    cout<<e.first.first<<"----"<<e.first.second<<"=="<<e.second<<endl;
+        cut temp;
+        //temp = X.semi_greedy_maxcut();
+        //temp = X.local_search_maxcut(temp);
+        temp = X.grasp_maxcut();
+       cout<<"S  :"<<endl;
+       for(auto i : temp.first.first)
+       {
+        cout<<i+1<<endl;
+       }
+       cout<<"S_prime  :"<<endl;
+       for(auto i : temp.first.second)
+       {
+        cout<<i+1<<endl;
+       }
+       cout<<"Max_Weight  : "<<temp.second<<endl;
     return 0;
 }
