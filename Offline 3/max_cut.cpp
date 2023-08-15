@@ -773,6 +773,10 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
             final_cut=temp_cut;
             max_weight=temp_cut.second;
         }
+        if(prev_weight == after_weight)
+        {
+            break;
+        }
     } 
     return final_cut;
 }
@@ -845,7 +849,7 @@ int main()
     // int num=1;
     // string filepath = "set1/g"+to_string(num)+".rud";
     // fstream infile(filepath, std::ios_base::in);
-    fstream infile("input.txt",std::ios_base::in);
+    fstream infile("set1/g1.rud",std::ios_base::in);
     fstream outfile("output.txt",std::ios_base::out);
     int num_v,num_edge;
     infile>>num_v>>num_edge;
@@ -868,7 +872,7 @@ int main()
         cut temp;
         //temp = X.semi_greedy_maxcut();
         //temp = X.local_search_maxcut(temp);
-        //temp = X.grasp_maxcut(50,1);
+        temp = X.grasp_maxcut(1000,2);
         //temp = X.greedy_maxcut();
         //temp = X.randomised_cut();
         //temp = X.randomised_cutv2();
