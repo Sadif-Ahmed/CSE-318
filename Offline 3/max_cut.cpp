@@ -15,6 +15,8 @@ typedef pair<long int,long int> vertice;
 typedef pair<vertice,double> edge;
 typedef pair<pair<set<long int>,set<long int>>,double> cut;
 #define inf 9999999.9999999
+
+fstream outfile("output.txt",std::ios_base::out);
 class Graph
 {
     public:
@@ -736,7 +738,8 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
     double max_weight = -inf;
     cut final_cut; 
     double prev_weight,after_weight;
-    for(int i=1;i<=iteration_count;i++)
+    int i;
+    for(i=1;i<=iteration_count;i++)
     {
         cout<<"iteration: "<<i<<endl;
         cut temp_cut;
@@ -775,9 +778,11 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
         }
         if(prev_weight == after_weight)
         {
+            
             break;
         }
     } 
+    outfile<<"The number of iteration completed: "<<i-1<<endl;
     return final_cut;
 }
 cut grasp_maxcut(int greedy_choice)
@@ -827,7 +832,8 @@ cut grasp_maxcut(int greedy_choice)
         {
             break;
         }
-    } 
+    }
+    outfile<<"The number of iteration completed: "<<iteration_count<<endl;
     return final_cut;
 }
 
@@ -850,7 +856,6 @@ int main()
     // string filepath = "set1/g"+to_string(num)+".rud";
     // fstream infile(filepath, std::ios_base::in);
     fstream infile("set1/g1.rud",std::ios_base::in);
-    fstream outfile("output.txt",std::ios_base::out);
     int num_v,num_edge;
     infile>>num_v>>num_edge;
     //cin>>num_v>>num_edge;
@@ -872,7 +877,7 @@ int main()
         cut temp;
         //temp = X.semi_greedy_maxcut();
         //temp = X.local_search_maxcut(temp);
-        temp = X.grasp_maxcut(1000,2);
+        temp = X.grasp_maxcut(100,2);
         //temp = X.greedy_maxcut();
         //temp = X.randomised_cut();
         //temp = X.randomised_cutv2();
