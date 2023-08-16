@@ -1,1 +1,0 @@
-Problem	Vertices	Edges	Construction	Local Search Iteration	Local Search Best	Grasp Iteration		Grasp Best
