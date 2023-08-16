@@ -1,0 +1,9 @@
+Simulating G1
+Constructed Graph1
+Running Greedy
+Running Greedy2
+Running Semi-Greedy -> 1
+Running Semi-Greedy -> 2
+Running Semi-Greedy -> 3
+Running Semi-Greedy -> 4
+Running Semi-Greedy -> 5
