@@ -1,2 +1,1 @@
 Problem	Vertices	Edges	Greedy	Greedy2	Semi-Greedy	Randomised	Randomised2	Randomised3
-G1			800		19176	10944	11068		11128		835			9611		9641

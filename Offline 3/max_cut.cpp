@@ -9,11 +9,14 @@
 #include<limits.h>
 #include <fstream>
 #include <sstream>
+#include<chrono>
 using namespace std;
 typedef pair<long int,double> dest_weight;
 typedef pair<long int,long int> vertice;
 typedef pair<vertice,double> edge;
 typedef pair<pair<set<long int>,set<long int>>,double> cut;
+typedef pair<double,double> weight_itr;
+typedef pair<cut,int> cut_itr;
 #define inf 9999999.9999999
 
 
@@ -26,6 +29,7 @@ class Graph
     vector<dest_weight> *rev_dir_graph;
     vector<edge> List_of_Edges;//Storing the edges
     double **Adj_Matt;
+    
     //maxcut
     set<long int> all_veritces;
 
@@ -48,10 +52,12 @@ class Graph
                 if(i==j)
                 {
                     Adj_Matt[i][j]=0;
+                    
                 }
                 else
                 {
                     Adj_Matt[i][j]=inf ;
+                    
                 }
             }
         }
@@ -72,6 +78,7 @@ class Graph
         List_of_Edges.push_back(make_pair(make_pair(startv,endv),weight));
         Adj_Matt[startv][endv]=weight;
         
+        
     }
     void Add_Edge_Undirected(long int startv,long int endv,double weight)
     {
@@ -81,6 +88,7 @@ class Graph
         List_of_Edges.push_back(make_pair(make_pair(endv,startv),weight));
         Adj_Matt[startv][endv]=weight;
         Adj_Matt[endv][startv]=weight;
+        
         
     }
     void Remove_Edge_Directed(long int startv,long int endv,double weight)
@@ -141,6 +149,9 @@ class Graph
         }
         Adj_Matt[startv][endv]=inf ;
         Adj_Matt[endv][startv]=inf ;
+
+        
+
         
 
     }
@@ -794,15 +805,17 @@ cut randomised_cutv3()
 
 
 }
-cut local_search_maxcut(cut input)
+cut_itr local_search_maxcut(cut input)
 {
     cut final=input;
     bool change =true;
     double final_weight=0;
+    int iteration_count=0;
 
     while (change)
     {
         change = false;
+        iteration_count++;
             for(auto i : all_veritces)
             {
                 if(change == true)
@@ -850,18 +863,22 @@ cut local_search_maxcut(cut input)
         }
     }
     final.second=final_weight;
-    return final;
+    return make_pair(final,iteration_count);
 }
-cut grasp_maxcut(int iteration_count,int greedy_choice)
+
+pair<cut,weight_itr> grasp_maxcut(int iteration_count,int greedy_choice)
 {
     double max_weight = -inf;
     cut final_cut; 
     double prev_weight,after_weight;
     int i;
+    double sum_weight=0;
+    double sum_itr=0; 
     for(i=1;i<=iteration_count;i++)
     {
         cout<<"iteration: "<<i<<endl;
         cut temp_cut;
+        pair<cut,int> temp_cut_itr;
         if(greedy_choice==1)
         {
             temp_cut = greedy_maxcut();
@@ -891,77 +908,26 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
         
         prev_weight=temp_cut.second;
         //cout<<"Prev_Weight"<<prev_weight<<endl;
-        temp_cut = local_search_maxcut(temp_cut);
-        after_weight=temp_cut.second;
+        temp_cut_itr = local_search_maxcut(temp_cut);
+        after_weight=temp_cut_itr.first.second;
         //cout<<"After_Weight"<<after_weight<<endl;
-        if(temp_cut.second>=max_weight)
+        sum_weight+=temp_cut_itr.first.second;
+        sum_itr+=temp_cut_itr.second;
+        if(temp_cut_itr.first.second>=max_weight)
         {
-            final_cut=temp_cut;
-            max_weight=temp_cut.second;
+            final_cut=temp_cut_itr.first;
+            max_weight=temp_cut_itr.first.second;
         }
         if(prev_weight == after_weight)
         {
-            
             break;
         }
     } 
+    weight_itr ret_weight_itr;
+    ret_weight_itr.first=sum_weight/(iteration_count-1)*1.0;
+    ret_weight_itr.second=sum_itr/(iteration_count-1)*1.0;
    // outfile<<"The number of iteration completed: "<<i-1<<endl;
-    return final_cut;
-}
-cut grasp_maxcut(int greedy_choice)
-{
-    double max_weight = -inf;
-    cut final_cut;
-    double prev_weight,after_weight;
-    long int iteration_count=0; 
-    while(true)
-    {
-        iteration_count++;
-        cout<<"iteration: "<<iteration_count<<endl;
-        cut temp_cut;
-        if(greedy_choice==1)
-        {
-            temp_cut = greedy_maxcut();
-        }
-        else if(greedy_choice==2)
-        {
-            temp_cut = greedy_maxcutv2();
-        }
-        else if(greedy_choice==3)
-        {
-
-            temp_cut =  semi_greedy_maxcut();
-        }
-        else if(greedy_choice==4)
-        {
-            temp_cut = randomised_cut();
-        }
-        else if(greedy_choice==5)
-        {
-            temp_cut = randomised_cutv2();
-        }
-         else if(greedy_choice==6)
-        {
-            temp_cut = randomised_cutv3();
-        }
-        
-        prev_weight=temp_cut.second;
-        //cout<<"Prev_Weight"<<prev_weight<<endl;
-        temp_cut = local_search_maxcut(temp_cut);
-        after_weight=temp_cut.second;
-        //cout<<"After_Weight"<<after_weight<<endl;
-        if(temp_cut.second>=max_weight)
-        {
-            final_cut=temp_cut;
-            max_weight=temp_cut.second;
-        }
-        if(prev_weight == after_weight)
-        {
-            break;
-        }
-    }
-    //outfile<<"The number of iteration completed: "<<iteration_count<<endl;
-    return final_cut;
+    return make_pair(final_cut,ret_weight_itr);
 }
 
 
@@ -981,20 +947,28 @@ int main()
 {
     int num=1;
     int n=10;
+    int iteration_count=10;
+    int const_algo_count=6;
+    int graph_number;
     fstream outfile("constructive.txt",std::ios_base::out);
     fstream outcsv("constructive.csv",std::ios_base::out);
+    fstream outfileg("grasp.txt",std::ios_base::out);
+    fstream outcsvg("grasp.csv",std::ios_base::out);
     string filepath;
     outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<endl;
     outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3"<<endl;
+    outfileg<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
+    outcsvg<<"Problem"<<",Vertices"<<",Edges"<<",Construction"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
     int num_v,num_edge;
     for(int i=1;i<=num;i++)
     {
-        cout<<"Simulating G"<<i<<endl;
-        filepath = "set1/g"+to_string(i)+".rud";
+        graph_number=i;
+        cout<<"Simulating G"<<graph_number<<endl;
+        filepath = "set1/g"+to_string(graph_number)+".rud";
         fstream infile(filepath,std::ios_base::in);
         infile>>num_v>>num_edge;
-        outfile<<"G"<<i<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
-        outcsv<<"G"<<i<<","<<num_v<<","<<num_edge;
+        outfile<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+        outcsv<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
         Graph X(num_v,num_edge);
     for(long int i=0;i<num_edge;i++)
     {   
@@ -1003,54 +977,114 @@ int main()
         infile>>u>>v>>w;
         X.Add_Edge_Undirected(u-1,v-1,w);
     }
-    cut result;
-    cout<<"Running Greedy"<<endl;
-    result=X.greedy_maxcut();
-    outfile<<"\t"<<result.second;
-    outcsv<<","<<result.second;
-    cout<<"Running Greedy2"<<endl;
-    result=X.greedy_maxcutv2();
-    outfile<<"\t"<<result.second<<"\t";
-    outcsv<<","<<result.second;
+    cout<<"Constructed Graph"<<graph_number<<endl;
+    // cut result;
+    // cout<<"Running Greedy"<<endl;
+    // result=X.greedy_maxcut();
+    // outfile<<"\t"<<result.second;
+    // outcsv<<","<<result.second;
+    // cout<<"Running Greedy2"<<endl;
+    // result=X.greedy_maxcutv2();
+    // outfile<<"\t"<<result.second<<"\t";
+    // outcsv<<","<<result.second;
 
-    long int sum_cut=0;
-    for(int i=0;i<n;i++)
+    // long int sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     cout<<"Running Semi-Greedy -> "<<i+1<<endl;
+    //     result=X.semi_greedy_maxcut();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<"\t"<<sum_cut/n<<"\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     cout<<"Running Randomised -> "<<i+1<<endl;
+    //     result=X.randomised_cut();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<"\t\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     cout<<"Running Randomised2 -> "<<i+1<<endl;
+    //     result=X.randomised_cutv2();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<"\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     cout<<"Running Randomised3 -> "<<i+1<<endl;
+    //     result=X.randomised_cutv3();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<endl;
+    // outcsv<<","<<sum_cut/n;
+    for(int i=1;i<=6;i++)
     {
-        cout<<"Running Semi-Greedy -> "<<i+1<<endl;
-        result=X.semi_greedy_maxcut();
-        sum_cut+=result.second;
-    }
-    outfile<<"\t"<<sum_cut/n<<"\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
+    outfileg<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+    outcsvg<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
+    if(i==1)
     {
-        cout<<"Running Randomised -> "<<i+1<<endl;
-        result=X.randomised_cut();
-        sum_cut+=result.second;
+    outfileg<<"\t\tGreedy";
+    outcsvg<<",Greedy"; 
+    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
     }
-    outfile<<sum_cut/n<<"\t\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
+    else if(i==2)
     {
-        cout<<"Running Randomised2 -> "<<i+1<<endl;
-        result=X.randomised_cutv2();
-        sum_cut+=result.second;
+    outfileg<<"\t\tGreedy2";
+    outcsvg<<",Greedy2"; 
+    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
     }
-    outfile<<sum_cut/n<<"\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
+    else if(i==3)
     {
-        cout<<"Running Randomised3 -> "<<i+1<<endl;
-        result=X.randomised_cutv3();
-        sum_cut+=result.second;
+    outfileg<<"\t\tSemi-Greedy";
+    outcsvg<<",Semi-Greedy"; 
+    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Semi-Greedy"<<endl;
     }
-    outfile<<sum_cut/n<<endl;
-    outcsv<<","<<sum_cut/n;
+    else if(i==4)
+    {
+    outfileg<<"\t\tRandomised";
+    outcsvg<<",Randomised"; 
+    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised"<<endl;
+    }
+    else if(i==5)
+    {
+    outfileg<<"\t\tRandomised2";
+    outcsvg<<",Randomised2"; 
+    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised2"<<endl;
+    }
+    else if(i==6)
+    {
+    outfileg<<"\t\tRandomised3";
+    outcsvg<<",Randomised3"; 
+    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised3"<<endl;
+    }
+    pair<cut,weight_itr> final;
+    final = X.grasp_maxcut(iteration_count,i);
+    outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t\t\t"<<final.first.second<<endl;
+    outcsvg<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
+    }
+    
+    }
 
-    }
+
+    //     fstream infile("set1/g1.rud",std::ios_base::in);
+    //     long int num_v,num_edge;
+    //     infile>>num_v>>num_edge;
+    //     Graph X(num_v,num_edge);
+    // for(long int i=0;i<num_edge;i++)
+    // {   
+    //     long int u,v;
+    //     double w;
+    //     infile>>u>>v>>w;
+    //     X.Add_Edge_Undirected(u-1,v-1,w);
+    // }
+    // pair<cut,weight_itr> res = X.grasp_maxcut(1000,3);
  
     return 0;
 }
