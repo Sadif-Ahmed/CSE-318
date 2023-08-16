@@ -163,40 +163,44 @@ class Graph
             cout<<endl;
         }
     }
-    void sort_by_edges()//Order of E(square)
+    vector<edge> sort_by_edges()//Order of E(square)
     {
+        vector<edge> ret=List_of_Edges;
         for(long int i=0; i<num_of_edges; i++)
         {
             for(long int j=i+1; j<num_of_edges; j++)
             {
-                if(List_of_Edges[i].second>=List_of_Edges[j].second)
+                if(ret[i].second>=ret[j].second)
                 {
                     pair<vertice,double> temp;
-                    temp=List_of_Edges[i];
-                    List_of_Edges[i]=List_of_Edges[j];
-                    List_of_Edges[j]=temp;
+                    temp=ret[i];
+                    ret[i]=ret[j];
+                    ret[j]=temp;
                 }
             }
         }
+        return ret;
     }
-    void sort_by_edges_r()//Order of E(square)
+    vector<edge> sort_by_edges_r()//Order of E(square)
     {
+        vector<edge> ret = List_of_Edges;
         for(long int i=0; i<num_of_edges; i++)
         {
             for(long int j=i+1; j<num_of_edges; j++)
             {
-                if(List_of_Edges[i].second<=List_of_Edges[j].second)
+                if(ret[i].second<=ret[j].second)
                 {
                     pair<vertice,double> temp;
-                    temp=List_of_Edges[i];
-                    List_of_Edges[i]=List_of_Edges[j];
-                    List_of_Edges[j]=temp;
+                    temp=ret[i];
+                    ret[i]=ret[j];
+                    ret[j]=temp;
                 }
             }
         }
+        return ret;
     }
     
-    void Print_Edges(vector<pair<vertice,double>> test)//Order of V
+    void Print_Edges(vector<edge> test)//Order of V
 {
 
     cout<<"Edges"<<"   "<<"Weight"<<endl;
@@ -393,9 +397,9 @@ cut greedy_maxcut()
 {
     cut final;
     double final_weight=0;
-    sort_by_edges_r();
+    vector<edge> sorted_edgelist=sort_by_edges_r();
 
-    edge selected_edge = List_of_Edges[0];
+    edge selected_edge = sorted_edgelist[0];
     set<long int> final_x;
     set<long int> final_y;
     
@@ -415,11 +419,12 @@ cut greedy_maxcut()
         // {
         //     cout<<i<<endl;
         // }
-
+        double sigma_x;
+        double sigma_y;
         for(auto i: remaining_vertices)
         {
-            double sigma_x=0;
-            double sigma_y=0;
+            sigma_x=0;
+            sigma_y=0;
             for(auto j : final_y)
             {
                  if(Adj_Matt[i][j]!=inf  )
@@ -468,7 +473,121 @@ cut greedy_maxcut()
     return final;
 
 }
+cut greedy_maxcutv2()
+{
+    cut final;
+    double final_weight=0;
+    vector<edge> sorted_edgelist=sort_by_edges_r();
 
+    set<long int> final_x;
+    set<long int> final_y;
+    final_x.insert(sorted_edgelist[0].first.first);
+    final_y.insert(sorted_edgelist[0].first.second);
+    
+
+        for(int i=1;i<sorted_edgelist.size();i++)
+        {
+            double sigma_x;
+            double sigma_y;
+            set<long int> union_xy;
+            set_union(final_x.begin(),final_x.end(),final_y.begin(),final_y.end(),inserter(union_xy,union_xy.end()));
+            if(all_veritces==union_xy)
+            {
+                break;
+            }
+            
+        
+        if(union_xy.count(sorted_edgelist[i].first.first)==0)
+        {
+        
+            sigma_x=0;
+            sigma_y=0;
+            for(auto j : final_y)
+            {
+                 if(Adj_Matt[sorted_edgelist[i].first.first][j]!=inf  )
+            {
+                sigma_x += Adj_Matt[sorted_edgelist[i].first.first][j];
+            } 
+
+            }
+            for(auto j : final_x)
+            {
+                 if(Adj_Matt[sorted_edgelist[i].first.first][j]!=inf  )
+            {
+                sigma_y += Adj_Matt[sorted_edgelist[i].first.first][j];
+            } 
+            
+            }
+            //cout<<"Vertice :"<<i<<endl;
+            //cout<<"Sigma_x :"<<temp_x<<endl;
+            //cout<<"Sigma_y :"<<temp_y<<endl;
+             if(sigma_x>=sigma_y)
+        {
+            final_x.insert(sorted_edgelist[i].first.first);
+            
+        }
+        else
+        {
+            final_y.insert(sorted_edgelist[i].first.first);
+            
+        }
+            
+        }
+        if(union_xy.count(sorted_edgelist[i].first.second)==0)
+        {
+          
+             sigma_x=0;
+             sigma_y=0;
+            for(auto j : final_y)
+            {
+                 if(Adj_Matt[sorted_edgelist[i].first.second][j]!=inf  )
+            {
+                sigma_x += Adj_Matt[sorted_edgelist[i].first.second][j];
+            } 
+
+            }
+            for(auto j : final_x)
+            {
+                 if(Adj_Matt[sorted_edgelist[i].first.second][j]!=inf  )
+            {
+                sigma_y += Adj_Matt[sorted_edgelist[i].first.second][j];
+            } 
+            
+            }
+            //cout<<"Vertice :"<<i<<endl;
+            //cout<<"Sigma_x :"<<temp_x<<endl;
+            //cout<<"Sigma_y :"<<temp_y<<endl;
+             if(sigma_x>=sigma_y)
+        {
+            final_x.insert(sorted_edgelist[i].first.second);
+            
+        }
+        else
+        {
+            final_y.insert(sorted_edgelist[i].first.second);
+            
+        }
+
+         
+        }
+        }
+         
+    final.first.first=final_x;
+    final.first.second=final_y;
+    for(auto i : final.first.first)
+    {
+        for(auto j: final.first.second)
+        {
+            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0)
+            {
+                final_weight+=Adj_Matt[i][j];
+            }
+        }
+    }
+    final.second = final_weight;
+    return final;
+
+}
 cut randomised_cut()
 {
     cut final;
@@ -600,37 +719,37 @@ cut randomised_cutv3()
     double final_weight=0;
     set<long int> final_x;
     set<long int> final_y;
-    sort_by_edges();
-    edge selected_edge = List_of_Edges[num_of_edges-1];
+    vector<edge> sorted_edgelist=sort_by_edges();
+    edge selected_edge = sorted_edgelist[num_of_edges-1];
     final_x.insert(selected_edge.first.first);
     final_y.insert(selected_edge.first.second);
            
       
         
-        for(long int i=0;i<List_of_Edges.size()-1;i++)
+        for(long int i=0;i<sorted_edgelist.size()-1;i++)
         {
             set<long int> union_xy;
             set_union(final_x.begin(),final_x.end(),final_y.begin(),final_y.end(),inserter(union_xy,union_xy.end()));
             if(rand()%2==0)
             {
-                if(union_xy.count(List_of_Edges[i].first.first)==0)
+                if(union_xy.count(sorted_edgelist[i].first.first)==0)
                 {
-                    final_x.insert(List_of_Edges[i].first.first);
+                    final_x.insert(sorted_edgelist[i].first.first);
                 }
-                if(union_xy.count(List_of_Edges[i].first.second)==0)
+                if(union_xy.count(sorted_edgelist[i].first.second)==0)
                 {
-                    final_y.insert(List_of_Edges[i].first.second);
+                    final_y.insert(sorted_edgelist[i].first.second);
                 }    
             }
             else
             {
-                if(union_xy.count(List_of_Edges[i].first.first)==0)
+                if(union_xy.count(sorted_edgelist[i].first.first)==0)
                 {
-                    final_y.insert(List_of_Edges[i].first.first);
+                    final_y.insert(sorted_edgelist[i].first.first);
                 }
-                if(union_xy.count(List_of_Edges[i].first.second)==0)
+                if(union_xy.count(sorted_edgelist[i].first.second)==0)
                 {
-                    final_x.insert(List_of_Edges[i].first.second);
+                    final_x.insert(sorted_edgelist[i].first.second);
                 }
                 
             }
@@ -749,18 +868,22 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
         }
         else if(greedy_choice==2)
         {
-
-            temp_cut =  semi_greedy_maxcut();
+            temp_cut = greedy_maxcutv2();
         }
         else if(greedy_choice==3)
         {
-            temp_cut = randomised_cut();
+
+            temp_cut =  semi_greedy_maxcut();
         }
         else if(greedy_choice==4)
         {
-            temp_cut = randomised_cutv2();
+            temp_cut = randomised_cut();
         }
         else if(greedy_choice==5)
+        {
+            temp_cut = randomised_cutv2();
+        }
+        else if(greedy_choice==6)
         {
             temp_cut = randomised_cutv3();
         }
@@ -802,18 +925,22 @@ cut grasp_maxcut(int greedy_choice)
         }
         else if(greedy_choice==2)
         {
-
-            temp_cut =  semi_greedy_maxcut();
+            temp_cut = greedy_maxcutv2();
         }
         else if(greedy_choice==3)
         {
-            temp_cut = randomised_cut();
+
+            temp_cut =  semi_greedy_maxcut();
         }
         else if(greedy_choice==4)
         {
+            temp_cut = randomised_cut();
+        }
+        else if(greedy_choice==5)
+        {
             temp_cut = randomised_cutv2();
         }
-         else if(greedy_choice==5)
+         else if(greedy_choice==6)
         {
             temp_cut = randomised_cutv3();
         }
@@ -852,10 +979,9 @@ cut grasp_maxcut(int greedy_choice)
 };
 int main()
 {
-    // int num=1;
-    // string filepath = "set1/g"+to_string(num)+".rud";
-    // fstream infile(filepath, std::ios_base::in);
-    fstream infile("set1/g1.rud",std::ios_base::in);
+     int num=1;
+     string filepath = "set1/g"+to_string(num)+".rud";
+      fstream infile(filepath,std::ios_base::in);
     int num_v,num_edge;
     infile>>num_v>>num_edge;
     //cin>>num_v>>num_edge;
@@ -877,21 +1003,28 @@ int main()
         cut temp;
         //temp = X.semi_greedy_maxcut();
         //temp = X.local_search_maxcut(temp);
-        temp = X.grasp_maxcut(100,2);
+        for(int i=1;i<=6;i++)
+        {
+            outfile<<"Cut Choice : "<<i<<endl;
+            temp = X.grasp_maxcut(20,i);
+             outfile<<"Max_Weight  : "<<temp.second<<endl;
+        }
+        
         //temp = X.greedy_maxcut();
         //temp = X.randomised_cut();
         //temp = X.randomised_cutv2();
         //temp = X.randomised_cutv3();
-         outfile<<"S  :"<<endl;
-       for(auto i : temp.first.first)
-       {
-        outfile<<i+1<<endl;
-       }
-       outfile<<"S_prime  :"<<endl;
-       for(auto i : temp.first.second)
-       {
-        outfile<<i+1<<endl;
-       }
-       outfile<<"Max_Weight  : "<<temp.second<<endl;
+        //temp = X.greedy_maxcutv2();
+    //      outfile<<"S  :"<<endl;
+    //    for(auto i : temp.first.first)
+    //    {
+    //     outfile<<i+1<<endl;
+    //    }
+    //    outfile<<"S_prime  :"<<endl;
+    //    for(auto i : temp.first.second)
+    //    {
+    //     outfile<<i+1<<endl;
+    //    }
+      
     return 0;
 }
