@@ -16,7 +16,7 @@ typedef pair<vertice,double> edge;
 typedef pair<pair<set<long int>,set<long int>>,double> cut;
 #define inf 9999999.9999999
 
-fstream outfile("output.txt",std::ios_base::out);
+
 class Graph
 {
     public:
@@ -905,7 +905,7 @@ cut grasp_maxcut(int iteration_count,int greedy_choice)
             break;
         }
     } 
-    outfile<<"The number of iteration completed: "<<i-1<<endl;
+   // outfile<<"The number of iteration completed: "<<i-1<<endl;
     return final_cut;
 }
 cut grasp_maxcut(int greedy_choice)
@@ -960,7 +960,7 @@ cut grasp_maxcut(int greedy_choice)
             break;
         }
     }
-    outfile<<"The number of iteration completed: "<<iteration_count<<endl;
+    //outfile<<"The number of iteration completed: "<<iteration_count<<endl;
     return final_cut;
 }
 
@@ -979,52 +979,78 @@ cut grasp_maxcut(int greedy_choice)
 };
 int main()
 {
-     int num=1;
-     string filepath = "set1/g"+to_string(num)+".rud";
-      fstream infile(filepath,std::ios_base::in);
+    int num=1;
+    int n=10;
+    fstream outfile("constructive.txt",std::ios_base::out);
+    fstream outcsv("constructive.csv",std::ios_base::out);
+    string filepath;
+    outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<endl;
+    outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3"<<endl;
     int num_v,num_edge;
-    infile>>num_v>>num_edge;
-    //cin>>num_v>>num_edge;
-    //cout<<num_v<<"    "<<num_edge<<endl;
-    Graph X(num_v,num_edge);
+    for(int i=1;i<=num;i++)
+    {
+        cout<<"Simulating G"<<i<<endl;
+        filepath = "set1/g"+to_string(i)+".rud";
+        fstream infile(filepath,std::ios_base::in);
+        infile>>num_v>>num_edge;
+        outfile<<"G"<<i<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+        outcsv<<"G"<<i<<","<<num_v<<","<<num_edge;
+        Graph X(num_v,num_edge);
     for(long int i=0;i<num_edge;i++)
     {   
         long int u,v;
         double w;
         infile>>u>>v>>w;
-        //cin>>u>>v>>w;
-        //cout<<u<<"   "<<v<<"   "<<w<<endl;
         X.Add_Edge_Undirected(u-1,v-1,w);
-       }
-       //X.print_AdjM();
-       //edge e = X.heaviest_edge();
-       //edge e = X.lightest_edge();
-       //cout<<e.first.first<<"----"<<e.first.second<<"=="<<e.second<<endl;
-        cut temp;
-        //temp = X.semi_greedy_maxcut();
-        //temp = X.local_search_maxcut(temp);
-        for(int i=1;i<=6;i++)
-        {
-            outfile<<"Cut Choice : "<<i<<endl;
-            temp = X.grasp_maxcut(20,i);
-             outfile<<"Max_Weight  : "<<temp.second<<endl;
-        }
-        
-        //temp = X.greedy_maxcut();
-        //temp = X.randomised_cut();
-        //temp = X.randomised_cutv2();
-        //temp = X.randomised_cutv3();
-        //temp = X.greedy_maxcutv2();
-    //      outfile<<"S  :"<<endl;
-    //    for(auto i : temp.first.first)
-    //    {
-    //     outfile<<i+1<<endl;
-    //    }
-    //    outfile<<"S_prime  :"<<endl;
-    //    for(auto i : temp.first.second)
-    //    {
-    //     outfile<<i+1<<endl;
-    //    }
-      
+    }
+    cut result;
+    cout<<"Running Greedy"<<endl;
+    result=X.greedy_maxcut();
+    outfile<<"\t"<<result.second;
+    outcsv<<","<<result.second;
+    cout<<"Running Greedy2"<<endl;
+    result=X.greedy_maxcutv2();
+    outfile<<"\t"<<result.second<<"\t";
+    outcsv<<","<<result.second;
+
+    long int sum_cut=0;
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Running Semi-Greedy -> "<<i+1<<endl;
+        result=X.semi_greedy_maxcut();
+        sum_cut+=result.second;
+    }
+    outfile<<"\t"<<sum_cut/n<<"\t\t";
+    outcsv<<","<<sum_cut/n;
+    sum_cut=0;
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Running Randomised -> "<<i+1<<endl;
+        result=X.randomised_cut();
+        sum_cut+=result.second;
+    }
+    outfile<<sum_cut/n<<"\t\t\t";
+    outcsv<<","<<sum_cut/n;
+    sum_cut=0;
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Running Randomised2 -> "<<i+1<<endl;
+        result=X.randomised_cutv2();
+        sum_cut+=result.second;
+    }
+    outfile<<sum_cut/n<<"\t\t";
+    outcsv<<","<<sum_cut/n;
+    sum_cut=0;
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Running Randomised3 -> "<<i+1<<endl;
+        result=X.randomised_cutv3();
+        sum_cut+=result.second;
+    }
+    outfile<<sum_cut/n<<endl;
+    outcsv<<","<<sum_cut/n;
+
+    }
+ 
     return 0;
 }
