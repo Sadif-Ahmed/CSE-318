@@ -15,7 +15,7 @@ typedef pair<long int,double> dest_weight;
 typedef pair<long int,long int> vertice;
 typedef pair<vertice,double> edge;
 typedef pair<pair<set<long int>,set<long int>>,double> cut;
-typedef pair<double,double> weight_itr;
+typedef pair<int,int> weight_itr;
 typedef pair<cut,int> cut_itr;
 #define inf 9999999.9999999
 
@@ -926,8 +926,8 @@ pair<cut,weight_itr> grasp_maxcut(int iteration_count,int greedy_choice)
         }
     } 
     weight_itr ret_weight_itr;
-    ret_weight_itr.first=sum_weight/(iteration_count-1)*1.0;
-    ret_weight_itr.second=sum_itr/(iteration_count-1)*1.0;
+    ret_weight_itr.first=sum_weight/(i-1);
+    ret_weight_itr.second=sum_itr/(i-1);
    // outfile<<"The number of iteration completed: "<<i-1<<endl;
     return make_pair(final_cut,ret_weight_itr);
 }
@@ -947,8 +947,8 @@ pair<cut,weight_itr> grasp_maxcut(int iteration_count,int greedy_choice)
 };
 int main()
 {
-    int num=10;
-    int n=10;
+    int num=54;
+    int n=100;
     int iteration_count=100;
     int const_algo_count=6;
     int graph_number;
@@ -1040,14 +1040,14 @@ int main()
     outcsvg<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
     if(i==1)
     {
-    outfileg<<"\t\tGreedy";
+    outfileg<<"\t\tGreedy\t";
     outcsvg<<",Greedy"; 
     logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
     cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
     }
     else if(i==2)
     {
-    outfileg<<"\t\tGreedy2";
+    outfileg<<"\t\tGreedy2\t";
     outcsvg<<",Greedy2"; 
     logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
     cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
