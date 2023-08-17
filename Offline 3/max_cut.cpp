@@ -1338,7 +1338,7 @@ int main()
         result=X.randomised_cutv3();
         sum_cut+=result.second;
     }
-    outfile<<sum_cut/n<<endl;
+    outfile<<sum_cut/n;
     outcsv<<","<<sum_cut/n;
     sum_cut=0;
     for(int i=0;i<n;i++)
