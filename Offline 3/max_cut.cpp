@@ -925,10 +925,14 @@ pair<cut,weight_itr> grasp_maxcut(int iteration_count,int greedy_choice)
             break;
         }
     } 
+    if(i == iteration_count+1)
+    {
+        i--;
+    }
     weight_itr ret_weight_itr;
-    ret_weight_itr.first=sum_weight/(i-1);
-    ret_weight_itr.second=sum_itr/(i-1);
-   // outfile<<"The number of iteration completed: "<<i-1<<endl;
+    ret_weight_itr.first=sum_weight/(i);
+    ret_weight_itr.second=sum_itr/(i);
+    logfile<<"The number of iteration completed: "<<i<<endl;
     return make_pair(final_cut,ret_weight_itr);
 }
 
@@ -1082,7 +1086,7 @@ int main()
     }
     pair<cut,weight_itr> final;
     final = X.grasp_maxcut(iteration_count,i);
-    outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t\t\t"<<final.first.second<<endl;
+    outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
     outcsvg<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
     }
     
