@@ -1249,23 +1249,23 @@ pair<cut,weight_itr> grasp_maxcut(int iteration_count,int greedy_choice)
 int main()
 {
     int num=54;
-    int n=10;
-    int iteration_count=50;
+    int n=1;
+    int iteration_count=5;
     int const_algo_count=8;
     int graph_number;
     fstream outfile("constructive.txt",std::ios_base::out);
     fstream outcsv("constructive.csv",std::ios_base::out);
     fstream outfileg("grasp.txt",std::ios_base::out);
     fstream outcsvg("grasp.csv",std::ios_base::out);
-    fstream outfilex("grasp_semi.txt",std::ios_base::out);
-    fstream outcsvx("grasp_semi.csv",std::ios_base::out);
+    fstream outfilex("best.txt",std::ios_base::out);
+    fstream outcsvx("best.csv",std::ios_base::out);
     string filepath;
     outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\t\tGreedy3"<<"\t\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
     outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Greedy3,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3,"<<"Randomised4"<<endl;
-    outfileg<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
+    outfileg<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction"<<"\tLocal Search Iteration"<<"\tLocal Search Value"<<"\tGrasp Iteration"<<"\t\tGrasp Value"<<endl;
     outcsvg<<"Problem"<<",Vertices"<<",Edges"<<",Construction"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
-    outfilex<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
-    outcsvx<<"Problem"<<",Vertices"<<",Edges"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
+    outfilex<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction(Grasp)"<<"\tConstruction(Local Search)"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
+    outcsvx<<"Problem"<<",Vertices"<<",Edges"<<",Construction(Grasp)"<<",Construction(Local Search)"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
     int num_v,num_edge;
     for(int i=1;i<=num;i++)
     {
@@ -1356,8 +1356,15 @@ int main()
     }
     outfile<<sum_cut/n<<endl;
     outcsv<<","<<sum_cut/n<<endl;
+    pair<cut,weight_itr> best_grasp;
+    pair<cut,weight_itr> best_local;
+    best_grasp.first.second=-inf;
+    best_local.second.first=-inf;
+    int best_construction_g=-1;
+    int best_construction_l=-1;
     for(int i=1;i<=const_algo_count;i++)
     {
+
     outfileg<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
     outcsvg<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
     
@@ -1417,16 +1424,106 @@ int main()
     logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised4"<<endl;
     cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised4"<<endl;
     }
-    pair<cut,weight_itr> final;
+    pair<cut,weight_itr> final,final_grasp,final_local;
     final = X.grasp_maxcut(iteration_count,i);
     outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
     outcsvg<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
-    if(i==4)
+    if(final.first.second > best_grasp.first.second)
     {
-    outfilex<<"\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
-    outcsvx<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
+        best_grasp=final;
+        best_construction_g=i;
+    }
+    if(final.second.first > best_local.second.first)
+    {
+        best_local=final;
+         best_construction_l=i;
     }
     }
+    if(best_construction_g==1)
+    {
+    outfilex<<"\t\tGreedy\t";
+    outcsvx<<",Greedy";  
+    }
+    else if(best_construction_g==2)
+    {
+    outfilex<<"\t\tGreedy2\t";
+    outcsvx<<",Greedy2"; 
+    }
+    else if(best_construction_g==3)
+    {
+    outfilex<<"\t\tGreedy3\t";
+    outcsvx<<",Greedy3"; 
+    
+    }
+    else if(best_construction_g==4)
+    {
+    outfilex<<"\t\tSemi-Greedy";
+    outcsvx<<",Semi-Greedy"; 
+    }
+    else if(best_construction_g==5)
+    {
+    outfilex<<"\t\tRandomised";
+    outcsvx<<",Randomised"; 
+    }
+    else if(best_construction_g==6)
+    {
+    outfilex<<"\t\tRandomised2";
+    outcsvx<<",Randomised2"; 
+    }
+    else if(best_construction_g==7)
+    {
+    outfilex<<"\t\tRandomised3";
+    outcsvx<<",Randomised3"; 
+    }
+    else if(best_construction_g==8)
+    {
+    outfilex<<"\t\tRandomised4";
+    outcsvx<<",Randomised4";    
+    }
+    if(best_construction_l==1)
+    {
+    outfilex<<"\t\tGreedy\t";
+    outcsvx<<",Greedy";  
+    }
+    else if(best_construction_l==2)
+    {
+    outfilex<<"\t\tGreedy2\t";
+    outcsvx<<",Greedy2"; 
+    }
+    else if(best_construction_l==3)
+    {
+    outfilex<<"\t\tGreedy3\t";
+    outcsvx<<",Greedy3"; 
+    
+    }
+    else if(best_construction_l==4)
+    {
+    outfilex<<"\t\tSemi-Greedy";
+    outcsvx<<",Semi-Greedy"; 
+    }
+    else if(best_construction_l==5)
+    {
+    outfilex<<"\t\tRandomised";
+    outcsvx<<",Randomised"; 
+    }
+    else if(best_construction_l==6)
+    {
+    outfilex<<"\t\tRandomised2";
+    outcsvx<<",Randomised2"; 
+    }
+    else if(best_construction_l==7)
+    {
+    outfilex<<"\t\tRandomised3";
+    outcsvx<<",Randomised3"; 
+    }
+    else if(best_construction_l==8)
+    {
+    outfilex<<"\t\tRandomised4";
+    outcsvx<<",Randomised4";    
+    }
+    
+    outfilex<<"\t\t\t\t\t\t"<<best_local.second.second<<"\t\t\t\t\t\t\t"<<best_local.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<best_grasp.first.second<<endl;
+    outcsvx<<","<<best_local.second.second<<","<<best_local.second.first<<","<<iteration_count<<","<<best_grasp.first.second<<endl;
     
     }
 
