@@ -1,0 +1,2 @@
+Problem	Vertices	Edges	Local Search Iteration	Local Search Best	Grasp Iteration		Grasp Best
+G1			800		19176	127							11376					50			11447

@@ -1257,11 +1257,15 @@ int main()
     fstream outcsv("constructive.csv",std::ios_base::out);
     fstream outfileg("grasp.txt",std::ios_base::out);
     fstream outcsvg("grasp.csv",std::ios_base::out);
+    fstream outfilex("grasp_semi.txt",std::ios_base::out);
+    fstream outcsvx("grasp_semi.csv",std::ios_base::out);
     string filepath;
-    outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\tGreedy3"<<"\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
+    outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\t\tGreedy3"<<"\t\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
     outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Greedy3,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3,"<<"Randomised4"<<endl;
     outfileg<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
     outcsvg<<"Problem"<<",Vertices"<<",Edges"<<",Construction"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
+    outfilex<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
+    outcsvx<<"Problem"<<",Vertices"<<",Edges"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
     int num_v,num_edge;
     for(int i=1;i<=num;i++)
     {
@@ -1273,6 +1277,8 @@ int main()
         infile>>num_v>>num_edge;
         outfile<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
         outcsv<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
+        outfilex<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+        outcsvx<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
         Graph X(num_v,num_edge);
     for(long int i=0;i<num_edge;i++)
     {   
@@ -1338,7 +1344,7 @@ int main()
         result=X.randomised_cutv3();
         sum_cut+=result.second;
     }
-    outfile<<sum_cut/n;
+    outfile<<sum_cut/n<<"\t\t";
     outcsv<<","<<sum_cut/n;
     sum_cut=0;
     for(int i=0;i<n;i++)
@@ -1354,6 +1360,7 @@ int main()
     {
     outfileg<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
     outcsvg<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
+    
     if(i==1)
     {
     outfileg<<"\t\tGreedy\t";
@@ -1414,6 +1421,11 @@ int main()
     final = X.grasp_maxcut(iteration_count,i);
     outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
     outcsvg<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
+    if(i==4)
+    {
+    outfilex<<"\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
+    outcsvx<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
+    }
     }
     
     }

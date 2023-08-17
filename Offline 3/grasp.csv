@@ -1,0 +1,5 @@
+Problem,Vertices,Edges,Construction,Local Search Iteration,Local Search Best,Grasp Iteration,Grasp Best
+G1,800,19176,Greedy,215,11384,50,11384
+G1,800,19176,Greedy2,158,11427,50,11427
+G1,800,19176,Greedy3,68,11390,50,11491
+G1,800,19176,Semi-Greedy,127,11376,50,11447
