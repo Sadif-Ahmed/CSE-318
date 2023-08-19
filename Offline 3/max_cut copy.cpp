@@ -19,7 +19,7 @@ typedef pair<int,int> weight_itr;
 typedef pair<cut,int> cut_itr;
 #define inf 9999999.9999999
 
-fstream logfile("log.txt",std::ios_base::out);
+fstream logfile("log2.txt",std::ios_base::out);
 
 class Graph
 {
@@ -1253,12 +1253,12 @@ int main()
     int iteration_count=50;
     int const_algo_count=8;
     int graph_number;
-    fstream outfile("constructive.txt",std::ios_base::out);
-    fstream outcsv("constructive.csv",std::ios_base::out);
-    fstream outfileg("grasp.txt",std::ios_base::out);
-    fstream outcsvg("grasp.csv",std::ios_base::out);
-    fstream outfilex("best.txt",std::ios_base::out);
-    fstream outcsvx("best.csv",std::ios_base::out);
+    fstream outfile("constructive2.txt",std::ios_base::out);
+    fstream outcsv("constructive2.csv",std::ios_base::out);
+    fstream outfileg("grasp2.txt",std::ios_base::out);
+    fstream outcsvg("grasp2.csv",std::ios_base::out);
+    fstream outfilex("best2.txt",std::ios_base::out);
+    fstream outcsvx("best2.csv",std::ios_base::out);
     string filepath;
     outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\t\tGreedy3"<<"\t\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
     outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Greedy3,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3,"<<"Randomised4"<<endl;
@@ -1267,7 +1267,7 @@ int main()
     outfilex<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction(Grasp)"<<"\tConstruction(Local Search)"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
     outcsvx<<"Problem"<<",Vertices"<<",Edges"<<",Construction(Grasp)"<<",Construction(Local Search)"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
     int num_v,num_edge;
-    for(int i=1;i<=num;i++)
+    for(int i=43;i<=num;i++)
     {
         graph_number=i;
         logfile<<"Simulating G"<<graph_number<<endl;
