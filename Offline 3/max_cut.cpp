@@ -242,20 +242,20 @@ edge heaviest_edge()
 edge lightest_edge()
 {
     long int u,v;
-    double max=inf ;
+    double min=inf ;
     for(long int i=0;i<num_of_vertices;i++)
     {
         for (long int j=0;j<num_of_vertices;j++)
         {
-            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]<max)
+            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]<min)
             {
-                max=Adj_Matt[i][j];
+                min=Adj_Matt[i][j];
                 u=i;
                 v=j;
             }
         }
     }
-    return make_pair(make_pair(u,v),max);
+    return make_pair(make_pair(u,v),min);
 }
 cut semi_greedy_maxcut()
 {
@@ -268,8 +268,8 @@ cut semi_greedy_maxcut()
     // Getting a random double value
     double alpha = unif(re);
 
-    double min_weight = heaviest_edge().second;
-    double max_weight = lightest_edge().second;
+    double min_weight = lightest_edge().second;
+    double max_weight = heaviest_edge().second;
     //cout<<"min_weight= "<<min_weight<<endl;
     //cout<<"max_weight= "<<max_weight<<endl;
     double weight_factor =  min_weight + alpha*(max_weight-min_weight);
@@ -606,8 +606,8 @@ cut greedy_maxcutv3()
     double final_weight=0;  
     double alpha = 1;
 
-    double min_weight = heaviest_edge().second;
-    double max_weight = lightest_edge().second;
+    double min_weight = lightest_edge().second;
+    double max_weight = heaviest_edge().second;
     //cout<<"min_weight= "<<min_weight<<endl;
     //cout<<"max_weight= "<<max_weight<<endl;
     double weight_factor =  min_weight + alpha*(max_weight-min_weight);
@@ -958,8 +958,8 @@ cut randomised_cutv4()
     
     double alpha = 0;
 
-    double min_weight = heaviest_edge().second;
-    double max_weight = lightest_edge().second;
+    double min_weight = lightest_edge().second;
+    double max_weight = heaviest_edge().second;
     //cout<<"min_weight= "<<min_weight<<endl;
     //cout<<"max_weight= "<<max_weight<<endl;
     double weight_factor =  min_weight + alpha*(max_weight-min_weight);
@@ -1128,13 +1128,13 @@ cut_itr local_search_maxcut(cut input)
                         sigma_s_prime+=Adj_Matt[i][j];
                     }
                 }
-                if(final.first.first.count(i)==1 && sigma_s_prime>sigma_s)
+                if(final.first.first.count(i)==1 && sigma_s_prime>=sigma_s)
                 {
                     final.first.first.erase(i);
                     final.first.second.insert(i);
                     change=true;
                 }
-                else if(final.first.second.count(i)==1 && sigma_s>sigma_s_prime)
+                else if(final.first.second.count(i)==1 && sigma_s>=sigma_s_prime)
                 {
                     final.first.second.erase(i);
                     final.first.first.insert(i);
@@ -1248,289 +1248,37 @@ pair<cut,weight_itr> grasp_maxcut(int iteration_count,int greedy_choice)
 };
 int main()
 {
-    int num=54;
-    int n=10;
-    int iteration_count=50;
-    int const_algo_count=8;
-    int graph_number;
-    fstream outfile("constructive.txt",std::ios_base::out);
-    fstream outcsv("constructive.csv",std::ios_base::out);
-    fstream outfileg("grasp.txt",std::ios_base::out);
-    fstream outcsvg("grasp.csv",std::ios_base::out);
-    fstream outfilex("best.txt",std::ios_base::out);
-    fstream outcsvx("best.csv",std::ios_base::out);
-    string filepath;
-    outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\t\tGreedy3"<<"\t\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
-    outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Greedy3,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3,"<<"Randomised4"<<endl;
-    outfileg<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction"<<"\tLocal Search Iteration"<<"\tLocal Search Value"<<"\tGrasp Iteration"<<"\t\tGrasp Value"<<endl;
-    outcsvg<<"Problem"<<",Vertices"<<",Edges"<<",Construction"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
-    outfilex<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction(Grasp)"<<"\tConstruction(Local Search)"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
-    outcsvx<<"Problem"<<",Vertices"<<",Edges"<<",Construction(Grasp)"<<",Construction(Local Search)"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
-    int num_v,num_edge;
-    for(int i=1;i<=num;i++)
-    {
-        graph_number=i;
-        logfile<<"Simulating G"<<graph_number<<endl;
-        cout<<"Simulating G"<<graph_number<<endl;
-        filepath = "set1/g"+to_string(graph_number)+".rud";
-        fstream infile(filepath,std::ios_base::in);
-        infile>>num_v>>num_edge;
-        outfile<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
-        outcsv<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
-        outfilex<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
-        outcsvx<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
-        Graph X(num_v,num_edge);
-    for(long int i=0;i<num_edge;i++)
-    {   
-        long int u,v;
-        double w;
-        infile>>u>>v>>w;
-        X.Add_Edge_Undirected(u-1,v-1,w);
-    }
-    logfile<<"Constructed Graph"<<graph_number<<endl;
-    cout<<"Constructed Graph"<<graph_number<<endl;
-    cut result;
-    logfile<<"Running Greedy"<<endl;
-    cout<<"Running Greedy"<<endl;
-    result=X.greedy_maxcut();
-    outfile<<"\t"<<result.second;
-    outcsv<<","<<result.second;
-    logfile<<"Running Greedy2"<<endl;
-    cout<<"Running Greedy2"<<endl;
-    result=X.greedy_maxcutv2();
-    outfile<<"\t"<<result.second<<"\t";
-    outcsv<<","<<result.second;
-    logfile<<"Running Greedy3"<<endl;
-    cout<<"Running Greedy3"<<endl;
-    result=X.greedy_maxcutv3();
-    outfile<<"\t"<<result.second<<"\t";
-    outcsv<<","<<result.second;
-
-    long int sum_cut=0;
-    for(int i=0;i<n;i++)
-    {
-        logfile<<"Running Semi-Greedy -> "<<i+1<<endl;
-        cout<<"Running Semi-Greedy -> "<<i+1<<endl;
-        result=X.semi_greedy_maxcut();
-        sum_cut+=result.second;
-    }
-    outfile<<"\t"<<sum_cut/n<<"\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
-    {
-        logfile<<"Running Randomised -> "<<i+1<<endl;
-        cout<<"Running Randomised -> "<<i+1<<endl;
-        result=X.randomised_cut();
-        sum_cut+=result.second;
-    }
-    outfile<<sum_cut/n<<"\t\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
-    {
-        logfile<<"Running Randomised2 -> "<<i+1<<endl;
-        cout<<"Running Randomised2 -> "<<i+1<<endl;
-        result=X.randomised_cutv2();
-        sum_cut+=result.second;
-    }
-    outfile<<sum_cut/n<<"\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
-    {
-        logfile<<"Running Randomised3 -> "<<i+1<<endl;
-        cout<<"Running Randomised3 -> "<<i+1<<endl;
-        result=X.randomised_cutv3();
-        sum_cut+=result.second;
-    }
-    outfile<<sum_cut/n<<"\t\t";
-    outcsv<<","<<sum_cut/n;
-    sum_cut=0;
-    for(int i=0;i<n;i++)
-    {
-        logfile<<"Running Randomised4 -> "<<i+1<<endl;
-        cout<<"Running Randomised4 -> "<<i+1<<endl;
-        result=X.randomised_cutv4();
-        sum_cut+=result.second;
-    }
-    outfile<<sum_cut/n<<endl;
-    outcsv<<","<<sum_cut/n<<endl;
-    pair<cut,weight_itr> best_grasp;
-    pair<cut,weight_itr> best_local;
-    best_grasp.first.second=-inf;
-    best_local.second.first=-inf;
-    int best_construction_g=-1;
-    int best_construction_l=-1;
-    for(int i=1;i<=const_algo_count;i++)
-    {
-
-    outfileg<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
-    outcsvg<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
-    
-    if(i==1)
-    {
-    outfileg<<"\t\tGreedy\t";
-    outcsvg<<",Greedy"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
-    }
-    else if(i==2)
-    {
-    outfileg<<"\t\tGreedy2\t";
-    outcsvg<<",Greedy2"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
-    }
-    else if(i==3)
-    {
-    outfileg<<"\t\tGreedy3\t";
-    outcsvg<<",Greedy3"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy3"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy3"<<endl;
-    }
-    else if(i==4)
-    {
-    outfileg<<"\t\tSemi-Greedy";
-    outcsvg<<",Semi-Greedy"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Semi-Greedy"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Semi-Greedy"<<endl;
-    }
-    else if(i==5)
-    {
-    outfileg<<"\t\tRandomised";
-    outcsvg<<",Randomised"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised"<<endl;
-    }
-    else if(i==6)
-    {
-    outfileg<<"\t\tRandomised2";
-    outcsvg<<",Randomised2"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised2"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised2"<<endl;
-    }
-    else if(i==7)
-    {
-    outfileg<<"\t\tRandomised3";
-    outcsvg<<",Randomised3"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised3"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised3"<<endl;
-    }
-    else if(i==8)
-    {
-    outfileg<<"\t\tRandomised4";
-    outcsvg<<",Randomised4"; 
-    logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised4"<<endl;
-    cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised4"<<endl;
-    }
-    pair<cut,weight_itr> final,final_grasp,final_local;
-    final = X.grasp_maxcut(iteration_count,i);
-    outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
-    outcsvg<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
-    if(final.first.second > best_grasp.first.second)
-    {
-        best_grasp=final;
-        best_construction_g=i;
-    }
-    if(final.second.first > best_local.second.first)
-    {
-        best_local=final;
-         best_construction_l=i;
-    }
-    }
-    if(best_construction_g==1)
-    {
-    outfilex<<"\t\tGreedy\t";
-    outcsvx<<",Greedy";  
-    }
-    else if(best_construction_g==2)
-    {
-    outfilex<<"\t\tGreedy2\t";
-    outcsvx<<",Greedy2"; 
-    }
-    else if(best_construction_g==3)
-    {
-    outfilex<<"\t\tGreedy3\t";
-    outcsvx<<",Greedy3"; 
-    
-    }
-    else if(best_construction_g==4)
-    {
-    outfilex<<"\t\tSemi-Greedy";
-    outcsvx<<",Semi-Greedy"; 
-    }
-    else if(best_construction_g==5)
-    {
-    outfilex<<"\t\tRandomised";
-    outcsvx<<",Randomised"; 
-    }
-    else if(best_construction_g==6)
-    {
-    outfilex<<"\t\tRandomised2";
-    outcsvx<<",Randomised2"; 
-    }
-    else if(best_construction_g==7)
-    {
-    outfilex<<"\t\tRandomised3";
-    outcsvx<<",Randomised3"; 
-    }
-    else if(best_construction_g==8)
-    {
-    outfilex<<"\t\tRandomised4";
-    outcsvx<<",Randomised4";    
-    }
-    if(best_construction_l==1)
-    {
-    outfilex<<"\t\tGreedy\t";
-    outcsvx<<",Greedy";  
-    }
-    else if(best_construction_l==2)
-    {
-    outfilex<<"\t\tGreedy2\t";
-    outcsvx<<",Greedy2"; 
-    }
-    else if(best_construction_l==3)
-    {
-    outfilex<<"\t\tGreedy3\t";
-    outcsvx<<",Greedy3"; 
-    
-    }
-    else if(best_construction_l==4)
-    {
-    outfilex<<"\t\tSemi-Greedy";
-    outcsvx<<",Semi-Greedy"; 
-    }
-    else if(best_construction_l==5)
-    {
-    outfilex<<"\t\tRandomised";
-    outcsvx<<",Randomised"; 
-    }
-    else if(best_construction_l==6)
-    {
-    outfilex<<"\t\tRandomised2";
-    outcsvx<<",Randomised2"; 
-    }
-    else if(best_construction_l==7)
-    {
-    outfilex<<"\t\tRandomised3";
-    outcsvx<<",Randomised3"; 
-    }
-    else if(best_construction_l==8)
-    {
-    outfilex<<"\t\tRandomised4";
-    outcsvx<<",Randomised4";    
-    }
-    
-    outfilex<<"\t\t\t\t\t\t"<<best_local.second.second<<"\t\t\t\t\t\t\t"<<best_local.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<best_grasp.first.second<<endl;
-    outcsvx<<","<<best_local.second.second<<","<<best_local.second.first<<","<<iteration_count<<","<<best_grasp.first.second<<endl;
-    
-    }
-
-
-    //     fstream infile("set1/g1.rud",std::ios_base::in);
-    //     long int num_v,num_edge;
+    // int num=54;
+    // int n=10;
+    // int iteration_count=50;
+    // int const_algo_count=8;
+    // int graph_number;
+    // fstream outfile("constructive.txt",std::ios_base::out);
+    // fstream outcsv("constructive.csv",std::ios_base::out);
+    // fstream outfileg("grasp.txt",std::ios_base::out);
+    // fstream outcsvg("grasp.csv",std::ios_base::out);
+    // fstream outfilex("best.txt",std::ios_base::out);
+    // fstream outcsvx("best.csv",std::ios_base::out);
+    // string filepath;
+    // outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\t\tGreedy3"<<"\t\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
+    // outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Greedy3,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3,"<<"Randomised4"<<endl;
+    // outfileg<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction"<<"\tLocal Search Iteration"<<"\tLocal Search Value"<<"\tGrasp Iteration"<<"\t\tGrasp Value"<<endl;
+    // outcsvg<<"Problem"<<",Vertices"<<",Edges"<<",Construction"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
+    // outfilex<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tConstruction(Grasp)"<<"\tConstruction(Local Search)"<<"\tLocal Search Iteration"<<"\tLocal Search Best"<<"\tGrasp Iteration"<<"\t\tGrasp Best"<<endl;
+    // outcsvx<<"Problem"<<",Vertices"<<",Edges"<<",Construction(Grasp)"<<",Construction(Local Search)"<<",Local Search Iteration"<<",Local Search Best"<<",Grasp Iteration"<<",Grasp Best"<<endl;
+    // int num_v,num_edge;
+    // for(int i=1;i<=num;i++)
+    // {
+    //     graph_number=i;
+    //     logfile<<"Simulating G"<<graph_number<<endl;
+    //     cout<<"Simulating G"<<graph_number<<endl;
+    //     filepath = "set1/g"+to_string(graph_number)+".rud";
+    //     fstream infile(filepath,std::ios_base::in);
     //     infile>>num_v>>num_edge;
+    //     outfile<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+    //     outcsv<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
+    //     outfilex<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+    //     outcsvx<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
     //     Graph X(num_v,num_edge);
     // for(long int i=0;i<num_edge;i++)
     // {   
@@ -1539,7 +1287,259 @@ int main()
     //     infile>>u>>v>>w;
     //     X.Add_Edge_Undirected(u-1,v-1,w);
     // }
-    // pair<cut,weight_itr> res = X.grasp_maxcut(1000,3);
- 
+    // logfile<<"Constructed Graph"<<graph_number<<endl;
+    // cout<<"Constructed Graph"<<graph_number<<endl;
+    // cut result;
+    // logfile<<"Running Greedy"<<endl;
+    // cout<<"Running Greedy"<<endl;
+    // result=X.greedy_maxcut();
+    // outfile<<"\t"<<result.second;
+    // outcsv<<","<<result.second;
+    // logfile<<"Running Greedy2"<<endl;
+    // cout<<"Running Greedy2"<<endl;
+    // result=X.greedy_maxcutv2();
+    // outfile<<"\t"<<result.second<<"\t";
+    // outcsv<<","<<result.second;
+    // logfile<<"Running Greedy3"<<endl;
+    // cout<<"Running Greedy3"<<endl;
+    // result=X.greedy_maxcutv3();
+    // outfile<<"\t"<<result.second<<"\t";
+    // outcsv<<","<<result.second;
+
+    // long int sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     logfile<<"Running Semi-Greedy -> "<<i+1<<endl;
+    //     cout<<"Running Semi-Greedy -> "<<i+1<<endl;
+    //     result=X.semi_greedy_maxcut();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<"\t"<<sum_cut/n<<"\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     logfile<<"Running Randomised -> "<<i+1<<endl;
+    //     cout<<"Running Randomised -> "<<i+1<<endl;
+    //     result=X.randomised_cut();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<"\t\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     logfile<<"Running Randomised2 -> "<<i+1<<endl;
+    //     cout<<"Running Randomised2 -> "<<i+1<<endl;
+    //     result=X.randomised_cutv2();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<"\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     logfile<<"Running Randomised3 -> "<<i+1<<endl;
+    //     cout<<"Running Randomised3 -> "<<i+1<<endl;
+    //     result=X.randomised_cutv3();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<"\t\t";
+    // outcsv<<","<<sum_cut/n;
+    // sum_cut=0;
+    // for(int i=0;i<n;i++)
+    // {
+    //     logfile<<"Running Randomised4 -> "<<i+1<<endl;
+    //     cout<<"Running Randomised4 -> "<<i+1<<endl;
+    //     result=X.randomised_cutv4();
+    //     sum_cut+=result.second;
+    // }
+    // outfile<<sum_cut/n<<endl;
+    // outcsv<<","<<sum_cut/n<<endl;
+    // pair<cut,weight_itr> best_grasp;
+    // pair<cut,weight_itr> best_local;
+    // best_grasp.first.second=-inf;
+    // best_local.second.first=-inf;
+    // int best_construction_g=-1;
+    // int best_construction_l=-1;
+    // for(int i=1;i<=const_algo_count;i++)
+    // {
+
+    // outfileg<<"G"<<graph_number<<"\t\t\t"<<num_v<<"\t\t"<<num_edge;
+    // outcsvg<<"G"<<graph_number<<","<<num_v<<","<<num_edge;
+    
+    // if(i==1)
+    // {
+    // outfileg<<"\t\tGreedy\t";
+    // outcsvg<<",Greedy"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy"<<endl;
+    // }
+    // else if(i==2)
+    // {
+    // outfileg<<"\t\tGreedy2\t";
+    // outcsvg<<",Greedy2"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy2"<<endl;
+    // }
+    // else if(i==3)
+    // {
+    // outfileg<<"\t\tGreedy3\t";
+    // outcsvg<<",Greedy3"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy3"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Greedy3"<<endl;
+    // }
+    // else if(i==4)
+    // {
+    // outfileg<<"\t\tSemi-Greedy";
+    // outcsvg<<",Semi-Greedy"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Semi-Greedy"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Semi-Greedy"<<endl;
+    // }
+    // else if(i==5)
+    // {
+    // outfileg<<"\t\tRandomised";
+    // outcsvg<<",Randomised"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised"<<endl;
+    // }
+    // else if(i==6)
+    // {
+    // outfileg<<"\t\tRandomised2";
+    // outcsvg<<",Randomised2"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised2"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised2"<<endl;
+    // }
+    // else if(i==7)
+    // {
+    // outfileg<<"\t\tRandomised3";
+    // outcsvg<<",Randomised3"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised3"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised3"<<endl;
+    // }
+    // else if(i==8)
+    // {
+    // outfileg<<"\t\tRandomised4";
+    // outcsvg<<",Randomised4"; 
+    // logfile<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised4"<<endl;
+    // cout<<"Running Grasp with iterations :"<<iteration_count<<" & construction :Randomised4"<<endl;
+    // }
+    // pair<cut,weight_itr> final,final_grasp,final_local;
+    // final = X.grasp_maxcut(iteration_count,i);
+    // outfileg<<"\t\t"<<final.second.second<<"\t\t\t\t\t\t\t"<<final.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<final.first.second<<endl;
+    // outcsvg<<","<<final.second.second<<","<<final.second.first<<","<<iteration_count<<","<<final.first.second<<endl;
+    // if(final.first.second > best_grasp.first.second)
+    // {
+    //     best_grasp=final;
+    //     best_construction_g=i;
+    // }
+    // if(final.second.first > best_local.second.first)
+    // {
+    //     best_local=final;
+    //      best_construction_l=i;
+    // }
+    // }
+    // if(best_construction_g==1)
+    // {
+    // outfilex<<"\t\tGreedy\t";
+    // outcsvx<<",Greedy";  
+    // }
+    // else if(best_construction_g==2)
+    // {
+    // outfilex<<"\t\tGreedy2\t";
+    // outcsvx<<",Greedy2"; 
+    // }
+    // else if(best_construction_g==3)
+    // {
+    // outfilex<<"\t\tGreedy3\t";
+    // outcsvx<<",Greedy3"; 
+    
+    // }
+    // else if(best_construction_g==4)
+    // {
+    // outfilex<<"\t\tSemi-Greedy";
+    // outcsvx<<",Semi-Greedy"; 
+    // }
+    // else if(best_construction_g==5)
+    // {
+    // outfilex<<"\t\tRandomised";
+    // outcsvx<<",Randomised"; 
+    // }
+    // else if(best_construction_g==6)
+    // {
+    // outfilex<<"\t\tRandomised2";
+    // outcsvx<<",Randomised2"; 
+    // }
+    // else if(best_construction_g==7)
+    // {
+    // outfilex<<"\t\tRandomised3";
+    // outcsvx<<",Randomised3"; 
+    // }
+    // else if(best_construction_g==8)
+    // {
+    // outfilex<<"\t\tRandomised4";
+    // outcsvx<<",Randomised4";    
+    // }
+    // if(best_construction_l==1)
+    // {
+    // outfilex<<"\t\tGreedy\t";
+    // outcsvx<<",Greedy";  
+    // }
+    // else if(best_construction_l==2)
+    // {
+    // outfilex<<"\t\tGreedy2\t";
+    // outcsvx<<",Greedy2"; 
+    // }
+    // else if(best_construction_l==3)
+    // {
+    // outfilex<<"\t\tGreedy3\t";
+    // outcsvx<<",Greedy3"; 
+    
+    // }
+    // else if(best_construction_l==4)
+    // {
+    // outfilex<<"\t\tSemi-Greedy";
+    // outcsvx<<",Semi-Greedy"; 
+    // }
+    // else if(best_construction_l==5)
+    // {
+    // outfilex<<"\t\tRandomised";
+    // outcsvx<<",Randomised"; 
+    // }
+    // else if(best_construction_l==6)
+    // {
+    // outfilex<<"\t\tRandomised2";
+    // outcsvx<<",Randomised2"; 
+    // }
+    // else if(best_construction_l==7)
+    // {
+    // outfilex<<"\t\tRandomised3";
+    // outcsvx<<",Randomised3"; 
+    // }
+    // else if(best_construction_l==8)
+    // {
+    // outfilex<<"\t\tRandomised4";
+    // outcsvx<<",Randomised4";    
+    // }
+    
+    // outfilex<<"\t\t\t\t\t\t"<<best_local.second.second<<"\t\t\t\t\t\t\t"<<best_local.second.first<<"\t\t\t\t\t"<<iteration_count<<"\t\t\t"<<best_grasp.first.second<<endl;
+    // outcsvx<<","<<best_local.second.second<<","<<best_local.second.first<<","<<iteration_count<<","<<best_grasp.first.second<<endl;
+    
+    // }
+
+
+        fstream infile("set1/g1.rud",std::ios_base::in);
+        long int num_v,num_edge;
+        infile>>num_v>>num_edge;
+        Graph X(num_v,num_edge);
+    for(long int i=0;i<num_edge;i++)
+    {   
+        long int u,v;
+        double w;
+        infile>>u>>v>>w;
+        X.Add_Edge_Undirected(u-1,v-1,w);
+    }
+    pair<cut,weight_itr> res = X.grasp_maxcut(20,4);
+    cout<<res.first.second<<endl; 
     return 0;
 }
