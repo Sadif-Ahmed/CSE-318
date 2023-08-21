@@ -242,20 +242,20 @@ edge heaviest_edge()
 edge lightest_edge()
 {
     long int u,v;
-    double min=inf ;
+    double max=inf ;
     for(long int i=0;i<num_of_vertices;i++)
     {
         for (long int j=0;j<num_of_vertices;j++)
         {
-            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]<min)
+            if(Adj_Matt[i][j]!=inf  && Adj_Matt[i][j]!=0 && Adj_Matt[i][j]<max)
             {
-                min=Adj_Matt[i][j];
+                max=Adj_Matt[i][j];
                 u=i;
                 v=j;
             }
         }
     }
-    return make_pair(make_pair(u,v),min);
+    return make_pair(make_pair(u,v),max);
 }
 cut semi_greedy_maxcut()
 {
@@ -267,12 +267,14 @@ cut semi_greedy_maxcut()
     default_random_engine re;
     // Getting a random double value
     double alpha = unif(re);
+    double max_weight,min_weight;
 
-    double min_weight = lightest_edge().second;
-    double max_weight = heaviest_edge().second;
-    //cout<<"min_weight= "<<min_weight<<endl;
-    //cout<<"max_weight= "<<max_weight<<endl;
-    double weight_factor =  min_weight + alpha*(max_weight-min_weight);
+    double max_w = heaviest_edge().second;
+    double min_w = lightest_edge().second;
+    //cout<<"max_w= "<<max_w<<endl;
+    //cout<<"min_w= "<<min_w<<endl;
+    //double weight_factor =  max_w + alpha*(min_w-max_w);
+    double weight_factor =  min_w + alpha*(max_w-min_w);
     //cout<<"weight_factor= "<<weight_factor;
     vector<edge> RCL_edge ;
 
@@ -605,12 +607,14 @@ cut greedy_maxcutv3()
     cut final;
     double final_weight=0;  
     double alpha = 1;
+    double max_weight,min_weight;
 
-    double min_weight = lightest_edge().second;
-    double max_weight = heaviest_edge().second;
-    //cout<<"min_weight= "<<min_weight<<endl;
-    //cout<<"max_weight= "<<max_weight<<endl;
-    double weight_factor =  min_weight + alpha*(max_weight-min_weight);
+    double max_w = heaviest_edge().second;
+    double min_w = lightest_edge().second;
+    //cout<<"max_w= "<<max_w<<endl;
+    //cout<<"min_w= "<<min_w<<endl;
+    //double weight_factor =  max_w + alpha*(min_w-max_w);
+    double weight_factor =  min_w + alpha*(max_w-min_w);
     //cout<<"weight_factor= "<<weight_factor;
     vector<edge> RCL_edge ;
 
@@ -955,14 +959,16 @@ cut randomised_cutv4()
     double final_weight=0;
     double lower_bound = 0;
     double upper_bound = 1;
+    double max_weight,min_weight;
     
     double alpha = 0;
 
-    double min_weight = lightest_edge().second;
-    double max_weight = heaviest_edge().second;
-    //cout<<"min_weight= "<<min_weight<<endl;
-    //cout<<"max_weight= "<<max_weight<<endl;
-    double weight_factor =  min_weight + alpha*(max_weight-min_weight);
+    double max_w = heaviest_edge().second;
+    double min_w = lightest_edge().second;
+    //cout<<"max_w= "<<max_w<<endl;
+    //cout<<"min_w= "<<min_w<<endl;
+    //double weight_factor =  max_w + alpha*(min_w-max_w);
+    double weight_factor =  min_w + alpha*(max_w-min_w);
     //cout<<"weight_factor= "<<weight_factor;
     vector<edge> RCL_edge ;
 
@@ -1128,13 +1134,13 @@ cut_itr local_search_maxcut(cut input)
                         sigma_s_prime+=Adj_Matt[i][j];
                     }
                 }
-                if(final.first.first.count(i)==1 && sigma_s_prime>=sigma_s)
+                if(final.first.first.count(i)==1 && sigma_s_prime>sigma_s)
                 {
                     final.first.first.erase(i);
                     final.first.second.insert(i);
                     change=true;
                 }
-                else if(final.first.second.count(i)==1 && sigma_s>=sigma_s_prime)
+                else if(final.first.second.count(i)==1 && sigma_s>sigma_s_prime)
                 {
                     final.first.second.erase(i);
                     final.first.first.insert(i);
@@ -1250,15 +1256,15 @@ int main()
 {
     // int num=54;
     // int n=10;
-    // int iteration_count=50;
+    // int iteration_count=100;
     // int const_algo_count=8;
     // int graph_number;
-    // fstream outfile("constructive.txt",std::ios_base::out);
-    // fstream outcsv("constructive.csv",std::ios_base::out);
-    // fstream outfileg("grasp.txt",std::ios_base::out);
-    // fstream outcsvg("grasp.csv",std::ios_base::out);
-    // fstream outfilex("best.txt",std::ios_base::out);
-    // fstream outcsvx("best.csv",std::ios_base::out);
+    // fstream outfile("constructive3.txt",std::ios_base::out);
+    // fstream outcsv("constructive3.csv",std::ios_base::out);
+    // fstream outfileg("grasp3.txt",std::ios_base::out);
+    // fstream outcsvg("grasp3.csv",std::ios_base::out);
+    // fstream outfilex("best3.txt",std::ios_base::out);
+    // fstream outcsvx("best3.csv",std::ios_base::out);
     // string filepath;
     // outfile<<"Problem"<<"\tVertices"<<"\tEdges"<<"\tGreedy"<<"\tGreedy2"<<"\t\tGreedy3"<<"\t\tSemi-Greedy"<<"\tRandomised"<<"\tRandomised2"<<"\tRandomised3"<<"\tRandomised4"<<endl;
     // outcsv<<"Problem,"<<"Vertices,"<<"Edges,"<<"Greedy,"<<"Greedy2,"<<"Greedy3,"<<"Semi-Greedy,"<<"Randomised,"<<"Randomised2,"<<"Randomised3,"<<"Randomised4"<<endl;
@@ -1539,7 +1545,8 @@ int main()
         infile>>u>>v>>w;
         X.Add_Edge_Undirected(u-1,v-1,w);
     }
-    pair<cut,weight_itr> res = X.grasp_maxcut(20,4);
-    cout<<res.first.second<<endl; 
+    pair<cut,weight_itr> res = X.grasp_maxcut(2000,3);
+    cout<<res.first.second<<endl;
+ 
     return 0;
 }
