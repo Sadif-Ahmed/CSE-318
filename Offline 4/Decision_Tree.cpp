@@ -18,7 +18,7 @@ void print_datatable(string **temp,int num_examples,int num_attributes)
     cout<<"The Data Table:"<<endl;
     for(int i=0;i<=num_examples;i++)
     {
-        for(int j=0;j<=num_attributes+1;j++)
+        for(int j=0;j<=num_attributes;j++)
         {
             cout<<temp[i][j]<<"   ";
         }
@@ -36,30 +36,162 @@ class Node {
 
 		vector<int > children;
 
-		Node() {
+		Node(int index) {
 			is_leaf = false;
+            tree_index=index;
 		}
 };
 class Decision_Tree
 {
     public:
-    string **datatable;
+    vector<vector<string>> datatable;
     vector<string> attr_names;
     vector<vector<string>> attr_values;
     int data_count;
+    vector<Node> tree;
+
     Decision_Tree(string **datatable,vector<string> attr_names,vector<vector<string>>attr_values,int data_count)
     {
-        this->datatable=datatable;
         this->data_count=data_count;
         this->attr_names=attr_names;
         this->attr_values=attr_values;
+        for(int i=0;i<data_count;i++)
+        {
+            vector<string> temp;
+            for(int j=0;j<=attr_names.size();j++)
+            {
+                temp.push_back(datatable[i][j]);
+            }
+            this->datatable.push_back(temp);
+        }
+
+        Node root(0);
+        add_child(root);
     }
+    void print_data()
+    {
+        cout<<"Tree Training Set:"<<endl;
+        for(int i=0;i<attr_names.size();i++)
+        {
+            cout<<attr_names[i]<<"\t";
+        }
+        cout<<endl;
+        for(int i=0;i<datatable.size();i++)
+        {
+            for(int j=0;j<datatable[i].size();j++)
+            {
+                cout<<datatable[i][j]<<"\t";
+            }
+            cout<<endl;
+        }
+    }
+    void add_child(Node temp)
+    {
+        tree.push_back(temp);
+    }
+    void update_table(vector<vector<string>> newtable)
+    {
+        this->datatable=newtable;
+    }
+    double split_attr_calc(vector<vector<string>> table, int attr_index) {
+			double ret = 0.0;
+
+			int data_count = table.size();
+
+			map<string, vector<int> > attr_val_map;
+			for(int i=0;i<table.size();i++) {
+				attr_val_map[table[i][attr_index]].push_back(i);
+			}
+
+			for(auto iter=attr_val_map.begin(); iter != attr_val_map.end(); iter++) 
+            {
+                int next_count = iter->second.size();
+				double d = (double)next_count/data_count;
+				ret += -1.0 * d * log(d) / log(2);
+			}
+
+			return ret;
+		}
+		double get_decision_info(vector<vector<string>> table) 
+        {
+			double ret = 0.0;
+
+			int data_count = table.size();
+			map<string, int> decision_count_store;
+
+			for(int i=0;i<table.size();i++) {
+				decision_count_store[table[i].back()]++;
+			}
+
+			for(auto iter=decision_count_store.begin(); iter != decision_count_store.end(); iter++) {
+				double p = (double)iter->second/data_count;
+
+				ret += -1.0 * p * log(p)/log(2);
+			}
+
+			return ret;
+		}
+    double info_attr(vector<vector<string>> table, int attr_index) {
+			double ret = 0.0;
+
+			int data_count = table.size();
+
+			map<string, vector<int> > attr_val_map;
+			for(int i=0;i<table.size();i++) {
+				attr_val_map[table[i][attr_index]].push_back(i);
+			}
+
+			for(auto iter=attr_val_map.begin(); iter != attr_val_map.end(); iter++) {
+				vector<vector<string>> new_table;
+				for(int i=0;i<iter->second.size(); i++) {
+					new_table.push_back(table[iter->second[i]]);
+				}
+				// int next_count = (int)new_table.size();
+                int next_count = iter->second.size();
+				ret += (double)next_count/data_count * get_decision_info(new_table);
+			}
+
+			return ret;
+		}
+    double gain(vector<vector<string>> table, int attr_index) {
+                return get_decision_info(table)-info_attr(table, attr_index);
+            }        
+    double gain_ratio(vector<vector<string>> table, int attr_index) {
+                return gain(table, attr_index)/split_attr_calc(table, attr_index);
+            }   
+    bool check_leaf(vector<vector<string>> table)
+    {
+        for(int i=0;i<table.size()-1;i++)
+        {
+            if(table[i].back()!=table[i+1].back())
+            {
+                return false;
+            }
+        }
+        return true;
+    }   
+    int choose_attr(vector<vector<string>> table)
+    {
+        int choosen_attr =-1;
+        double max_gain=0.0;
+
+        for(int i=0;i<attr_names.size()-1;i++)
+        {
+            double temp_gain=gain_ratio(table,i);
+            if(temp_gain>max_gain)
+            {
+                max_gain=temp_gain;
+                choosen_attr=i;
+            }
+        }
+        return choosen_attr;
+    }          
 };
 int main()
 {
     fstream infile("car evaluation dataset/car.data",std::ios_base::in);
-    int num_of_examples=50;
-    int num_of_attributes=6;
+    int num_of_examples=1728;
+    int num_of_attributes=7;
     string **datatable = new string*[num_of_examples+1];
     vector<string> attr_names;
     vector<vector<string>> attr_values;
@@ -73,6 +205,7 @@ int main()
     vector<string> val_types3{"2","4","more"};
     vector<string> val_types4{"small","med","big"};
     vector<string> val_types5{"low","med","high"};
+    vector<string> val_types6{"unacc", "acc", "good", "vgood"};
     
     attr_names.push_back("buying");
     attr_values.push_back(val_types1);
@@ -86,6 +219,8 @@ int main()
     attr_values.push_back(val_types4);
     attr_names.push_back("safety");
     attr_values.push_back(val_types5);
+    attr_names.push_back("Decision");
+    attr_values.push_back(val_types6);
 
 
     datatable[0][0]="Example";
@@ -115,19 +250,17 @@ int main()
     print_datatable(datatable,num_of_examples,num_of_attributes);
 
     string **traintable,**testtable;
-    int total_train=num_of_examples*0.8;
-    int total_test=num_of_examples*0.2;
-    traintable = new string*[total_train];
-    testtable = new string*[total_test];
+    traintable = new string*[num_of_examples];
+    testtable = new string*[num_of_examples];
     int num_train=0;
     int num_test=0;
 
-    for(int i=0;i<total_train;i++)
+    for(int i=0;i<num_of_examples;i++)
     {
         traintable[i] = new string[num_of_attributes+1];
     }
     
-    for(int i=0;i<total_test;i++)
+    for(int i=0;i<num_of_examples;i++)
     {
         testtable[i] = new string[num_of_attributes+1];
     }
@@ -155,10 +288,10 @@ int main()
         }
     }
     cout<<num_test<<"   "<<num_train<<endl;
-    //print_datatable(traintable,num_train-1,num_of_attributes-2);
-    //print_datatable(testtable,num_test-1,num_of_attributes-2);
+    //print_datatable(traintable,num_train-1,num_of_attributes-1);
+    //print_datatable(testtable,num_test-1,num_of_attributes-1);
     Decision_Tree tree(traintable,attr_names,attr_values,num_train);
-    cout<<"Tree Training Set:"<<endl;
-    print_datatable(tree.datatable,tree.data_count-1,tree.attr_names.size()-2);
+    //tree.print_data(); 
+    //cout<<tree.split_attr_calc(tree.datatable,0)<<endl;
     return 0;
 }
