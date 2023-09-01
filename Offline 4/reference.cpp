@@ -111,7 +111,8 @@ class DecisionTree {
 				return;
 			}
 
-			for(int i=0;i< initialTable.attrValueList[selectedAttrIndex].size(); i++) {
+			for(int i=0;i< initialTable.attrValueList[selectedAttrIndex].size(); i++) 
+			{
 				string attrValue = initialTable.attrValueList[selectedAttrIndex][i];
 
 				Table nextTable;

@@ -17,7 +17,7 @@ using namespace std;
 class Node {
 	public:
 		int criteria_attr_indx;
-		string attr_val;
+		string attr;
 
 		int tree_index;
 		bool is_leaf;
@@ -27,6 +27,11 @@ class Node {
 
 		Node(int index) {
 			is_leaf = false;
+            tree_index=index;
+		}
+        Node(string attr,int index) {
+			this->attr=attr;
+            is_leaf = false;
             tree_index=index;
 		}
 };
@@ -53,9 +58,6 @@ class Decision_Tree
             }
             this->datatable.push_back(temp);
         }
-
-        Node root(0);
-        add_child(root);
     }
     void print_data()
     {
@@ -174,7 +176,87 @@ class Decision_Tree
             }
         }
         return choosen_attr;
-    }          
+    }  
+    pair<string,int> majority_label(vector<vector<string>> table)
+    {
+        string major_label="";
+        int major_count=0;
+        map <string,int> label_count;
+        for(int i=0;i<table.size();i++)
+        {
+            label_count[table[i].back()]++;
+        }
+        map<string, int>::iterator iter;
+        for(iter=label_count.begin();iter!=label_count.end();iter++)
+        {
+            if(iter->second>major_count)
+            {
+                major_count=iter->second;
+                major_label=iter->first;
+            } 
+        }
+        return make_pair(major_label,major_count);
+    }
+    void rec_generate_tree(vector<vector<string>> table,int node_index)
+    {
+        if(check_leaf(table))
+        {
+            tree[node_index].is_leaf=true;
+            tree[node_index].label=table.back().back();
+            return;
+        }
+
+        int selected_attr = choose_attr(table);
+
+        map<string, vector<int> > attr_val_map;
+			for(int i=0;i<table.size();i++) {
+				attr_val_map[table[i][selected_attr]].push_back(i);
+			}
+        tree[node_index].criteria_attr_indx = selected_attr;
+
+        pair<string,int> plurality_label = majority_label(table);
+        if(plurality_label.second>=table.size()*0.8)
+        {
+            tree[node_index].is_leaf=true;
+            tree[node_index].label=plurality_label.first;
+            return;
+        }  
+        for(int i=0;i<attr_values[selected_attr].size();i++)
+        {
+            string attr = attr_values[selected_attr][i];
+
+            vector<vector<string>> candidatetable;
+
+            vector<int> candidates = attr_val_map[attr];
+
+            for(int i=0;i<candidates.size();i++)
+            {
+                candidatetable.push_back(table[candidates[i]]);
+            }
+
+            Node child_node(attr,tree.size());
+            tree[node_index].children.push_back(child_node.tree_index);
+            add_child(child_node);
+
+            if(candidatetable.size()==0)
+            {
+                child_node.is_leaf=true;
+                child_node.label= majority_label(table).first;
+                tree[child_node.tree_index] = child_node;
+            }
+            else
+            {
+                rec_generate_tree(candidatetable,child_node.tree_index);
+            }
+
+        }  
+    } 
+    void generate_tree()
+    {
+        Node root(0);
+        add_child(root);
+        rec_generate_tree(datatable,0);
+    }       
 };
 void randomise(string **data,int data_count,int attr_count)
 {
