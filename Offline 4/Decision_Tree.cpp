@@ -12,19 +12,8 @@
 #include<chrono>
 #include<sstream>
 #include <cstdlib>
+#include <random>
 using namespace std;
-void print_datatable(string **temp,int num_examples,int num_attributes)
-{
-    cout<<"The Data Table:"<<endl;
-    for(int i=0;i<=num_examples;i++)
-    {
-        for(int j=0;j<=num_attributes;j++)
-        {
-            cout<<temp[i][j]<<"   ";
-        }
-        cout<<endl;
-    }
-}
 class Node {
 	public:
 		int criteria_attr_indx;
@@ -173,24 +162,71 @@ class Decision_Tree
     int choose_attr(vector<vector<string>> table)
     {
         int choosen_attr =-1;
-        double max_gain=0.0;
+        double max_gain_ratio=0.0;
 
         for(int i=0;i<attr_names.size()-1;i++)
         {
-            double temp_gain=gain_ratio(table,i);
-            if(temp_gain>max_gain)
+            double temp_gain_ratio=gain_ratio(table,i);
+            if(temp_gain_ratio>max_gain_ratio)
             {
-                max_gain=temp_gain;
+                max_gain_ratio=temp_gain_ratio;
                 choosen_attr=i;
             }
         }
         return choosen_attr;
     }          
 };
+void randomise(string **data,int data_count,int attr_count)
+{
+    vector<vector<string>> vector_data;
+    for(int i=1;i<=data_count;i++)
+        {
+            vector<string> temp;
+            for(int j=1;j<=attr_count;j++)
+            {
+                temp.push_back(data[i][j]);
+            }
+            vector_data.push_back(temp);
+        }
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(vector_data.begin(), vector_data.end(), g);
+    for(int i=0;i<vector_data.size();i++)
+    {   
+        for(int j=0;j<vector_data[i].size();j++)
+        {
+            data[i+1][j+1]=vector_data[i][j];
+        }
+    }
+}
+void print_datatable(vector<vector<string>> vector_data)
+{
+    cout<<"Data Table"<<endl;
+    for(int i=0;i<vector_data.size();i++)
+    {
+        for(int j=0;j<vector_data[i].size();j++)
+        {
+            cout<<vector_data[i][j]<<"  ";
+        }
+        cout<<endl;
+    }
+}
+void print_datatable(string **temp,int num_examples,int num_attributes)
+{
+    cout<<"The Data Table:"<<endl;
+    for(int i=0;i<=num_examples;i++)
+    {
+        for(int j=0;j<=num_attributes;j++)
+        {
+            cout<<temp[i][j]<<"   ";
+        }
+        cout<<endl;
+    }
+}
 int main()
 {
     fstream infile("car evaluation dataset/car.data",std::ios_base::in);
-    int num_of_examples=1728;
+    int num_of_examples=10;
     int num_of_attributes=7;
     string **datatable = new string*[num_of_examples+1];
     vector<string> attr_names;
@@ -238,7 +274,7 @@ int main()
         
         string datastream,temp;
         infile>>datastream;
-        cout<<datastream<<endl;
+        //cout<<datastream<<endl;
         stringstream stream(datastream);
         int attr_count=0;
         datatable[j][attr_count++]=to_string(j);
@@ -247,8 +283,11 @@ int main()
             datatable[j][attr_count++]=temp;   
         }
     }
-    print_datatable(datatable,num_of_examples,num_of_attributes);
 
+    //print_datatable(datatable,num_of_examples,num_of_attributes);
+    randomise(datatable,num_of_examples,num_of_attributes);
+    //print_datatable(datatable,num_of_examples,num_of_attributes);
+    
     string **traintable,**testtable;
     traintable = new string*[num_of_examples];
     testtable = new string*[num_of_examples];
@@ -287,7 +326,7 @@ int main()
                 num_train++;
         }
     }
-    cout<<num_test<<"   "<<num_train<<endl;
+    //cout<<num_test<<"   "<<num_train<<endl;
     //print_datatable(traintable,num_train-1,num_of_attributes-1);
     //print_datatable(testtable,num_test-1,num_of_attributes-1);
     Decision_Tree tree(traintable,attr_names,attr_values,num_train);
