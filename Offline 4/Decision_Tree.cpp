@@ -282,7 +282,20 @@ class Decision_Tree
 		}
         return attr_val_map;
 
-    }       
+    }  
+    void printTree(int nodeIndex, string branch) {
+			if (tree[nodeIndex].is_leaf == true)
+				cout << branch << "Label: " << tree[nodeIndex].label << "\n";
+
+			for(int i = 0; i < tree[nodeIndex].children.size(); i++) {
+				int childIndex = tree[nodeIndex].children[i];
+
+				string attributeName = attr_names[tree[nodeIndex].criteria_attr_indx];
+				string attributeValue = tree[childIndex].attr;
+
+				printTree(childIndex, branch + attributeName + " = " + attributeValue + ", ");
+			}
+		}     
 };
 void randomise(string **data,int data_count,int attr_count)
 {
@@ -510,13 +523,73 @@ int main()
             datatable[j][attr_count++]=temp;   
         }
     }
-    int num_of_iterations=20;
-    fstream outfile("result.txt",std::ios_base::out);
-    for(int i=0;i<num_of_iterations;i++)
-    {
-     cout<<"Itearation Number: "<<i+1<<endl; 
-     outfile<<"Itearation Number: "<<i+1<<endl;  
-    //print_datatable(datatable,num_of_examples,num_of_attributes);
+    // int num_of_iterations=20;
+    // fstream outfile("result.txt",std::ios_base::out);
+    // for(int i=0;i<num_of_iterations;i++)
+    // {
+    //  cout<<"Itearation Number: "<<i+1<<endl; 
+    //  outfile<<"Itearation Number: "<<i+1<<endl;  
+    // //print_datatable(datatable,num_of_examples,num_of_attributes);
+    // randomise(datatable,num_of_examples,num_of_attributes);
+    // //print_datatable(datatable,num_of_examples,num_of_attributes);
+    
+    // string **traintable,**testtable;
+    // traintable = new string*[num_of_examples];
+    // testtable = new string*[num_of_examples];
+    // int num_train=0;
+    // int num_test=0;
+
+    // for(int i=0;i<num_of_examples;i++)
+    // {
+    //     traintable[i] = new string[num_of_attributes+1];
+    // }
+    
+    // for(int i=0;i<num_of_examples;i++)
+    // {
+    //     testtable[i] = new string[num_of_attributes+1];
+    // }
+
+    // for(int i=1;i<=num_of_examples;i++)
+    // {
+    //     for(int j=1;j<=num_of_attributes+1;j++)
+    //     {
+    //         if((i-1)%10 == 2 || (i-1)%10 == 3 )
+    //         {
+    //             testtable[num_test][j-1]=datatable[i][j];
+    //         }
+    //         else
+    //         {
+    //             traintable[num_train][j-1]=datatable[i][j];
+    //         }
+    //     }
+    //     if((i-1)%10 == 2 || (i-1)%10 == 3 )
+    //     {
+    //             num_test++;
+    //     }
+    //     else
+    //     {
+    //             num_train++;
+    //     }
+    // }
+    // //cout<<num_test<<"   "<<num_train<<endl;
+    // //print_datatable(traintable,num_train-1,num_of_attributes-1);
+    // //print_datatable(testtable,num_test-1,num_of_attributes-1);
+    // Decision_Tree tree(traintable,attr_names,attr_values,num_train);
+    // //tree.print_data(); 
+    // tree.generate_tree();
+    // cout<<"Tree Node Count: "<<tree.node_count<<endl;
+    // outfile<<"Tree Node Count: "<<tree.node_count<<endl;
+    // Testing test(testtable,attr_names,num_test);
+    // //test.print_data();
+    // // test.print_solo_data(0);
+    // //string decision = test.generate_decision(tree,test.testtable[0]);
+    // // cout<<"Decision: "<<decision<<endl;
+    // double accuracy = test.accuracy_test(tree);
+    // cout<<"Accuracy : "<<accuracy<<endl;
+    // outfile<<"Accuracy : "<<accuracy<<endl;
+    // }
+
+
     randomise(datatable,num_of_examples,num_of_attributes);
     //print_datatable(datatable,num_of_examples,num_of_attributes);
     
@@ -565,17 +638,16 @@ int main()
     //tree.print_data(); 
     tree.generate_tree();
     cout<<"Tree Node Count: "<<tree.node_count<<endl;
-    outfile<<"Tree Node Count: "<<tree.node_count<<endl;
-    Testing test(testtable,attr_names,num_test);
-    //test.print_data();
-    // test.print_solo_data(0);
-    //string decision = test.generate_decision(tree,test.testtable[0]);
-    // cout<<"Decision: "<<decision<<endl;
-    double accuracy = test.accuracy_test(tree);
-    cout<<"Accuracy : "<<accuracy<<endl;
-    outfile<<"Accuracy : "<<accuracy<<endl;
-    }
-
+    tree.printTree(0,"");
+    //outfile<<"Tree Node Count: "<<tree.node_count<<endl;
+    // Testing test(testtable,attr_names,num_test);
+    // //test.print_data();
+    // // test.print_solo_data(0);
+    // //string decision = test.generate_decision(tree,test.testtable[0]);
+    // // cout<<"Decision: "<<decision<<endl;
+    // double accuracy = test.accuracy_test(tree);
+    // cout<<"Accuracy : "<<accuracy<<endl;
+    // outfile<<"Accuracy : "<<accuracy<<endl;
     
     return 0;
 }
