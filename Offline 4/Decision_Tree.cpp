@@ -43,6 +43,7 @@ class Decision_Tree
     vector<vector<string>> attr_values;
     int data_count;
     vector<Node> tree;
+    int node_count=0;
 
     Decision_Tree(string **datatable,vector<string> attr_names,vector<vector<string>>attr_values,int data_count)
     {
@@ -89,10 +90,8 @@ class Decision_Tree
 
 			int data_count = table.size();
 
-			map<string, vector<int> > attr_val_map;
-			for(int i=0;i<table.size();i++) {
-				attr_val_map[table[i][attr_index]].push_back(i);
-			}
+			map<string, vector<int> > attr_val_map=attribute_value_map(table,attr_index);
+			
 
 			for(auto iter=attr_val_map.begin(); iter != attr_val_map.end(); iter++) 
             {
@@ -111,7 +110,7 @@ class Decision_Tree
 			map<string, int> decision_count_store;
 
 			for(int i=0;i<table.size();i++) {
-				decision_count_store[table[i].back()]++;
+				decision_count_store[table[i][attr_names.size()-1]]++;
 			}
 
 			for(auto iter=decision_count_store.begin(); iter != decision_count_store.end(); iter++) {
@@ -127,10 +126,8 @@ class Decision_Tree
 
 			int data_count = table.size();
 
-			map<string, vector<int> > attr_val_map;
-			for(int i=0;i<table.size();i++) {
-				attr_val_map[table[i][attr_index]].push_back(i);
-			}
+			map<string, vector<int> > attr_val_map=attribute_value_map(table,attr_index);
+			
 
 			for(auto iter=attr_val_map.begin(); iter != attr_val_map.end(); iter++) {
 				vector<vector<string>> new_table;
@@ -154,7 +151,7 @@ class Decision_Tree
     {
         for(int i=0;i<table.size()-1;i++)
         {
-            if(table[i].back()!=table[i+1].back())
+            if(table[i][attr_names.size()-1]!=table[i+1][attr_names.size()-1])
             {
                 return false;
             }
@@ -179,20 +176,20 @@ class Decision_Tree
     }  
     pair<string,int> majority_label(vector<vector<string>> table)
     {
-        string major_label="";
+        string major_label;
         int major_count=0;
         map <string,int> label_count;
         for(int i=0;i<table.size();i++)
         {
-            label_count[table[i].back()]++;
+            label_count[table[i][attr_names.size()-1]]++;
         }
         map<string, int>::iterator iter;
         for(iter=label_count.begin();iter!=label_count.end();iter++)
         {
             if(iter->second>major_count)
             {
-                major_count=iter->second;
                 major_label=iter->first;
+                major_count=iter->second;
             } 
         }
         return make_pair(major_label,major_count);
@@ -202,16 +199,14 @@ class Decision_Tree
         if(check_leaf(table))
         {
             tree[node_index].is_leaf=true;
-            tree[node_index].label=table.back().back();
+            tree[node_index].label=table[table.size()-1][attr_names.size()-1];
             return;
         }
 
         int selected_attr = choose_attr(table);
 
-        map<string, vector<int> > attr_val_map;
-			for(int i=0;i<table.size();i++) {
-				attr_val_map[table[i][selected_attr]].push_back(i);
-			}
+
+		
         tree[node_index].criteria_attr_indx = selected_attr;
 
         pair<string,int> plurality_label = majority_label(table);
@@ -220,7 +215,10 @@ class Decision_Tree
             tree[node_index].is_leaf=true;
             tree[node_index].label=plurality_label.first;
             return;
-        }  
+        } 
+
+        map<string, vector<int> > attr_val_map=attribute_value_map(table,selected_attr); 
+        
         for(int i=0;i<attr_values[selected_attr].size();i++)
         {
             string attr = attr_values[selected_attr][i];
@@ -237,6 +235,7 @@ class Decision_Tree
             Node child_node(attr,tree.size());
             tree[node_index].children.push_back(child_node.tree_index);
             add_child(child_node);
+            node_count++;
 
             if(candidatetable.size()==0)
             {
@@ -253,9 +252,20 @@ class Decision_Tree
     } 
     void generate_tree()
     {
+        node_count++;
         Node root(0);
         add_child(root);
         rec_generate_tree(datatable,0);
+    }
+    map<string,vector<int>> attribute_value_map(vector<vector<string>> table,int selected_attribute)
+    {
+        map<string,vector<int>> attr_val_map;
+        for(int i=0;i<table.size();i++) 
+        {
+				attr_val_map[table[i][selected_attribute]].push_back(i);
+		}
+        return attr_val_map;
+
     }       
 };
 void randomise(string **data,int data_count,int attr_count)
@@ -305,10 +315,110 @@ void print_datatable(string **temp,int num_examples,int num_attributes)
         cout<<endl;
     }
 }
+void print_atrr_map(map<string,vector<int>> temp)
+{
+    map<string,vector<int>>::iterator itr;
+    for(itr=temp.begin();itr!=temp.end();itr++)
+    {
+        cout<<itr->first<<endl;
+        for(int i=0;i<itr->second.size();i++)
+        {
+            cout<<itr->second[i]<<"\t";
+        }
+        cout<<endl;
+    }
+}
+class Testing
+{
+    public:
+    Decision_Tree *tree;
+    vector<vector<string>> testtable;
+    vector<string> attr_names;
+Testing(Decision_Tree *tree, string **datatable,vector<string> attr_names,int data_count)
+{
+        this->tree=tree;
+        this->attr_names=attr_names;
+        for(int i=0;i<data_count;i++)
+        {
+            vector<string> temp;
+            for(int j=0;j<=attr_names.size();j++)
+            {
+                temp.push_back(datatable[i][j]);
+            }
+            testtable.push_back(temp);
+        }
+
+}
+
+int search(Decision_Tree tree,vector<string> attributes,int tree_index)
+{
+    if(tree.tree[tree_index].is_leaf)
+    {
+        return tree_index;
+    }
+
+    int criteria_attribute_index = tree.tree[tree_index].criteria_attr_indx;
+    for(int i=0;i<tree.tree[tree_index].children.size();i++)
+    {
+        int child_index = tree.tree[tree_index].children[i];
+
+        if(attributes[criteria_attribute_index] == tree.tree[child_index].attr)
+        {
+            return search(tree,attributes,child_index);
+        }
+    }
+    return -1;
+}
+string generate_decision(Decision_Tree tree,vector<string>attributes)
+{
+    string decision;
+    int leaf_index = search(tree,attributes,0);
+    if(leaf_index == -1)
+    {
+        return "Something Went Wrong";
+    }
+    decision = tree.tree[leaf_index].label;
+    return decision;
+}
+void print_data()
+{
+        cout<<"Tree Testing Set:"<<endl;
+        for(int i=0;i<attr_names.size();i++)
+        {
+            cout<<attr_names[i]<<"\t";
+        }
+        cout<<endl;
+        for(int i=0;i<testtable.size();i++)
+        {
+            for(int j=0;j<testtable[i].size();j++)
+            {
+                cout<<testtable[i][j]<<"\t";
+            }
+            cout<<endl;
+        }
+}
+void print_solo_data(int test_index)
+{
+        cout<<"Tree Testing Set(Test Example "<<test_index<<" ):"<<endl;
+        for(int i=0;i<attr_names.size();i++)
+        {
+            cout<<attr_names[i]<<"\t";
+        }
+        cout<<endl;
+        
+        for(int j=0;j<testtable[test_index].size();j++)
+        {
+                cout<<testtable[test_index][j]<<"\t";
+        }
+        cout<<endl;    
+}
+};
+
+
 int main()
 {
     fstream infile("car evaluation dataset/car.data",std::ios_base::in);
-    int num_of_examples=10;
+    int num_of_examples=1738;
     int num_of_attributes=7;
     string **datatable = new string*[num_of_examples+1];
     vector<string> attr_names;
@@ -413,6 +523,12 @@ int main()
     //print_datatable(testtable,num_test-1,num_of_attributes-1);
     Decision_Tree tree(traintable,attr_names,attr_values,num_train);
     //tree.print_data(); 
-    //cout<<tree.split_attr_calc(tree.datatable,0)<<endl;
+    tree.generate_tree();
+    cout<<"Tree Node Count: "<<tree.node_count<<endl;
+    Testing test(&tree,testtable,attr_names,num_test);
+    //test.print_data();
+    test.print_solo_data(0);
+    string decision = test.generate_decision(tree,test.testtable[0]);
+    cout<<"Decision: "<<decision<<endl;
     return 0;
 }
