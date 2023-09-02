@@ -158,7 +158,7 @@ class Decision_Tree
         }
         return true;
     }   
-    int choose_attr_gain_ratio(vector<vector<string>> table)
+    int choose_attr(vector<vector<string>> table)
     {
         int choosen_attr =-1;
         double max_gain_ratio=0.0;
@@ -457,7 +457,7 @@ double accuracy_test(Decision_Tree tree)
 int main()
 {
     fstream infile("car evaluation dataset/car.data",std::ios_base::in);
-    int num_of_examples=1738;
+    int num_of_examples=1728;
     int num_of_attributes=7;
     string **datatable = new string*[num_of_examples+1];
     vector<string> attr_names;
