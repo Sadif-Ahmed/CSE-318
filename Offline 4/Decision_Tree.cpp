@@ -274,7 +274,7 @@ void randomise(string **data,int data_count,int attr_count)
     for(int i=1;i<=data_count;i++)
         {
             vector<string> temp;
-            for(int j=1;j<=attr_count;j++)
+            for(int j=0;j<=attr_count;j++)
             {
                 temp.push_back(data[i][j]);
             }
@@ -287,7 +287,7 @@ void randomise(string **data,int data_count,int attr_count)
     {   
         for(int j=0;j<vector_data[i].size();j++)
         {
-            data[i+1][j+1]=vector_data[i][j];
+            data[i][j]=vector_data[i][j];
         }
     }
 }
@@ -331,12 +331,11 @@ void print_atrr_map(map<string,vector<int>> temp)
 class Testing
 {
     public:
-    Decision_Tree *tree;
     vector<vector<string>> testtable;
     vector<string> attr_names;
-Testing(Decision_Tree *tree, string **datatable,vector<string> attr_names,int data_count)
+Testing(string **datatable,vector<string> attr_names,int data_count)
 {
-        this->tree=tree;
+
         this->attr_names=attr_names;
         for(int i=0;i<data_count;i++)
         {
@@ -412,6 +411,30 @@ void print_solo_data(int test_index)
         }
         cout<<endl;    
 }
+vector<string> simulation(Decision_Tree tree)
+{
+    vector<string> decision_list;
+    for(int i=0;i<testtable.size();i++)
+    {
+        string decision =  generate_decision(tree,testtable[i]);
+        decision_list.push_back(decision);
+    }
+    return decision_list;
+}
+double accuracy_test(Decision_Tree tree)
+{
+    vector<string> decision_list = simulation(tree);
+    int miss_count=0;
+    for(int i=0;i<testtable.size();i++)
+    {
+        if(decision_list[i] != testtable[i][attr_names.size()-1])
+        {
+            miss_count++;
+        }
+    }
+    double accuracy = (1-(miss_count/testtable.size()*1.0))*100;
+    return accuracy;
+}
 };
 
 
@@ -452,14 +475,10 @@ int main()
 
 
     datatable[0][0]="Example";
-    datatable[0][1]="buying";
-    datatable[0][2]="maint";
-    datatable[0][3]="doors";
-    datatable[0][4]="persons";
-    datatable[0][5]="lug_boot";
-    datatable[0][6]="safety";
-    datatable[0][7]="Decision";
-    
+    for(int i=1;i<=attr_names.size();i++)
+    {
+        datatable[0][i]=attr_names[i];
+    }
     //print_datatable(datatable,num_of_examples,num_of_attributes);
     for(int j=1;j<=num_of_examples;j++)
     {
@@ -475,7 +494,12 @@ int main()
             datatable[j][attr_count++]=temp;   
         }
     }
-
+    int num_of_iterations=20;
+    fstream outfile("result.txt",std::ios_base::out);
+    for(int i=0;i<num_of_iterations;i++)
+    {
+     cout<<"Itearation Number: "<<i<<endl; 
+     outfile<<"Itearation Number: "<<i<<endl;  
     //print_datatable(datatable,num_of_examples,num_of_attributes);
     randomise(datatable,num_of_examples,num_of_attributes);
     //print_datatable(datatable,num_of_examples,num_of_attributes);
@@ -525,10 +549,17 @@ int main()
     //tree.print_data(); 
     tree.generate_tree();
     cout<<"Tree Node Count: "<<tree.node_count<<endl;
-    Testing test(&tree,testtable,attr_names,num_test);
+    outfile<<"Tree Node Count: "<<tree.node_count<<endl;
+    Testing test(testtable,attr_names,num_test);
     //test.print_data();
-    test.print_solo_data(0);
-    string decision = test.generate_decision(tree,test.testtable[0]);
-    cout<<"Decision: "<<decision<<endl;
+    // test.print_solo_data(0);
+    //string decision = test.generate_decision(tree,test.testtable[0]);
+    // cout<<"Decision: "<<decision<<endl;
+    double accuracy = test.accuracy_test(tree);
+    cout<<"Accuracy : "<<accuracy<<endl;
+    outfile<<"Accuracy : "<<accuracy<<endl;
+    }
+
+    
     return 0;
 }
