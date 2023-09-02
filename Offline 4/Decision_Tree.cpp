@@ -158,7 +158,7 @@ class Decision_Tree
         }
         return true;
     }   
-    int choose_attr(vector<vector<string>> table)
+    int choose_attr_gain_ratio(vector<vector<string>> table)
     {
         int choosen_attr =-1;
         double max_gain_ratio=0.0;
@@ -169,6 +169,22 @@ class Decision_Tree
             if(temp_gain_ratio>max_gain_ratio)
             {
                 max_gain_ratio=temp_gain_ratio;
+                choosen_attr=i;
+            }
+        }
+        return choosen_attr;
+    }  
+    int choose_attr_gain(vector<vector<string>> table)
+    {
+        int choosen_attr =-1;
+        double max_gain=0.0;
+
+        for(int i=0;i<attr_names.size()-1;i++)
+        {
+            double temp_gain=gain(table,i);
+            if(temp_gain>max_gain)
+            {
+                max_gain=temp_gain;
                 choosen_attr=i;
             }
         }
@@ -203,7 +219,7 @@ class Decision_Tree
             return;
         }
 
-        int selected_attr = choose_attr(table);
+        int selected_attr = choose_attr_gain(table);
 
 
 		
@@ -498,8 +514,8 @@ int main()
     fstream outfile("result.txt",std::ios_base::out);
     for(int i=0;i<num_of_iterations;i++)
     {
-     cout<<"Itearation Number: "<<i<<endl; 
-     outfile<<"Itearation Number: "<<i<<endl;  
+     cout<<"Itearation Number: "<<i+1<<endl; 
+     outfile<<"Itearation Number: "<<i+1<<endl;  
     //print_datatable(datatable,num_of_examples,num_of_attributes);
     randomise(datatable,num_of_examples,num_of_attributes);
     //print_datatable(datatable,num_of_examples,num_of_attributes);

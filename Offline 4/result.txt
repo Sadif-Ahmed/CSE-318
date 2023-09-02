@@ -1,60 +1,60 @@
 Itearation Number: 0
-Tree Node Count: 322
-Accuracy : 100
-Itearation Number: 1
-Tree Node Count: 300
-Accuracy : 100
-Itearation Number: 2
-Tree Node Count: 306
-Accuracy : 100
-Itearation Number: 3
-Tree Node Count: 314
-Accuracy : 100
-Itearation Number: 4
-Tree Node Count: 327
-Accuracy : 100
-Itearation Number: 5
-Tree Node Count: 298
-Accuracy : 100
-Itearation Number: 6
-Tree Node Count: 286
-Accuracy : 100
-Itearation Number: 7
 Tree Node Count: 308
 Accuracy : 100
-Itearation Number: 8
-Tree Node Count: 319
+Itearation Number: 1
+Tree Node Count: 323
 Accuracy : 100
-Itearation Number: 9
-Tree Node Count: 329
-Accuracy : 100
-Itearation Number: 10
-Tree Node Count: 318
-Accuracy : 100
-Itearation Number: 11
-Tree Node Count: 281
-Accuracy : 100
-Itearation Number: 12
-Tree Node Count: 310
-Accuracy : 100
-Itearation Number: 13
-Tree Node Count: 262
-Accuracy : 100
-Itearation Number: 14
-Tree Node Count: 316
-Accuracy : 100
-Itearation Number: 15
-Tree Node Count: 290
-Accuracy : 100
-Itearation Number: 16
+Itearation Number: 2
 Tree Node Count: 314
 Accuracy : 100
+Itearation Number: 3
+Tree Node Count: 306
+Accuracy : 100
+Itearation Number: 4
+Tree Node Count: 290
+Accuracy : 100
+Itearation Number: 5
+Tree Node Count: 306
+Accuracy : 100
+Itearation Number: 6
+Tree Node Count: 296
+Accuracy : 100
+Itearation Number: 7
+Tree Node Count: 318
+Accuracy : 100
+Itearation Number: 8
+Tree Node Count: 290
+Accuracy : 100
+Itearation Number: 9
+Tree Node Count: 306
+Accuracy : 100
+Itearation Number: 10
+Tree Node Count: 300
+Accuracy : 100
+Itearation Number: 11
+Tree Node Count: 313
+Accuracy : 100
+Itearation Number: 12
+Tree Node Count: 324
+Accuracy : 100
+Itearation Number: 13
+Tree Node Count: 292
+Accuracy : 100
+Itearation Number: 14
+Tree Node Count: 305
+Accuracy : 100
+Itearation Number: 15
+Tree Node Count: 318
+Accuracy : 100
+Itearation Number: 16
+Tree Node Count: 315
+Accuracy : 100
 Itearation Number: 17
-Tree Node Count: 312
+Tree Node Count: 298
 Accuracy : 100
 Itearation Number: 18
-Tree Node Count: 310
+Tree Node Count: 272
 Accuracy : 100
 Itearation Number: 19
-Tree Node Count: 315
+Tree Node Count: 290
 Accuracy : 100
