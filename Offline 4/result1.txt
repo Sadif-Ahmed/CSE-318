@@ -1,2 +1,43 @@
 Using Information Gain Ratio:
 Itearation Number: 1
+Accuracy : 90.7514%
+Itearation Number: 2
+Accuracy : 89.0173%
+Itearation Number: 3
+Accuracy : 92.1965%
+Itearation Number: 4
+Accuracy : 95.3757%
+Itearation Number: 5
+Accuracy : 95.3757%
+Itearation Number: 6
+Accuracy : 94.5087%
+Itearation Number: 7
+Accuracy : 93.0636%
+Itearation Number: 8
+Accuracy : 92.7746%
+Itearation Number: 9
+Accuracy : 93.0636%
+Itearation Number: 10
+Accuracy : 91.0405%
+Itearation Number: 11
+Accuracy : 93.3526%
+Itearation Number: 12
+Accuracy : 92.4855%
+Itearation Number: 13
+Accuracy : 92.1965%
+Itearation Number: 14
+Accuracy : 92.4855%
+Itearation Number: 15
+Accuracy : 92.4855%
+Itearation Number: 16
+Accuracy : 93.9306%
+Itearation Number: 17
+Accuracy : 92.1965%
+Itearation Number: 18
+Accuracy : 92.4855%
+Itearation Number: 19
+Accuracy : 91.3295%
+Itearation Number: 20
+Accuracy : 94.5087%
+Average Accuracy : 92.7312%
+Standard Deviation : 1.51638

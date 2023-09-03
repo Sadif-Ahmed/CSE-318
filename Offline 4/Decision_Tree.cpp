@@ -488,8 +488,8 @@ double accuracy_test(Decision_Tree tree)
 
 int main()
 {
-    fstream infile("car evaluation dataset/carTest.data",std::ios_base::in);
-    int num_of_examples=100000;
+    fstream infile("car evaluation dataset/car.data",std::ios_base::in);
+    int num_of_examples=1728;
     int num_of_attributes=7;
     string **datatable = new string*[num_of_examples+1];
     vector<string> attr_names;
