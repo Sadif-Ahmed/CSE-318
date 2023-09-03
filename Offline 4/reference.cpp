@@ -376,7 +376,7 @@ int main(int argc, const char * argv[]) {
 	}
 
 	/* for answer check */
-	/*
+	
 	   InputReader answerInputReader("dt_answer1.txt");
 	   Table answer = answerInputReader.getTable();
 	   int totalCount = (int)answer.data.size();
@@ -388,6 +388,6 @@ int main(int argc, const char * argv[]) {
 	   }
 	   cout << "Accuracy: " << (double)hitCount/totalCount*100 << "%";
 	   cout << "(" << hitCount << "/" << totalCount << ")" << endl;
-	   */
+	   
 	return 0;
 }
