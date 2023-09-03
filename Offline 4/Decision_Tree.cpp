@@ -24,15 +24,21 @@ class Node {
 		string label;
 
 		vector<int > children;
+        vector<bool> attr_status;
 
-		Node(int index) {
+		Node(int index,int num_attr) {
 			is_leaf = false;
             tree_index=index;
+            for(int i=0;i<num_attr;i++)
+            {
+                attr_status.push_back(true);
+            }
 		}
-        Node(string attr,int index) {
+        Node(string attr,int index,vector<bool> attr_status) {
 			this->attr=attr;
             is_leaf = false;
             tree_index=index;
+            this->attr_status=attr_status;
 		}
 };
 class Decision_Tree
@@ -158,7 +164,7 @@ class Decision_Tree
         }
         return true;
     }   
-    int choose_attr(vector<vector<string>> table)
+    int choose_attr(vector<vector<string>> table,int tree_index)
     {
         int choosen_attr =-1;
         double max_gain_ratio=0.0;
@@ -166,7 +172,7 @@ class Decision_Tree
         for(int i=0;i<attr_names.size()-1;i++)
         {
             double temp_gain_ratio=gain_ratio(table,i);
-            if(temp_gain_ratio>max_gain_ratio)
+            if(temp_gain_ratio>max_gain_ratio && tree[tree_index].attr_status[i])
             {
                 max_gain_ratio=temp_gain_ratio;
                 choosen_attr=i;
@@ -174,7 +180,7 @@ class Decision_Tree
         }
         return choosen_attr;
     }  
-    int choose_attr_gain(vector<vector<string>> table)
+    int choose_attr_gain(vector<vector<string>> table,int tree_index)
     {
         int choosen_attr =-1;
         double max_gain=0.0;
@@ -182,7 +188,7 @@ class Decision_Tree
         for(int i=0;i<attr_names.size()-1;i++)
         {
             double temp_gain=gain(table,i);
-            if(temp_gain>max_gain)
+            if(temp_gain>max_gain && tree[tree_index].attr_status[i])
             {
                 max_gain=temp_gain;
                 choosen_attr=i;
@@ -223,15 +229,14 @@ class Decision_Tree
         
         if(choice==1)
         {
-            selected_attr = choose_attr_gain(table);
+            selected_attr = choose_attr_gain(table,node_index);
         }
         else
         {
-           selected_attr = choose_attr(table); 
+           selected_attr = choose_attr(table,node_index); 
         }
-        
 
-
+        tree[node_index].attr_status[selected_attr]=false;
 		
         tree[node_index].criteria_attr_indx = selected_attr;
 
@@ -258,7 +263,7 @@ class Decision_Tree
                 candidatetable.push_back(table[candidates[i]]);
             }
 
-            Node child_node(attr,tree.size());
+            Node child_node(attr,tree.size(),tree[node_index].attr_status);
             tree[node_index].children.push_back(child_node.tree_index);
             add_child(child_node);
             node_count++;
@@ -279,7 +284,7 @@ class Decision_Tree
     void generate_tree(int choice)
     {
         node_count++;
-        Node root(0);
+        Node root(0,attr_names.size());
         add_child(root);
         rec_generate_tree(datatable,0,choice);
     }
