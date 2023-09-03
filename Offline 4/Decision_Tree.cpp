@@ -600,6 +600,12 @@ int main()
     //print_datatable(testtable,num_test-1,num_of_attributes-1);
     Decision_Tree tree(traintable,attr_names,attr_values,num_train);
     Decision_Tree tree1(traintable,attr_names,attr_values,num_train);
+    for(long int i=0; i<num_of_examples; i++)
+        {
+            
+            delete[] traintable[i];
+        }
+    delete[]traintable;
     //tree.print_data(); 
     tree.generate_tree(1);
     tree1.generate_tree(2);
@@ -607,6 +613,12 @@ int main()
     //outfile<<"Tree Node Count: "<<tree.node_count<<endl;
     Testing test(testtable,attr_names,num_test);
     Testing test1(testtable,attr_names,num_test);
+    for(long int i=0; i<num_of_examples; i++)
+        {
+            
+            delete[] testtable[i];
+        }
+    delete[]testtable;
     //test.print_data();
     // test.print_solo_data(0);
     //string decision = test.generate_decision(tree,test.testtable[0]);
@@ -640,5 +652,12 @@ int main()
     outfile<<"Standard Deviation : "<<standard_deviation<<endl;
     outfile1<<"Standard Deviation : "<<standard_deviation1<<endl;
     
+    for(long int i=0; i<=num_of_examples; i++)
+        {
+            
+            delete[] datatable[i];
+        }
+    delete[]datatable;
+       
     return 0;
 }
