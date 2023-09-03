@@ -1,2 +1,2 @@
-g++ Decision_Tree.cpp
+g++ -O3 Decision_Tree.cpp
 ./a.out
