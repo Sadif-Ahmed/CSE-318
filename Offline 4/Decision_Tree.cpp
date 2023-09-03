@@ -235,18 +235,17 @@ class Decision_Tree
         {
            selected_attr = choose_attr(table,node_index); 
         }
-
-        tree[node_index].attr_status[selected_attr]=false;
-		
-        tree[node_index].criteria_attr_indx = selected_attr;
-
+                
         pair<string,int> plurality_label = majority_label(table);
-        if(plurality_label.second>=table.size()*0.8)
+        if(plurality_label.second>=table.size()*0.8 || selected_attr==-1)
         {
             tree[node_index].is_leaf=true;
             tree[node_index].label=plurality_label.first;
             return;
         } 
+        tree[node_index].attr_status[selected_attr]=false;
+		
+        tree[node_index].criteria_attr_indx = selected_attr;
 
         map<string, vector<int> > attr_val_map=attribute_value_map(table,selected_attr); 
         
@@ -489,8 +488,8 @@ double accuracy_test(Decision_Tree tree)
 
 int main()
 {
-    fstream infile("car evaluation dataset/car.data",std::ios_base::in);
-    int num_of_examples=1728;
+    fstream infile("car evaluation dataset/carTest.data",std::ios_base::in);
+    int num_of_examples=100000;
     int num_of_attributes=7;
     string **datatable = new string*[num_of_examples+1];
     vector<string> attr_names;
@@ -543,6 +542,7 @@ int main()
             datatable[j][attr_count++]=temp;   
         }
     }
+    cout<<"Dataset Generated"<<endl;
     int num_of_iterations=20;
     double sum_accuracy=0;
     double sum_accuracy1=0;
@@ -603,6 +603,7 @@ int main()
     //cout<<num_test<<"   "<<num_train<<endl;
     //print_datatable(traintable,num_train-1,num_of_attributes-1);
     //print_datatable(testtable,num_test-1,num_of_attributes-1);
+    cout<<"Divided into 80 percent training, 20 percent test"<<endl;
     Decision_Tree tree(traintable,attr_names,attr_values,num_train);
     Decision_Tree tree1(traintable,attr_names,attr_values,num_train);
     for(long int i=0; i<num_of_examples; i++)
@@ -614,6 +615,7 @@ int main()
     //tree.print_data(); 
     tree.generate_tree(1);
     tree1.generate_tree(2);
+    cout<<"Tree Generated"<<endl;
     //cout<<"Tree Node Count: "<<tree.node_count<<endl;
     //outfile<<"Tree Node Count: "<<tree.node_count<<endl;
     Testing test(testtable,attr_names,num_test);
